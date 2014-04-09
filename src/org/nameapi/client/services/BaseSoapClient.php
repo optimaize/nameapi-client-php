@@ -5,6 +5,9 @@ namespace org\nameapi\client\services;
 require_once('ServiceFactory.php');
 require_once('Util.php');
 
+if (!extension_loaded('soap')) {
+    exit("Error: missing php_soap library, enable it in php.ini!");
+}
 
 /**
  */
