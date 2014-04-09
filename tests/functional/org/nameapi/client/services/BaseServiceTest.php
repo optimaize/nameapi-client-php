@@ -30,4 +30,11 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
             ->build();
     }
 
+    /**
+     * @return ServiceFactory
+     */
+    protected function makeServiceFactory() {
+        return new ServiceFactory($this->makeContext());
+    }
+
 } 
