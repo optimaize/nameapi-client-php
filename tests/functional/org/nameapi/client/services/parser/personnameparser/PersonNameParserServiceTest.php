@@ -10,7 +10,7 @@ use org\nameapi\ontology\input\entities\person\name\InputPersonName;
 
 class PersonNameParserServiceTest extends BaseServiceTest {
 
-    public function testPing() {
+    public function testParse() {
         $personNameParser = $this->makeServiceFactory()->parserServices()->personNameParser();
         $inputPerson = NaturalInputPerson::builder()
             ->name(InputPersonName::westernBuilder()
@@ -18,7 +18,7 @@ class PersonNameParserServiceTest extends BaseServiceTest {
                 ->build())
             ->build();
         $parseResult = $personNameParser->parse($inputPerson);
-        $this->assertEquals($parseResult->getParsingStatus()->toString(), 'SUCCESS');
+        $this->assertEquals('SUCCESS', $parseResult->getParsingStatus()->toString());
     }
 
 }

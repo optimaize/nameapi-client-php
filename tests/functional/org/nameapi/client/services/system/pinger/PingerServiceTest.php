@@ -10,8 +10,8 @@ class PingerServiceTest extends BaseServiceTest {
 
     public function testPing() {
         $pinger = $this->makeServiceFactory()->systemServices()->pingerService();
-        $pong = $pinger->ping();
-        $this->assertEquals($pong, 'pong');
+        $result = $pinger->ping();
+        $this->assertEquals('pong', $result);
     }
 
 }
