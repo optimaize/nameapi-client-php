@@ -4,6 +4,9 @@ namespace org\nameapi\ontology\input\entities\person\age;
 
 include_once('AgeInfo.php');
 
+/**
+ * Creates instances of {@link AgeInfo}.
+ */
 class AgeInfoFactory {
 
     /**
