@@ -24,7 +24,7 @@ class GenderizerServiceFactory {
     /**
      * @return persongenderizer\PersonGenderizerService
      */
-    public function personGenderizerService() {
+    public function personGenderizer() {
         if ($this->personGenderizerService==null) {
             $this->personGenderizerService = new persongenderizer\PersonGenderizerService($this->context);
         }

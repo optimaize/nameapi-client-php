@@ -20,7 +20,7 @@ class AssessResponse {
     public function getReturn() {
         return new PersonGenderResult(
             new ComputedPersonGender($this->return->gender),
-            $this->return->maleProportion,
+            isSet($this->return->maleProportion) ? $this->return->maleProportion : null,
             $this->return->confidence
         );
     }
