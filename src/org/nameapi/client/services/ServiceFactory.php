@@ -5,7 +5,7 @@ namespace org\nameapi\client\services;
 use org\nameapi\ontology\input\context\Context;
 
 require_once('system/SystemServiceFactory.php');
-require_once('parser/NameParserServiceFactory.php');
+require_once('parser/ParserServiceFactory.php');
 require_once('genderizer/GenderizerServiceFactory.php');
 require_once('matcher/MatcherServiceFactory.php');
 require_once('formatter/FormatterServiceFactory.php');
@@ -29,7 +29,7 @@ class ServiceFactory {
 
     private $context;
     private $systemServiceFactory;
-    private $nameParserServiceFactory;
+    private $parserServiceFactory;
     private $genderizerServiceFactory;
     private $matcherServiceFactory;
     private $formatterServiceFactory;
@@ -54,19 +54,19 @@ class ServiceFactory {
     }
 
     /**
-     * @return parser\NameParserServiceFactory
+     * @return parser\ParserServiceFactory
      */
-    public function nameParserServiceFactory() {
-        if ($this->nameParserServiceFactory==null) {
-            $this->nameParserServiceFactory = new parser\NameParserServiceFactory($this->context);
+    public function parserServices() {
+        if ($this->parserServiceFactory==null) {
+            $this->parserServiceFactory = new parser\ParserServiceFactory($this->context);
         }
-        return $this->nameParserServiceFactory;
+        return $this->parserServiceFactory;
     }
 
     /**
      * @return genderizer\GenderizerServiceFactory
      */
-    public function genderizerServiceFactory() {
+    public function genderizerServices() {
         if ($this->genderizerServiceFactory==null) {
             $this->genderizerServiceFactory = new genderizer\GenderizerServiceFactory($this->context);
         }
@@ -76,7 +76,7 @@ class ServiceFactory {
     /**
      * @return matcher\MatcherServiceFactory
      */
-    public function matcherServiceFactory() {
+    public function matcherServices() {
         if ($this->matcherServiceFactory==null) {
             $this->matcherServiceFactory = new matcher\MatcherServiceFactory($this->context);
         }
@@ -86,7 +86,7 @@ class ServiceFactory {
     /**
      * @return formatter\FormatterServiceFactory
      */
-    public function formatterServiceFactory() {
+    public function formatterServices() {
         if ($this->formatterServiceFactory==null) {
             $this->formatterServiceFactory = new formatter\FormatterServiceFactory($this->context);
         }
@@ -96,7 +96,7 @@ class ServiceFactory {
     /**
      * @return email\EmailServiceFactory
      */
-    public function emailServiceFactory() {
+    public function emailServices() {
         if ($this->emailServiceFactory==null) {
             $this->emailServiceFactory = new email\EmailServiceFactory($this->context);
         }

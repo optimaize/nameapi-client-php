@@ -22,8 +22,6 @@ class SoapPersonNameParserService extends BaseSoapClient {
 
     /**
      * @param ParseArguments $parameters
-     * @access public
-     * @return parseResponse
      */
     public function parse(ParseArguments $parameters) {
         return $this->__soapCall('parse', array($parameters))->return;
