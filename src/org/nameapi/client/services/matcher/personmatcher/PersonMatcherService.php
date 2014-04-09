@@ -44,12 +44,15 @@ class PersonMatcherService {
     public function match(NaturalInputPerson $person1, NaturalInputPerson $person2) {
         $parameters = new wsdl\MatchArguments($this->context, $person1, $person2);
         $result = $this->soapPersonMatcher->match($parameters);
+
+        $genderWarnings = isSet($result->genderMatch->warnings) ? $result->genderMatch->warnings : null;
+
         return new PersonMatchResult(
             new PersonMatchType($result->personMatchType),
             new PersonMatchComposition($result->personMatchComposition),
             $result->points, $result->confidence,
             new PersonNameMatch(new PersonNameMatchType($result->personNameMatch->type)),
-            new GenderMatch(new GenderMatchType($result->genderMatch->type), $result->genderMatch->confidence, $result->genderMatch->warnings),
+            new GenderMatch(new GenderMatchType($result->genderMatch->type), $result->genderMatch->confidence, $genderWarnings),
             new AgeMatch($result->ageMatch)
         );
     }
