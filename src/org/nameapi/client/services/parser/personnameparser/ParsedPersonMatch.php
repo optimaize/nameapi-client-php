@@ -1,0 +1,64 @@
+<?php
+
+namespace org\nameapi\client\services\parser\personnameparser;
+
+require_once('ParsedPerson.php');
+
+class ParsedPersonMatch {
+
+    /**
+     *
+     * @var ParsedPerson $parsedPerson
+     * @access public
+     */
+    private $parsedPerson = null;
+
+    /**
+     *
+     * @var float $likeliness
+     * @access public
+     */
+    private $likeliness = null;
+
+    /**
+     *
+     * @var float $confidence
+     * @access public
+     */
+    private $confidence = null;
+
+    /**
+     * @param ParsedPerson $parsedPerson
+     * @param float $likeliness
+     * @param float $confidence
+     * @access public
+     */
+    public function __construct($parsedPerson, $likeliness, $confidence) {
+        $this->parsedPerson = $parsedPerson;
+        $this->likeliness = $likeliness;
+        $this->confidence = $confidence;
+    }
+
+    /**
+     * @return ParsedPerson
+     */
+    public function getParsedPerson() {
+        return $this->parsedPerson;
+    }
+
+    /**
+     * @return float 0-1
+     */
+    public function getLikeliness() {
+        return $this->likeliness;
+    }
+
+    /**
+     *
+     * @return float 0-1
+     */
+    public function getConfidence() {
+        return $this->confidence;
+    }
+
+}
