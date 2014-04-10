@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\formatter\wsdl;
+namespace org\nameapi\client\services\formatter\namefieldformatter\wsdl;
 
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\name\NameField;

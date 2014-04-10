@@ -1,10 +1,11 @@
 <?php
 
-namespace org\nameapi\client\services\formatter;
+namespace org\nameapi\client\services\formatter\namefieldformatter;
 
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\name\NameField;
-use org\nameapi\ontology\input\entities\person\name\InputPersonName;
+use org\nameapi\client\services\formatter\FormatterProperties;
+use org\nameapi\client\services\formatter\FormatterResult;
 
 require_once('wsdl/SoapNameFieldFormatterService.php');
 
@@ -17,9 +18,6 @@ class NameFieldFormatterService {
     private $context;
     private $soapNameFieldFormatterService;
 
-    /**
-     * @access public
-     */
     public function __construct(Context $context) {
         $this->context = $context;
         $this->soapNameFieldFormatterService = new wsdl\SoapNameFieldFormatterService();

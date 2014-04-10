@@ -1,9 +1,10 @@
 <?php
 
-namespace org\nameapi\client\services\formatter\wsdl;
+namespace org\nameapi\client\services\formatter\personnameformatter\wsdl;
 
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
+use org\nameapi\client\services\formatter\wsdl\SoapFormatterProperties;
 
 /**
  * The input to SoapPersonNameFormatterService.

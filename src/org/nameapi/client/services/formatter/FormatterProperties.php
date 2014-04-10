@@ -23,8 +23,13 @@ class FormatterProperties {
     }
 
 
-    public function setFormatUnknownInput($bool) {
+    /**
+     * @param $bool
+     * @return FormatterProperties
+     */
+    public function formatUnknownInput($bool) {
         $this->formatUnknownInput = $bool;
+        return $this;
     }
 
     /**
