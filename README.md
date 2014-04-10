@@ -49,7 +49,7 @@ $serviceFactory = new ServiceFactory($context);
 This code sends a simple ping to the nameapi server to test the connection:
 
 ```php
-$pinger = $serviceFactory->systemServices()->pingerService();
+$pinger = $serviceFactory->systemServices()->pinger();
 $pong = $pinger->ping();
 ```
 
