@@ -8,7 +8,12 @@ require_once('wsdl/SoapPingerService.php');
 
 
 /**
+ * This is the service class for the web service offered at
+ * http://api.nameapi.org/soap/v4.0/system/pinger?wsdl
  *
+ * HOW TO USE:
+ * $pinger = $myServiceFactory->systemServices()->pingerService();
+ * $pong = $pinger->ping();
  */
 class PingerService {
 

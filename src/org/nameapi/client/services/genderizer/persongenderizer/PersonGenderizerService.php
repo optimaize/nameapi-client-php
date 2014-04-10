@@ -10,7 +10,13 @@ require_once('PersonGenderResult.php');
 
 
 /**
+ * This is the service class for the web service offered at
+ * http://api.nameapi.org/soap/v4.0/genderizer/persongenderizer?wsdl
  *
+ * HOW TO USE:
+ * $personGenderizer = $myServiceFactory->genderizerServices()->personGenderizer();
+ * $personGenderResult = $personGenderizer->assess($inputPerson);
+ * echo $personGenderResult->getGender()->toString(); //will print 'MALE'
  */
 class PersonGenderizerService {
 
