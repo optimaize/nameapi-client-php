@@ -25,7 +25,7 @@ class SystemServiceFactory {
     /**
      * @return PingerService
      */
-    public function pingerService() {
+    public function pinger() {
         if ($this->pingerService==null) {
             $this->pingerService = new PingerService($this->context);
         }

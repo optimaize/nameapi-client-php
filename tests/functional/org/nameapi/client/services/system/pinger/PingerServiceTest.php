@@ -9,7 +9,7 @@ use org\nameapi\client\services\BaseServiceTest;
 class PingerServiceTest extends BaseServiceTest {
 
     public function testPing() {
-        $pinger = $this->makeServiceFactory()->systemServices()->pingerService();
+        $pinger = $this->makeServiceFactory()->systemServices()->pinger();
         $result = $pinger->ping();
         $this->assertEquals('pong', $result);
     }
