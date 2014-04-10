@@ -10,14 +10,11 @@ require_once('Maybe.php');
 
 /**
  */
-class DisposableEmailAddressDetector {
+class DisposableEmailAddressDetectorService {
 
     private $context;
     private $soapDisposableEmailAddressDetectorService;
 
-    /**
-     * @access public
-     */
     public function __construct(Context $context) {
         $this->context = $context;
         $this->soapDisposableEmailAddressDetectorService = new wsdl\SoapDisposableEmailAddressDetectorService();
