@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\matcher;
 
-require_once('GenderMatchType.php');
+require_once(__DIR__.'/GenderMatchType.php');
 
 
 class GenderMatch {

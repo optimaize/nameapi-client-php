@@ -11,8 +11,8 @@ use org\nameapi\client\services\matcher\GenderMatch;
 use org\nameapi\client\services\matcher\GenderMatchType;
 use org\nameapi\client\services\matcher\AgeMatch;
 
-require_once('wsdl/SoapPersonMatcherService.php');
-require_once('PersonMatchResult.php');
+require_once(__DIR__.'/wsdl/SoapPersonMatcherService.php');
+require_once(__DIR__.'/PersonMatchResult.php');
 
 
 /**

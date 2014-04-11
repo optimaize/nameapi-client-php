@@ -4,8 +4,8 @@ namespace org\nameapi\client\services\email\emailnameparser;
 
 use org\nameapi\ontology\input\context\Context;
 
-require_once('wsdl/SoapEmailNameParserService.php');
-require_once('EmailNameParserResult.php');
+require_once(__DIR__.'/wsdl/SoapEmailNameParserService.php');
+require_once(__DIR__.'/EmailNameParserResult.php');
 
 /**
  * This is the service class for the web service offered at

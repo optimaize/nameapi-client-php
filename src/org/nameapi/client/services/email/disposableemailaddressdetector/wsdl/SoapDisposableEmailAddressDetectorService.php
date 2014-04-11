@@ -4,7 +4,7 @@ namespace org\nameapi\client\services\email\disposableemailaddressdetector\wsdl;
 
 use org\nameapi\client\services\BaseSoapClient;
 
-require_once('DisposableEmailAddressDetectorArguments.php');
+require_once(__DIR__.'/DisposableEmailAddressDetectorArguments.php');
 require_once(__DIR__ . '/../../../BaseSoapClient.php');
 
 

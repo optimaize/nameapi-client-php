@@ -4,7 +4,7 @@ namespace org\nameapi\client\services\genderizer;
 
 use org\nameapi\ontology\input\context\Context;
 
-require_once('persongenderizer/PersonGenderizerService.php');
+require_once(__DIR__.'/persongenderizer/PersonGenderizerService.php');
 
 
 /**

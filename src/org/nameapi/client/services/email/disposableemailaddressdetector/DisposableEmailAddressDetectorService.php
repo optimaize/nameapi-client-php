@@ -4,9 +4,9 @@ namespace org\nameapi\client\services\email\disposableemailaddressdetector;
 
 use org\nameapi\ontology\input\context\Context;
 
-require_once('wsdl/SoapDisposableEmailAddressDetectorService.php');
-require_once('DisposableEmailAddressDetectorResult.php');
-require_once('Maybe.php');
+require_once(__DIR__.'/wsdl/SoapDisposableEmailAddressDetectorService.php');
+require_once(__DIR__.'/DisposableEmailAddressDetectorResult.php');
+require_once(__DIR__.'/Maybe.php');
 
 /**
  * This is the service class for the web service offered at

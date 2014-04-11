@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\parser;
 
-require_once('OutputTermType.php');
+require_once(__DIR__.'/OutputTermType.php');
 
 class Term {
 

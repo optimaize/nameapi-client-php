@@ -7,7 +7,7 @@ use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 use org\nameapi\client\services\formatter\FormatterProperties;
 use org\nameapi\client\services\formatter\FormatterResult;
 
-require_once('wsdl/SoapPersonNameFormatterService.php');
+require_once(__DIR__.'/wsdl/SoapPersonNameFormatterService.php');
 require_once(__DIR__.'/../FormatterResult.php');
 require_once(__DIR__.'/../FormatterProperties.php');
 

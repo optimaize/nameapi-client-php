@@ -2,11 +2,11 @@
 
 namespace org\nameapi\ontology\input\entities\person;
 
-require_once('MaritalStatus.php');
-require_once('age/AgeInfoFactory.php');
-require_once('gender/ComputedPersonGender.php');
-require_once('gender/StoragePersonGender.php');
-require_once('name/InputPersonName.php');
+require_once(__DIR__.'/MaritalStatus.php');
+require_once(__DIR__.'/age/AgeInfoFactory.php');
+require_once(__DIR__.'/gender/ComputedPersonGender.php');
+require_once(__DIR__.'/gender/StoragePersonGender.php');
+require_once(__DIR__.'/name/InputPersonName.php');
 
 use org\nameapi\ontology\input\entities\contact\EmailAddress;
 use org\nameapi\ontology\input\entities\contact\TelNumber;

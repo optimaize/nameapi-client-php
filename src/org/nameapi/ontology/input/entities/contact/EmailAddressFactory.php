@@ -2,7 +2,7 @@
 
 namespace org\nameapi\ontology\input\entities\contact;
 
-require_once('EmailAddress.php');
+require_once(__DIR__.'/EmailAddress.php');
 
 class EmailAddressFactory {
 

@@ -4,7 +4,7 @@ namespace org\nameapi\client\services\parser;
 
 use org\nameapi\ontology\input\context\Context;
 
-require_once('personnameparser/PersonNameParserService.php');
+require_once(__DIR__.'/personnameparser/PersonNameParserService.php');
 
 /**
  * Provides access to the parser-related services.

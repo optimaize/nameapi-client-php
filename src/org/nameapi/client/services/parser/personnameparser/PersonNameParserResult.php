@@ -5,7 +5,7 @@ namespace org\nameapi\client\services\parser\personnameparser;
 use org\nameapi\client\services\parser\ParsingStatus;
 
 require_once(__DIR__.'/../ParsingStatus.php');
-require_once('ParsedPersonMatch.php');
+require_once(__DIR__.'/ParsedPersonMatch.php');
 
 
 class PersonNameParserResult {

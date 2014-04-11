@@ -5,8 +5,8 @@ namespace org\nameapi\client\services\genderizer\persongenderizer;
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 
-require_once('wsdl/SoapPersonGenderizerService.php');
-require_once('PersonGenderResult.php');
+require_once(__DIR__.'/wsdl/SoapPersonGenderizerService.php');
+require_once(__DIR__.'/PersonGenderResult.php');
 
 
 /**

@@ -2,7 +2,7 @@
 
 namespace org\nameapi\ontology\input\entities\person;
 
-require_once('NaturalInputPerson.php');
+require_once(__DIR__.'/NaturalInputPerson.php');
 
 use org\nameapi\ontology\input\entities\contact\EmailAddress;
 use org\nameapi\ontology\input\entities\contact\TelNumber;

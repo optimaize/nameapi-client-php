@@ -2,12 +2,12 @@
 
 namespace org\nameapi\ontology\input\entities\person\name;
 
-require_once('NameField.php');
-require_once('builder/InputPersonNameBuilder.php');
-require_once('builder/WesternInputPersonNameBuilder.php');
-require_once('builder/AmericanInputPersonNameBuilder.php');
-require_once('types/AmericanNameFieldType.php');
-require_once('types/CommonNameFieldType.php');
+require_once(__DIR__.'/NameField.php');
+require_once(__DIR__.'/builder/InputPersonNameBuilder.php');
+require_once(__DIR__.'/builder/WesternInputPersonNameBuilder.php');
+require_once(__DIR__.'/builder/AmericanInputPersonNameBuilder.php');
+require_once(__DIR__.'/types/AmericanNameFieldType.php');
+require_once(__DIR__.'/types/CommonNameFieldType.php');
 
 class InputPersonName {
 

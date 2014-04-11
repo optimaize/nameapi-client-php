@@ -6,8 +6,8 @@ use org\nameapi\client\services\matcher\PersonNameMatch;
 use org\nameapi\client\services\matcher\GenderMatch;
 use org\nameapi\client\services\matcher\AgeMatch;
 
-require_once('PersonMatchType.php');
-require_once('PersonMatchComposition.php');
+require_once(__DIR__.'/PersonMatchType.php');
+require_once(__DIR__.'/PersonMatchComposition.php');
 require_once(__DIR__.'/../PersonNameMatch.php');
 require_once(__DIR__.'/../GenderMatch.php');
 require_once(__DIR__.'/../AgeMatch.php');

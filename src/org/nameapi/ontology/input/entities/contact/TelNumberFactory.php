@@ -2,7 +2,7 @@
 
 namespace org\nameapi\ontology\input\entities\contact;
 
-require_once('TelNumber.php');
+require_once(__DIR__.'/TelNumber.php');
 
 class TelNumberFactory {
 

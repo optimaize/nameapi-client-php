@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\parser;
 
-require_once('Term.php');
+require_once(__DIR__.'/Term.php');
 
 class OutputPersonName {
 

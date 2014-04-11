@@ -11,8 +11,8 @@ use org\nameapi\client\services\parser\OutputTermType;
 use org\nameapi\client\services\parser\Term;
 use org\nameapi\client\services\parser\OutputPersonName;
 
-require_once('wsdl/SoapPersonNameParserService.php');
-require_once('PersonNameParserResult.php');
+require_once(__DIR__.'/wsdl/SoapPersonNameParserService.php');
+require_once(__DIR__.'/PersonNameParserResult.php');
 
 
 /**

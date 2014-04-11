@@ -5,7 +5,7 @@ namespace org\nameapi\client\services\parser\personnameparser\wsdl;
 use org\nameapi\client\services\BaseSoapClient;
 
 require_once(__DIR__ . '/../../../BaseSoapClient.php');
-require_once('ParseArguments.php');
+require_once(__DIR__.'/ParseArguments.php');
 
 
 /**

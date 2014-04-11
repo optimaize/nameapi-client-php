@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\parser\personnameparser;
 
-require_once('ParsedPerson.php');
+require_once(__DIR__.'/ParsedPerson.php');
 
 class ParsedPersonMatch {
 

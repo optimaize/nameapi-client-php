@@ -4,7 +4,7 @@ namespace org\nameapi\client\services\email\emailnameparser\wsdl;
 
 use org\nameapi\client\services\BaseSoapClient;
 
-require_once('EmailNameParserServiceArguments.php');
+require_once(__DIR__.'/EmailNameParserServiceArguments.php');
 require_once(__DIR__ . '/../../../BaseSoapClient.php');
 
 

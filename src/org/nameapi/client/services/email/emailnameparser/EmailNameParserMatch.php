@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\email\emailnameparser;
 
-require_once('NameFromEmailAddress.php');
+require_once(__DIR__.'/NameFromEmailAddress.php');
 
 /**
  * One way (and ideally the only way) of parsing an email address.

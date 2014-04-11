@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\email\emailnameparser;
 
-require_once('EmailAddressNameType.php');
+require_once(__DIR__.'/EmailAddressNameType.php');
 
 class NameFromEmailAddress {
 

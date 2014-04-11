@@ -2,8 +2,8 @@
 
 namespace org\nameapi\client\services\email\emailnameparser;
 
-require_once('EmailAddressParsingResultType.php');
-require_once('EmailNameParserMatch.php');
+require_once(__DIR__.'/EmailAddressParsingResultType.php');
+require_once(__DIR__.'/EmailNameParserMatch.php');
 
 class EmailNameParserResult {
 

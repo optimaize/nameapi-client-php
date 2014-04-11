@@ -2,7 +2,7 @@
 
 namespace org\nameapi\client\services\matcher;
 
-require_once('PersonNameMatchType.php');
+require_once(__DIR__.'/PersonNameMatchType.php');
 
 class PersonNameMatch {
 

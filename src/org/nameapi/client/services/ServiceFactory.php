@@ -4,12 +4,12 @@ namespace org\nameapi\client\services;
 
 use org\nameapi\ontology\input\context\Context;
 
-require_once('system/SystemServiceFactory.php');
-require_once('parser/ParserServiceFactory.php');
-require_once('genderizer/GenderizerServiceFactory.php');
-require_once('matcher/MatcherServiceFactory.php');
-require_once('formatter/FormatterServiceFactory.php');
-require_once('email/EmailServiceFactory.php');
+require_once(__DIR__.'/system/SystemServiceFactory.php');
+require_once(__DIR__.'/parser/ParserServiceFactory.php');
+require_once(__DIR__.'/genderizer/GenderizerServiceFactory.php');
+require_once(__DIR__.'/matcher/MatcherServiceFactory.php');
+require_once(__DIR__.'/formatter/FormatterServiceFactory.php');
+require_once(__DIR__.'/email/EmailServiceFactory.php');
 
 require_once(__DIR__.'/../commonwsdl/exception/FaultBean.php');
 require_once(__DIR__.'/../commonwsdl/PriceArguments.php');

@@ -5,7 +5,7 @@ namespace org\nameapi\client\services\matcher\personmatcher\wsdl;
 use org\nameapi\client\services\BaseSoapClient;
 
 require_once(__DIR__ . '/../../../BaseSoapClient.php');
-require_once('MatchArguments.php');
+require_once(__DIR__.'/MatchArguments.php');
 
 
 /**

@@ -6,8 +6,8 @@ use org\nameapi\ontology\input\context\Context;
 use org\nameapi\client\services\formatter\personnameformatter\PersonNameFormatterService;
 use org\nameapi\client\services\formatter\namefieldformatter\NameFieldFormatterService;
 
-require_once('personnameformatter\PersonNameFormatterService.php');
-require_once('namefieldformatter\NameFieldFormatterService.php');
+require_once(__DIR__.'/personnameformatter/PersonNameFormatterService.php');
+require_once(__DIR__.'/namefieldformatter/NameFieldFormatterService.php');
 
 
 /**

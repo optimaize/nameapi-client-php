@@ -4,7 +4,7 @@ namespace org\nameapi\client\services\system\ping;
 
 use org\nameapi\ontology\input\context\Context;
 
-require_once('wsdl/SoapPingerService.php');
+require_once(__DIR__.'/wsdl/SoapPingerService.php');
 
 
 /**

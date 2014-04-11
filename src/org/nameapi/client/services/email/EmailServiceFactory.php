@@ -6,8 +6,8 @@ use org\nameapi\ontology\input\context\Context;
 use org\nameapi\client\services\email\disposableemailaddressdetector\DisposableEmailAddressDetectorService;
 use org\nameapi\client\services\email\emailnameparser\EmailNameParserService;
 
-require_once('disposableemailaddressdetector/DisposableEmailAddressDetectorService.php');
-require_once('emailnameparser/EmailNameParserService.php');
+require_once(__DIR__.'/disposableemailaddressdetector/DisposableEmailAddressDetectorService.php');
+require_once(__DIR__.'/emailnameparser/EmailNameParserService.php');
 
 
 /**
