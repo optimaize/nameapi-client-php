@@ -11,6 +11,7 @@ class EmailNameParserServiceTest extends BaseServiceTest {
     public function testParse_John_Doe() {
         $emailNameParser = $this->makeServiceFactory()->emailServices()->emailNameParser();
         $result = $emailNameParser->parse("john.doe@example.com");
+        echo $result;
         $this->assertEquals('PERSON_NAME', $result->getResultType()->toString());
         $firstMatch = $result->getMatches()[0];
         $this->assertEquals('john', $firstMatch->getGivenNames()[0]->getName());

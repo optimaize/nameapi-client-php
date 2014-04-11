@@ -57,4 +57,11 @@ class EmailNameParserMatch {
         return $this->confidence;
     }
 
+    public function __toString() {
+        $ret  = '{';
+        $ret .= 'givenNames='. implode(", ",$this->givenNames);
+        $ret .= ', surnames='. implode(", ",$this->surnames);
+        $ret .= ', confidence='.$this->confidence;
+        return $ret.'}';
+    }
 } 

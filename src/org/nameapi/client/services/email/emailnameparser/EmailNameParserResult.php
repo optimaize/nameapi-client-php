@@ -41,4 +41,12 @@ class EmailNameParserResult {
         return $this->matches;
     }
 
+
+    public function __toString() {
+        $ret  = 'Result{';
+        $ret .= 'type='.$this->resultType;
+        $ret .= ', matches='. implode(", ",$this->matches);
+        return $ret.'}';
+    }
+
 } 

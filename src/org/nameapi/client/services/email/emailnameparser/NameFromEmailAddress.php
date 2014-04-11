@@ -40,4 +40,17 @@ class NameFromEmailAddress {
         return $this->nameType;
     }
 
+
+    public function __toString() {
+//        $ret  = 'NameFromEmailAddress{';
+//        $ret .= 'name='.$this->name;
+//        $ret .= ', nameType='.$this->nameType;
+//        return $ret.'}';
+
+        $ret = $this->name;
+        if ($this->nameType->toString()!='NAME') {
+            $ret .= ' (type='.$this->nameType->toString().')';
+        }
+        return $ret;
+    }
 } 
