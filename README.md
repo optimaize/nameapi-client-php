@@ -152,3 +152,14 @@ $formatterResult = $personNameFormatter->format($inputPerson, new FormatterPrope
 echo $formatterResult->getFormatted(); //will print 'John Kennedy'
 ```
 
+
+## Disposable Email Address Detector
+
+The DEA-Detector checks email addresses against a list of known "trash domains" such as mailinator.com.
+
+```php
+$deaDetector = $serviceFactory->emailServices()->disposableEmailAddressDetector();
+$result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
+echo $result->getDisposable()->toString()); //will print 'YES'
+```
+

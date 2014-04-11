@@ -9,6 +9,13 @@ require_once('DisposableEmailAddressDetectorResult.php');
 require_once('Maybe.php');
 
 /**
+ * This is the service class for the web service offered at
+ * http://api.nameapi.org/soap/v4.0/email/disposableemailaddressdetector?wsdl
+ *
+ * HOW TO USE:
+ * $deaDetector = $myServiceFactory->emailServices()->disposableEmailAddressDetector();
+ * $result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
+ * echo $result->getDisposable()->toString()); //will print 'YES'
  */
 class DisposableEmailAddressDetectorService {
 
