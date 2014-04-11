@@ -24,7 +24,7 @@ class Context {
      * @param priority $priority
      * @param string $geo
      * @param TextCase $textCase
-     * @param properties $properties
+     * @param array $properties
      * @access public
      */
     public function __construct($apiKey, $priority, $geo, $textCase, $properties) {
@@ -32,7 +32,7 @@ class Context {
         $this->priority = $priority;
         $this->geo = $geo;
         $this->textCase = $textCase;
-        $this->properties = $properties;
+        $this->properties = isSet($properties) ? $properties : array();
     }
 
 
@@ -52,24 +52,24 @@ class Context {
     }
 
     /**
-     * @return null|\org\nameapi\Priority
+     * @return null|Priority
      */
     public function getPriority() {
         return $this->priority;
     }
 
     /**
-     * @return null|\org\nameapi\properties
-     */
-    public function getProperties() {
-        return $this->properties;
-    }
-
-    /**
-     * @return null|\org\nameapi\TextCase
+     * @return null|TextCase
      */
     public function getTextCase() {
         return $this->textCase;
+    }
+
+    /**
+     * @return null|array
+     */
+    public function getProperties() {
+        return $this->properties;
     }
 
 }

@@ -4,11 +4,11 @@ namespace org\nameapi\ontology\input\context;
 
 class ContextBuilder {
 
-    private $apiKey = null;
-    private $priority = null;
-    private $geo = null;
+    private $apiKey     = null;
+    private $priority   = null;
+    private $geo        = null;
     private $properties = null;
-    private $textCase = null;
+    private $textCase   = null;
 
 
     /**
