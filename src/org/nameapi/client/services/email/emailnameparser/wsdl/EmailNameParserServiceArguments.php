@@ -1,10 +1,10 @@
 <?php
 
-namespace org\nameapi\client\services\email\disposableemailaddressdetector\wsdl;
+namespace org\nameapi\client\services\email\emailnameparser\wsdl;
 
 use org\nameapi\ontology\input\context\Context;
 
-class DisposableEmailAddressDetectorArguments {
+class EmailNameParserServiceArguments {
 
     public $context = null;
     public $emailAddress = null;

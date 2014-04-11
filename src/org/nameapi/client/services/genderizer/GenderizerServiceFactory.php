@@ -8,7 +8,7 @@ require_once('persongenderizer/PersonGenderizerService.php');
 
 
 /**
- *
+ * Provides access to the genderizer-related services.
  */
 class GenderizerServiceFactory {
 

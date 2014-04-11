@@ -6,6 +6,9 @@ use org\nameapi\ontology\input\context\Context;
 
 require_once('personnameparser/PersonNameParserService.php');
 
+/**
+ * Provides access to the parser-related services.
+ */
 class ParserServiceFactory {
 
     private $context;

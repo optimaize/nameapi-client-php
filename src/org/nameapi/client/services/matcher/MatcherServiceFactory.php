@@ -6,6 +6,9 @@ use org\nameapi\ontology\input\context\Context;
 
 require_once('personmatcher/PersonMatcherService.php');
 
+/**
+ * Provides access to the matcher-related services.
+ */
 class MatcherServiceFactory {
 
     private $context;

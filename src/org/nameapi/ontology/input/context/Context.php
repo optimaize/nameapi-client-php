@@ -40,40 +40,35 @@ class Context {
     /**
      * @return null|string
      */
-    public function getApiKey()
-    {
+    public function getApiKey() {
         return $this->apiKey;
     }
 
     /**
      * @return null|string
      */
-    public function getGeo()
-    {
+    public function getGeo() {
         return $this->geo;
     }
 
     /**
      * @return null|\org\nameapi\Priority
      */
-    public function getPriority()
-    {
+    public function getPriority() {
         return $this->priority;
     }
 
     /**
      * @return null|\org\nameapi\properties
      */
-    public function getProperties()
-    {
+    public function getProperties() {
         return $this->properties;
     }
 
     /**
      * @return null|\org\nameapi\TextCase
      */
-    public function getTextCase()
-    {
+    public function getTextCase() {
         return $this->textCase;
     }
 

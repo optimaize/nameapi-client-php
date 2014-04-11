@@ -7,23 +7,17 @@ require_once('ParsedPerson.php');
 class ParsedPersonMatch {
 
     /**
-     *
      * @var ParsedPerson $parsedPerson
-     * @access public
      */
     private $parsedPerson = null;
 
     /**
-     *
      * @var float $likeliness
-     * @access public
      */
     private $likeliness = null;
 
     /**
-     *
      * @var float $confidence
-     * @access public
      */
     private $confidence = null;
 
@@ -54,7 +48,6 @@ class ParsedPersonMatch {
     }
 
     /**
-     *
      * @return float 0-1
      */
     public function getConfidence() {

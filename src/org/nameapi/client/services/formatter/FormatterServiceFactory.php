@@ -11,7 +11,7 @@ require_once('namefieldformatter\NameFieldFormatterService.php');
 
 
 /**
- *
+ * Provides access to the formatter-related services.
  */
 class FormatterServiceFactory {
 

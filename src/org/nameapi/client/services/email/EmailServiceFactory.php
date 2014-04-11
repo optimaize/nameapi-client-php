@@ -4,17 +4,20 @@ namespace org\nameapi\client\services\email;
 
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\client\services\email\disposableemailaddressdetector\DisposableEmailAddressDetectorService;
+use org\nameapi\client\services\email\emailnameparser\EmailNameParserService;
 
 require_once('disposableemailaddressdetector/DisposableEmailAddressDetectorService.php');
+require_once('emailnameparser/EmailNameParserService.php');
 
 
 /**
- *
+ * Provides access to the email-related services.
  */
 class EmailServiceFactory {
 
     private $context;
     private $disposableEmailAddressDetector;
+    private $emailNameParser;
 
     /**
      */
@@ -30,6 +33,16 @@ class EmailServiceFactory {
             $this->disposableEmailAddressDetector = new DisposableEmailAddressDetectorService($this->context);
         }
         return $this->disposableEmailAddressDetector;
+    }
+
+    /**
+     * @return EmailNameParserService
+     */
+    public function emailNameParser() {
+        if ($this->emailNameParser==null) {
+            $this->emailNameParser = new EmailNameParserService($this->context);
+        }
+        return $this->emailNameParser;
     }
 
 }

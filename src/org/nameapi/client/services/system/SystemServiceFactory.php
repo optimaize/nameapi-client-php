@@ -9,7 +9,7 @@ require_once('pinger/PingerService.php');
 
 
 /**
- *
+ * Provides access to the system-related services.
  */
 class SystemServiceFactory {
 

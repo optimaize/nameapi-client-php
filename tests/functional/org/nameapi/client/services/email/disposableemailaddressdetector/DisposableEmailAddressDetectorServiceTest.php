@@ -2,7 +2,6 @@
 
 namespace org\nameapi\client\services\email\disposableemailaddressdetector;
 
-
 require_once(__DIR__.'/../../BaseServiceTest.php');
 
 use org\nameapi\client\services\BaseServiceTest;
