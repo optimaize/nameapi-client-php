@@ -137,6 +137,17 @@ echo $personMatchResult->getPersonMatchType()->toString(); //will print 'MATCHIN
 ```
 
 
+## Email Name Parser
+
+The Email Name Parser extracts names out of email addresses.
+
+```php
+$emailNameParser = $serviceFactory->emailServices()->emailNameParser();
+$result = $emailNameParser->parse("john.doe@example.com");
+echo $result;
+```
+
+
 ## Name Formatter
 
 The Name Formatter displays personal names in the desired form. This includes the order as well as upper and lower case writing.
