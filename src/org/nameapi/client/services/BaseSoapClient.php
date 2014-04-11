@@ -3,7 +3,6 @@
 namespace org\nameapi\client\services;
 
 require_once('ServiceFactory.php');
-require_once('Util.php');
 
 if (!extension_loaded('soap')) {
     exit("Error: missing php_soap library, enable it in php.ini!");
@@ -14,9 +13,27 @@ if (!extension_loaded('soap')) {
 abstract class BaseSoapClient extends \SoapClient {
 
     public function __construct($wsdl, array $classmap=array(), array $options=array()) {
-        Util::mergeClassmap($options, $classmap, ServiceFactory::$classmap);
+        BaseSoapClient::mergeClassmap($options, $classmap, ServiceFactory::$classmap);
         $options['features'] = SOAP_SINGLE_ELEMENT_ARRAYS;
         parent::__construct($wsdl, $options);
+    }
+
+
+    private static function mergeClassmap(&$options, $map1, $map2) {
+        if (!isset($options['classmap'])) {
+            $options['classmap'] = array();
+        }
+        $array = &$options['classmap'];
+        BaseSoapClient::mergeMap($array, $map1);
+        BaseSoapClient::mergeMap($array, $map2);
+    }
+    private static function mergeMap(&$array, $map) {
+        foreach ($map as $key => $value) {
+            if (isset($array[$key])) {
+                throw new \Exception("Already defined key ".$key. " for value: ".$array[$key]);
+            }
+            $array[$key] = $value;
+        }
     }
 
 }

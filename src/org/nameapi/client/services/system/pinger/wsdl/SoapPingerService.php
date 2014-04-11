@@ -4,7 +4,6 @@ namespace org\nameapi\client\services\system\ping\wsdl;
 
 use org\nameapi\client\services\BaseSoapClient;
 
-require_once(__DIR__.'/../../../Util.php');
 require_once('PingArguments.php');
 require_once('PingResponse.php');
 require_once(__DIR__ . '/../../../BaseSoapClient.php');

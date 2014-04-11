@@ -4,7 +4,6 @@ namespace org\nameapi\client\services\formatter\namefieldformatter\wsdl;
 
 use org\nameapi\client\services\BaseSoapClient;
 
-require_once(__DIR__ . '/../../../Util.php');
 require_once('FormatNameFieldArguments.php');
 require_once(__DIR__ . '/../../wsdl/SoapFormatterProperties.php');
 require_once(__DIR__ . '/../../../BaseSoapClient.php');
