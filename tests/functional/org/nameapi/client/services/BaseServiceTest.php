@@ -25,8 +25,8 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
         }
         return Context::builder()
             ->apiKey($this->apiKey)
-            ->priority(Priority::REALTIME)
-            ->textCase(TextCase::TITLE_CASE)
+            ->priority(Priority::REALTIME())
+            ->textCase(TextCase::TITLE_CASE())
             ->build();
     }
 
@@ -37,4 +37,4 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
         return new ServiceFactory($this->makeContext());
     }
 
-} 
+}
