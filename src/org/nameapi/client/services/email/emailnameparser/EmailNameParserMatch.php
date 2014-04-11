@@ -58,10 +58,17 @@ class EmailNameParserMatch {
     }
 
     public function __toString() {
-        $ret  = '{';
-        $ret .= 'givenNames='. implode(", ",$this->givenNames);
-        $ret .= ', surnames='. implode(", ",$this->surnames);
-        $ret .= ', confidence='.$this->confidence;
-        return $ret.'}';
+        $ret  = '';
+        if (count($this->givenNames) >0) {
+            if (!empty($ret)) $ret .= ', ';
+            $ret .= 'givenNames='. implode(", ",$this->givenNames);
+        }
+        if (count($this->surnames) >0) {
+            if (!empty($ret)) $ret .= ', ';
+            $ret .= 'surnames='. implode(", ",$this->surnames);
+        }
+        if (!empty($ret)) $ret .= ', ';
+        $ret .= 'confidence='.$this->confidence;
+        return '{'.$ret.'}';
     }
 } 

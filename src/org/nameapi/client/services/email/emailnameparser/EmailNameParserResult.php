@@ -45,7 +45,9 @@ class EmailNameParserResult {
     public function __toString() {
         $ret  = 'Result{';
         $ret .= 'type='.$this->resultType;
-        $ret .= ', matches='. implode(", ",$this->matches);
+        if (count($this->matches) >0) {
+            $ret .= ', matches='. implode(", ",$this->matches);
+        }
         return $ret.'}';
     }
 
