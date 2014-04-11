@@ -8,9 +8,9 @@ class AgeInfoFactoryTest extends \PHPUnit_Framework_TestCase {
 
     public function testDate() {
         $ageInfo = AgeInfoFactory::forDate(1917, 5, 29);
-        $this->assertEquals($ageInfo->getBirthDay(), 29);
-        $this->assertEquals($ageInfo->getBirthMonth(), 5);
-        $this->assertEquals($ageInfo->getBirthYear(), 1917);
+        $this->assertEquals(29,   $ageInfo->getBirthDay());
+        $this->assertEquals(5,    $ageInfo->getBirthMonth());
+        $this->assertEquals(1917, $ageInfo->getBirthYear());
     }
 
 }
