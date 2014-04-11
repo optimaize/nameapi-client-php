@@ -16,7 +16,7 @@ require_once('PersonGenderResult.php');
  * HOW TO USE:
  * $personGenderizer = $myServiceFactory->genderizerServices()->personGenderizer();
  * $personGenderResult = $personGenderizer->assess($inputPerson);
- * echo $personGenderResult->getGender()->toString(); //will print 'MALE'
+ * echo (string)$personGenderResult->getGender(); //prints 'MALE'
  */
 class PersonGenderizerService {
 

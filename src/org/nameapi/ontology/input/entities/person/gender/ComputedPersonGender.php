@@ -25,11 +25,8 @@ final class ComputedPersonGender {
 
 
 
-    public function toString() {
-        return $this->value;
-    }
     public function __toString() {
-        return $this->toString();
+        return $this->value;
     }
 
 }

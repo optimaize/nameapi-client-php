@@ -44,7 +44,7 @@ class PersonNameParserService {
         $parameters = new wsdl\ParseArguments($this->context, $person);
         $result = $this->soapPersonNameParser->parse($parameters);
         $parsingStatus = new ParsingStatus($result->parsingStatus);
-        $errorMessage = ($parsingStatus->toString()==='FAILURE') ? $result->errorMessage : null;
+        $errorMessage = ((string)$parsingStatus==='FAILURE') ? $result->errorMessage : null;
         $matches = null;
         if ($parsingStatus->isSuccess()) {
             $matches = array(); //ParsedPersonMatch

@@ -18,7 +18,7 @@ class PersonGenderizerServiceTest extends BaseServiceTest {
                 ->build())
             ->build();
         $personGenderResult = $personGenderizer->assess($inputPerson);
-        $this->assertEquals('MALE', $personGenderResult->getGender()->toString());
+        $this->assertEquals('MALE', (string)$personGenderResult->getGender());
     }
 
     public function testFemale() {
@@ -29,7 +29,7 @@ class PersonGenderizerServiceTest extends BaseServiceTest {
                 ->build())
             ->build();
         $personGenderResult = $personGenderizer->assess($inputPerson);
-        $this->assertEquals('FEMALE', $personGenderResult->getGender()->toString());
+        $this->assertEquals('FEMALE', (string)$personGenderResult->getGender());
     }
 
 }

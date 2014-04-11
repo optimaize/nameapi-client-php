@@ -35,7 +35,7 @@ class OutputPersonName {
     public function getAll($termType) {
         $arr = array();
         foreach ($this->terms as $term) {
-            if ($term->getTermType()->toString() === $termType) {
+            if ((string)$term->getTermType() === $termType) {
                 array_push($arr, $term);
             }
         }
@@ -49,7 +49,7 @@ class OutputPersonName {
      */
     public function getFirst($termType) {
         foreach ($this->terms as $term) {
-            if ($term->getTermType()->toString() === $termType) {
+            if ((string)$term->getTermType() === $termType) {
                 return $term;
             }
         }

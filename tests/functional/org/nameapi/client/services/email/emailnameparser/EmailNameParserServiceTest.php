@@ -12,7 +12,7 @@ class EmailNameParserServiceTest extends BaseServiceTest {
         $emailNameParser = $this->makeServiceFactory()->emailServices()->emailNameParser();
         $result = $emailNameParser->parse("john.doe@example.com");
         echo $result;
-        $this->assertEquals('PERSON_NAME', $result->getResultType()->toString());
+        $this->assertEquals('PERSON_NAME', (string)$result->getResultType());
         $firstMatch = $result->getMatches()[0];
         $this->assertEquals('john', $firstMatch->getGivenNames()[0]->getName());
         $this->assertEquals('doe', $firstMatch->getSurnames()[0]->getName());
@@ -21,7 +21,7 @@ class EmailNameParserServiceTest extends BaseServiceTest {
     public function testParse_John_F_Doe() {
         $emailNameParser = $this->makeServiceFactory()->emailServices()->emailNameParser();
         $result = $emailNameParser->parse("john.f.doe@example.com");
-        $this->assertEquals('PERSON_NAME', $result->getResultType()->toString());
+        $this->assertEquals('PERSON_NAME', (string)$result->getResultType());
         $firstMatch = $result->getMatches()[0];
         $this->assertEquals('john', $firstMatch->getGivenNames()[0]->getName());
 //        $this->assertEquals('f', $firstMatch->getGivenNames()[1]->getName());
@@ -32,7 +32,7 @@ class EmailNameParserServiceTest extends BaseServiceTest {
     public function testParse_webmaster() {
         $emailNameParser = $this->makeServiceFactory()->emailServices()->emailNameParser();
         $result = $emailNameParser->parse("webmaster@example.com");
-        $this->assertEquals('TECHNICAL', $result->getResultType()->toString());
+        $this->assertEquals('TECHNICAL', (string)$result->getResultType());
     }
 
 }
