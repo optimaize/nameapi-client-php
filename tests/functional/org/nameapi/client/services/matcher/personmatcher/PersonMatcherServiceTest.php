@@ -23,8 +23,8 @@ class PersonMatcherServiceTest extends BaseServiceTest {
                 ->fullname( "Jack Kennedy" )
                 ->build())
             ->build();
-        $personMatchResult = $personMatcher->match($inputPerson1, $inputPerson2);
-        $this->assertEquals('MATCHING', (string)$personMatchResult->getPersonMatchType());
+        $personMatcherResult = $personMatcher->match($inputPerson1, $inputPerson2);
+        $this->assertEquals('MATCHING', (string)$personMatcherResult->getPersonMatchType());
     }
 
     public function testMatch_similar() {
@@ -41,8 +41,8 @@ class PersonMatcherServiceTest extends BaseServiceTest {
                 ->build())
             ->ageInfo( AgeInfoFactory::forDate(1990,12,31) )
             ->build();
-        $personMatchResult = $personMatcher->match($inputPerson1, $inputPerson2);
-        $this->assertEquals('SIMILAR', (string)$personMatchResult->getPersonMatchType());
+        $personMatcherResult = $personMatcher->match($inputPerson1, $inputPerson2);
+        $this->assertEquals('SIMILAR', (string)$personMatcherResult->getPersonMatchType());
     }
 
     public function testMatch_different() {
@@ -59,8 +59,8 @@ class PersonMatcherServiceTest extends BaseServiceTest {
                 ->build())
             ->ageInfo( AgeInfoFactory::forDate(1990,12,31) )
             ->build();
-        $personMatchResult = $personMatcher->match($inputPerson1, $inputPerson2);
-        $this->assertEquals('DIFFERENT', (string)$personMatchResult->getPersonMatchType());
+        $personMatcherResult = $personMatcher->match($inputPerson1, $inputPerson2);
+        $this->assertEquals('DIFFERENT', (string)$personMatcherResult->getPersonMatchType());
     }
 
 }

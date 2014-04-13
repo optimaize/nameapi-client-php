@@ -132,8 +132,8 @@ $inputPerson2 = NaturalInputPerson::builder()
         ->fullname( "Jack Kennedy" )
         ->build())
     ->build();
-$personMatchResult = $personMatcher->match($inputPerson1, $inputPerson2);
-echo $personMatchResult->getPersonMatchType()->toString(); //will print 'MATCHING'
+$personMatcherResult = $personMatcher->match($inputPerson1, $inputPerson2);
+echo $personMatcherResult->getPersonMatchType()->toString(); //will print 'MATCHING'
 ```
 
 

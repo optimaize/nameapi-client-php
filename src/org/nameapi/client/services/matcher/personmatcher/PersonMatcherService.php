@@ -12,7 +12,7 @@ use org\nameapi\client\services\matcher\GenderMatchType;
 use org\nameapi\client\services\matcher\AgeMatch;
 
 require_once(__DIR__.'/wsdl/SoapPersonMatcherService.php');
-require_once(__DIR__.'/PersonMatchResult.php');
+require_once(__DIR__.'/PersonMatcherResult.php');
 
 
 /**
@@ -39,7 +39,7 @@ class PersonMatcherService {
     /**
      * @param NaturalInputPerson $person1
      * @param NaturalInputPerson $person2
-     * @return PersonMatchResult
+     * @return PersonMatcherResult
      */
     public function match(NaturalInputPerson $person1, NaturalInputPerson $person2) {
         $parameters = new wsdl\MatchArguments($this->context, $person1, $person2);
@@ -47,7 +47,7 @@ class PersonMatcherService {
 
         $genderWarnings = isSet($result->genderMatch->warnings) ? $result->genderMatch->warnings : null;
 
-        return new PersonMatchResult(
+        return new PersonMatcherResult(
             new PersonMatchType($result->personMatchType),
             new PersonMatchComposition($result->personMatchComposition),
             $result->points, $result->confidence,

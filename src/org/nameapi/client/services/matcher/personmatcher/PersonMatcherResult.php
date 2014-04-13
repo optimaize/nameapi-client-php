@@ -13,7 +13,7 @@ require_once(__DIR__.'/../GenderMatch.php');
 require_once(__DIR__.'/../AgeMatch.php');
 
 
-class PersonMatchResult {
+class PersonMatcherResult {
 
     /**
      * @var PersonMatchType $personMatchType
