@@ -2,49 +2,19 @@
 
 namespace org\nameapi\client\services\parser\personnameparser;
 
-use org\nameapi\client\services\parser\ParsingStatus;
-
-require_once(__DIR__.'/../ParsingStatus.php');
 require_once(__DIR__.'/ParsedPersonMatch.php');
 
 
 class PersonNameParserResult {
 
     /**
-     * @var ParsingStatus
-     */
-    private $parsingStatus = null;
-
-    /**
-     * @var string $errorMessage
-     */
-    private $errorMessage = null;
-
-    /**
      * @var ParsedPersonMatch[] $matches
      */
     private $matches = null;
 
-    public function __construct(ParsingStatus $parsingStatus, $errorMessage, $matches) {
-        $this->parsingStatus = $parsingStatus;
-        $this->errorMessage  = $errorMessage;
-        $this->matches       = $matches;
-    }
-
-    /**
-     * Tells whether parsing was successful or not.
-     * @return ParsingStatus
-     */
-    public function getParsingStatus() {
-        return $this->parsingStatus;
-    }
-
-    /**
-     * Returns a string error message if getParsingStatus() is FAILURE, and null otherwise.
-     * @return string
-     */
-    public function getErrorMessage() {
-        return $this->errorMessage;
+    public function __construct($matches) {
+        if (sizeof($matches)==0) throw new \Exception("At least one match is required!");
+        $this->matches = $matches;
     }
 
     /**
@@ -56,11 +26,10 @@ class PersonNameParserResult {
     }
 
     /**
-     * Returns the best match, or null if none.
+     * Returns the best match.
      * @return ParsedPersonMatch
      */
     public function getBestMatch() {
-        if (!$this->matches) return null;
         return $this->matches[0];
     }
 
