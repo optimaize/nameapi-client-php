@@ -6,10 +6,11 @@ use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 use org\nameapi\client\services\matcher\PersonNameMatchType;
 
-use org\nameapi\client\services\matcher\PersonNameMatch;
-use org\nameapi\client\services\matcher\GenderMatch;
+use org\nameapi\client\services\matcher\PersonNameMatcherResult;
+use org\nameapi\client\services\matcher\GenderMatcherResult;
 use org\nameapi\client\services\matcher\GenderMatchType;
-use org\nameapi\client\services\matcher\AgeMatch;
+use org\nameapi\client\services\matcher\AgeMatcherResult;
+use org\nameapi\client\services\matcher\AgeMatchType;
 
 require_once(__DIR__.'/wsdl/SoapPersonMatcherService.php');
 require_once(__DIR__.'/PersonMatcherResult.php');
@@ -45,15 +46,15 @@ class PersonMatcherService {
         $parameters = new wsdl\MatchArguments($this->context, $person1, $person2);
         $result = $this->soapPersonMatcher->match($parameters);
 
-        $genderWarnings = isSet($result->genderMatch->warnings) ? $result->genderMatch->warnings : null;
+        $genderWarnings = isSet($result->genderMatcherResult->warnings) ? $result->genderMatcherResult->warnings : null;
 
         return new PersonMatcherResult(
-            new PersonMatchType($result->personMatchType),
-            new PersonMatchComposition($result->personMatchComposition),
+            new PersonMatchType($result->matchType),
+            new PersonMatchComposition($result->matchComposition),
             $result->points, $result->confidence,
-            new PersonNameMatch(new PersonNameMatchType($result->personNameMatch->type)),
-            new GenderMatch(new GenderMatchType($result->genderMatch->type), $result->genderMatch->confidence, $genderWarnings),
-            new AgeMatch($result->ageMatch)
+            new PersonNameMatcherResult(new PersonNameMatchType($result->personNameMatcherResult->matchType)),
+            new GenderMatcherResult(new GenderMatchType($result->genderMatcherResult->matchType), $result->genderMatcherResult->confidence, $genderWarnings),
+            new AgeMatcherResult(new AgeMatchType($result->ageMatcherResult->matchType))
         );
     }
 

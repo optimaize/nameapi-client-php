@@ -2,15 +2,15 @@
 
 namespace org\nameapi\client\services\matcher\personmatcher;
 
-use org\nameapi\client\services\matcher\PersonNameMatch;
-use org\nameapi\client\services\matcher\GenderMatch;
-use org\nameapi\client\services\matcher\AgeMatch;
+use org\nameapi\client\services\matcher\PersonNameMatcherResult;
+use org\nameapi\client\services\matcher\GenderMatcherResult;
+use org\nameapi\client\services\matcher\AgeMatcherResult;
 
 require_once(__DIR__.'/PersonMatchType.php');
 require_once(__DIR__.'/PersonMatchComposition.php');
-require_once(__DIR__.'/../PersonNameMatch.php');
-require_once(__DIR__.'/../GenderMatch.php');
-require_once(__DIR__.'/../AgeMatch.php');
+require_once(__DIR__.'/../PersonNameMatcherResult.php');
+require_once(__DIR__.'/../GenderMatcherResult.php');
+require_once(__DIR__.'/../AgeMatcherResult.php');
 
 
 class PersonMatcherResult {
@@ -18,12 +18,12 @@ class PersonMatcherResult {
     /**
      * @var PersonMatchType $personMatchType
      */
-    private $personMatchType = null;
+    private $matchType = null;
 
     /**
      * @var PersonMatchComposition $personMatchComposition
      */
-    private $personMatchComposition = null;
+    private $matchComposition = null;
 
     /**
      * @var float $points
@@ -36,19 +36,19 @@ class PersonMatcherResult {
     private $confidence = null;
 
     /**
-     * @var PersonNameMatch $personNameMatch
+     * @var PersonNameMatcherResult $personNameMatcherResult
      */
-    private $personNameMatch = null;
+    private $personNameMatcherResult = null;
 
     /**
-     * @var GenderMatch $genderMatch
+     * @var GenderMatcherResult $genderMatcherResult
      */
-    private $genderMatch = null;
+    private $genderMatcherResult = null;
 
     /**
-     * @var AgeMatch $ageMatch
+     * @var AgeMatcherResult $ageMatcherResult
      */
-    private $ageMatch = null;
+    private $ageMatcherResult = null;
 
     /**
      *
@@ -56,33 +56,33 @@ class PersonMatcherResult {
      * @param PersonMatchComposition $personMatchComposition
      * @param float $points
      * @param float $confidence
-     * @param PersonNameMatch $personNameMatch
-     * @param GenderMatch $genderMatch
-     * @param AgeMatch $ageMatch
+     * @param PersonNameMatcherResult $personNameMatch
+     * @param GenderMatcherResult $genderMatch
+     * @param AgeMatcherResult $ageMatch
      */
     public function __construct($personMatchType, $personMatchComposition, $points, $confidence, $personNameMatch, $genderMatch, $ageMatch) {
-        $this->personMatchType = $personMatchType;
-        $this->personMatchComposition = $personMatchComposition;
+        $this->matchType = $personMatchType;
+        $this->matchComposition = $personMatchComposition;
         $this->points = $points;
         $this->confidence = $confidence;
-        $this->personNameMatch = $personNameMatch;
-        $this->genderMatch = $genderMatch;
-        $this->ageMatch = $ageMatch;
+        $this->personNameMatcherResult = $personNameMatch;
+        $this->genderMatcherResult = $genderMatch;
+        $this->ageMatcherResult = $ageMatch;
     }
 
 
     /**
      * @return PersonMatchType
      */
-    public function getPersonMatchType() {
-        return $this->personMatchType;
+    public function getMatchType() {
+        return $this->matchType;
     }
 
     /**
      * @return PersonMatchComposition
      */
-    public function getPersonMatchComposition() {
-        return $this->personMatchComposition;
+    public function getMatchComposition() {
+        return $this->matchComposition;
     }
 
     /**
@@ -103,25 +103,25 @@ class PersonMatcherResult {
 
     /**
      *
-     * @return PersonNameMatch
+     * @return PersonNameMatcherResult
      */
-    public function getPersonNameMatch() {
-        return $this->personNameMatch;
+    public function getPersonNameMatcherResult() {
+        return $this->personNameMatcherResult;
     }
 
     /**
      *
-     * @return GenderMatch
+     * @return GenderMatcherResult
      */
-    public function getGenderMatch() {
-        return $this->genderMatch;
+    public function getGenderMatcherResult() {
+        return $this->genderMatcherResult;
     }
 
     /**
-     * @return AgeMatch
+     * @return AgeMatcherResult
      */
-    public function getAgeMatch() {
-        return $this->ageMatch;
+    public function getAgeMatcherResult() {
+        return $this->ageMatcherResult;
     }
 
 }

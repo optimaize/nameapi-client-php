@@ -8,7 +8,7 @@ namespace org\nameapi\client\services\matcher;
  *
  * Possible values are: EQUAL, PARTIAL, NOT_APPLICABLE, DIFFERENT
  */
-final class AgeMatch {
+final class AgeMatchType {
 
     /**
      * @var string $value

@@ -4,7 +4,7 @@ namespace org\nameapi\client\services\matcher;
 
 require_once(__DIR__.'/PersonNameMatchType.php');
 
-class PersonNameMatch {
+class PersonNameMatcherResult {
 
     /**
      * @var PersonNameMatchType $type
