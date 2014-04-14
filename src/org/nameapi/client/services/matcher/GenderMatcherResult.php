@@ -10,7 +10,7 @@ class GenderMatcherResult {
     /**
      * @var GenderMatchType $type
      */
-    private $type = null;
+    private $matchType = null;
 
     /**
      * @var float $confidence
@@ -28,15 +28,15 @@ class GenderMatcherResult {
      * @param string[] $warnings
      */
     public function __construct(GenderMatchType $type, $confidence, $warnings) {
-        $this->type = $type;
+        $this->matchType = $type;
         $this->confidence = $confidence;
     }
 
     /**
      * @return GenderMatchType
      */
-    public function getType() {
-        return $this->type;
+    public function getMatchType() {
+        return $this->matchType;
     }
 
     /**

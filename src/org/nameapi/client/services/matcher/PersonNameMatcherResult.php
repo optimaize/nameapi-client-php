@@ -9,21 +9,21 @@ class PersonNameMatcherResult {
     /**
      * @var PersonNameMatchType $type
      */
-    private $type = null;
+    private $matchType = null;
 
     /**
      * @param PersonNameMatchType $type
      */
     public function __construct(PersonNameMatchType $type) {
-        $this->type = $type;
+        $this->matchType = $type;
     }
 
     /**
      *
      * @return PersonNameMatchType
      */
-    public function getType() {
-        return $this->type;
+    public function getMatchType() {
+        return $this->matchType;
     }
 
 }
