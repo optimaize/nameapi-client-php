@@ -44,9 +44,9 @@ $serviceFactory = new ServiceFactory($context);
 ```
 
 
-## Pinger call
+## Send a ping
 
-This code sends a simple ping to the nameapi server to test the connection:
+This code sends a simple ping to nameapi to test the connection:
 
 ```php
 $pinger = $serviceFactory->systemServices()->pinger();
@@ -137,17 +137,6 @@ echo $personMatcherResult->getPersonMatchType()->toString(); //will print 'MATCH
 ```
 
 
-## Email Name Parser
-
-The Email Name Parser extracts names out of email addresses.
-
-```php
-$emailNameParser = $serviceFactory->emailServices()->emailNameParser();
-$result = $emailNameParser->parse("john.doe@example.com");
-echo $result;
-```
-
-
 ## Name Formatter
 
 The Name Formatter displays personal names in the desired form. This includes the order as well as upper and lower case writing.
@@ -162,6 +151,18 @@ $inputPerson = NaturalInputPerson::builder()
 $formatterResult = $personNameFormatter->format($inputPerson, new FormatterProperties());
 echo $formatterResult->getFormatted(); //will print 'John Kennedy'
 ```
+
+
+## Email Name Parser
+
+The Email Name Parser extracts names out of email addresses.
+
+```php
+$emailNameParser = $serviceFactory->emailServices()->emailNameParser();
+$result = $emailNameParser->parse("john.doe@example.com");
+echo $result;
+```
+
 
 
 ## Disposable Email Address Detector
