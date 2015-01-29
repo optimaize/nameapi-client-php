@@ -17,7 +17,7 @@ final class PersonMatchType {
 
     public function __construct($value) {
         if ($value!=='EQUAL' && $value!=='MATCHING' && $value!=='SIMILAR' && $value!=='RELATION' && $value!=='DIFFERENT') {
-            throw new \Exception('Invalid value for AgeMatch: '.$value.'!');
+            throw new \Exception('Invalid value for PersonMatchType: '.$value.'!');
         }
         $this->value = $value;
     }

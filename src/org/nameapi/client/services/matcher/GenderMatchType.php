@@ -17,7 +17,7 @@ final class GenderMatchType {
 
     public function __construct($value) {
         if ($value!=='EQUAL' && $value!=='POSSIBLY_EQUAL' && $value!=='POSSIBLY_DIFFERENT' && $value!=='NOT_APPLICABLE' && $value!=='DIFFERENT') {
-            throw new \Exception('Invalid value for AgeMatch: '.$value.'!');
+            throw new \Exception('Invalid value for GenderMatchType: '.$value.'!');
         }
         $this->value = $value;
     }

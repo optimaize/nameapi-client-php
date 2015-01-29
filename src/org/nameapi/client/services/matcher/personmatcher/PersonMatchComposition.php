@@ -17,7 +17,7 @@ final class PersonMatchComposition {
 
     public function __construct($value) {
         if ($value!=='FULL' && $value!=='PARTIAL' && $value!=='INTERSECTION' && $value!=='NOT_APPLICABLE') {
-            throw new \Exception('Invalid value for AgeMatch: '.$value.'!');
+            throw new \Exception('Invalid value for PersonMatchComposition: '.$value.'!');
         }
         $this->value = $value;
     }
