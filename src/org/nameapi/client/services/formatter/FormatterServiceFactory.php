@@ -29,6 +29,7 @@ class FormatterServiceFactory {
 
     /**
      * @return PersonNameFormatterService
+     * @since v4.0
      */
     public function personNameFormatter() {
         if ($this->personNameFormatterService==null) {

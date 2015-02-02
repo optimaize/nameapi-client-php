@@ -24,6 +24,7 @@ class ParserServiceFactory {
 
     /**
      * @return personnameparser\PersonNameParserService
+     * @since v4.0
      */
     public function personNameParser() {
         if ($this->personNameParser==null) {

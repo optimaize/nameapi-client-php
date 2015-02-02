@@ -32,6 +32,7 @@ class EmailServiceFactory {
 
     /**
      * @return DisposableEmailAddressDetectorService
+     * @since v4.0
      */
     public function disposableEmailAddressDetector() {
         if ($this->disposableEmailAddressDetector==null) {
@@ -42,6 +43,7 @@ class EmailServiceFactory {
 
     /**
      * @return EmailNameParserService
+     * @since v4.0
      */
     public function emailNameParser() {
         if ($this->emailNameParser==null) {
@@ -52,6 +54,7 @@ class EmailServiceFactory {
 
     /**
      * @return EmailNameParser2Service
+     * @since v4.1
      */
     public function emailNameParser2() {
         if ($this->emailNameParser2==null) {

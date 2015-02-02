@@ -20,6 +20,8 @@ require_once(__DIR__.'/../FormatterProperties.php');
  * HOW TO USE:
  * $personNameFormatter = $myServiceFactory->formatterServices()->personNameFormatter();
  * $formatterResult = $personNameFormatter->format($myInputPerson, $myParams);
+ *
+ * @since v4.0
  */
 class PersonNameFormatterService {
 

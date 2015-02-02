@@ -23,6 +23,8 @@ require_once(__DIR__.'/../emailnameparser/EmailNameParserMatch.php');
  * $emailNameParser2 = $myServiceFactory->emailServices()->emailNameParser2();
  * $result = $emailNameParser2->parse("john.doe@example.com");
  * echo (string)$result->getDisposable()); //prints 'YES'
+ *
+ * @since v4.1
  */
 class EmailNameParser2Service {
 

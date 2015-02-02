@@ -24,6 +24,7 @@ class MatcherServiceFactory {
 
     /**
      * @return personmatcher\PersonMatcherService
+     * @since v4.0
      */
     public function personMatcher() {
         if ($this->personMatcher==null) {

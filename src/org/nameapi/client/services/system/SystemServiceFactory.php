@@ -26,6 +26,7 @@ class SystemServiceFactory {
 
     /**
      * @return PingerService
+     * @since v4.0
      */
     public function pinger() {
         if ($this->pingerService==null) {

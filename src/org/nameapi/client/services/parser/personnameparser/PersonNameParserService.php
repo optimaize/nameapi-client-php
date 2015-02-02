@@ -21,6 +21,8 @@ require_once(__DIR__.'/PersonNameParserResult.php');
  * HOW TO USE:
  * $personNameParser = $myServiceFactory->nameParserServiceFactory()->personNameParser();
  * $parseResult = $personNameParser->parse($myInputPerson);
+ *
+ * @since v4.0
  */
 class PersonNameParserService {
 

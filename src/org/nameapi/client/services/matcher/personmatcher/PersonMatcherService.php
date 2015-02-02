@@ -23,6 +23,8 @@ require_once(__DIR__.'/PersonMatcherResult.php');
  * HOW TO USE:
  * $personMatcher = $myServiceFactory->matcherServiceFactory()->personMatcher();
  * $matchResult = $personMatcher->match($myInputPerson1, $myInputPerson2);
+ *
+ * @since v4.0
  */
 class PersonMatcherService {
 

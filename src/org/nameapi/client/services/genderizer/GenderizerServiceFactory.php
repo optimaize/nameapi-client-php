@@ -25,6 +25,7 @@ class GenderizerServiceFactory {
 
     /**
      * @return persongenderizer\PersonGenderizerService
+     * @since v4.0
      */
     public function personGenderizer() {
         if ($this->personGenderizerService==null) {

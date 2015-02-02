@@ -16,6 +16,8 @@ require_once(__DIR__.'/Maybe.php');
  * $deaDetector = $myServiceFactory->emailServices()->disposableEmailAddressDetector();
  * $result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
  * echo (string)$result->getDisposable()); //prints 'YES'
+ *
+ * @since v4.0
  */
 class DisposableEmailAddressDetectorService {
 
