@@ -5,7 +5,13 @@ namespace org\nameapi\client\services\email\emailnameparser;
 /**
  * Class EmailAddressParsingResultType
  *
- * Possible values are: NAME, INITIAL
+ * <pre>Possible values are:
+ *   NAME
+ *     It's a regular name, like "Peter" or "Johnson".
+ *   INITIAL
+ *     It's an abbreviated name with an initial like "P".
+ *     The string does not end with a dot.
+ * </pre>
  */
 class EmailAddressNameType {
 
