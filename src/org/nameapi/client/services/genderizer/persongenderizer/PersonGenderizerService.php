@@ -26,9 +26,9 @@ class PersonGenderizerService {
     /**
      * @access public
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapPersonGenderizerService = new wsdl\SoapPersonGenderizerService();
+        $this->soapPersonGenderizerService = new wsdl\SoapPersonGenderizerService(array(), $baseUrl);
     }
 
     /**

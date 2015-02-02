@@ -22,9 +22,9 @@ class DisposableEmailAddressDetectorService {
     private $context;
     private $soapDisposableEmailAddressDetectorService;
 
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapDisposableEmailAddressDetectorService = new wsdl\SoapDisposableEmailAddressDetectorService();
+        $this->soapDisposableEmailAddressDetectorService = new wsdl\SoapDisposableEmailAddressDetectorService(array(), $baseUrl);
     }
 
     /**

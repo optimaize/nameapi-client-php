@@ -23,9 +23,9 @@ class PingerService {
 
     /**
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapPingerService = new wsdl\SoapPingerService();
+        $this->soapPingerService = new wsdl\SoapPingerService(array(), $baseUrl);
     }
 
     /**

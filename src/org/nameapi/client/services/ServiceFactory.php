@@ -4,6 +4,7 @@ namespace org\nameapi\client\services;
 
 use org\nameapi\ontology\input\context\Context;
 
+require_once(__DIR__.'/Host.php');
 require_once(__DIR__.'/system/SystemServiceFactory.php');
 require_once(__DIR__.'/parser/ParserServiceFactory.php');
 require_once(__DIR__.'/genderizer/GenderizerServiceFactory.php');
@@ -28,6 +29,20 @@ require_once(__DIR__.'/../../ontology/input/entities/person/NaturalInputPersonBu
 class ServiceFactory {
 
     private $context;
+
+    private $host;
+
+    /**
+     * Set to the "latest stable" version,
+     *
+     */
+    private $apiVersion;
+
+    /**
+     * Something like 'http://api.nameapi.org/soap/v4.0/'
+     */
+    private $baseUrl;
+
     private $systemServiceFactory;
     private $parserServiceFactory;
     private $genderizerServiceFactory;
@@ -37,9 +52,24 @@ class ServiceFactory {
 
 
     /**
+     * @var $context
+     * @var $host defaults to Host::standard()
+     * @var $apiVersion default is the "latest stable", currently that is 4.0.
+     *      You want to change this to target another version, for example a release candidate or a development version.
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, Host $host=null, $apiVersion=null) {
         $this->context = $context;
+        if ($host==null) {
+            $this->host = Host::standard();
+        } else {
+            $this->host = $host;
+        }
+        if ($host==null) {
+            $this->apiVersion = '4.0';
+        } else {
+            $this->apiVersion = $apiVersion;
+        }
+        $this->baseUrl = $this->host->toString() . '/soap/v'.$this->apiVersion.'/';
     }
 
 
@@ -48,7 +78,7 @@ class ServiceFactory {
      */
     public function systemServices() {
         if ($this->systemServiceFactory==null) {
-            $this->systemServiceFactory = new system\SystemServiceFactory($this->context);
+            $this->systemServiceFactory = new system\SystemServiceFactory($this->context, $this->baseUrl);
         }
         return $this->systemServiceFactory;
     }
@@ -58,7 +88,7 @@ class ServiceFactory {
      */
     public function parserServices() {
         if ($this->parserServiceFactory==null) {
-            $this->parserServiceFactory = new parser\ParserServiceFactory($this->context);
+            $this->parserServiceFactory = new parser\ParserServiceFactory($this->context, $this->baseUrl);
         }
         return $this->parserServiceFactory;
     }
@@ -68,7 +98,7 @@ class ServiceFactory {
      */
     public function genderizerServices() {
         if ($this->genderizerServiceFactory==null) {
-            $this->genderizerServiceFactory = new genderizer\GenderizerServiceFactory($this->context);
+            $this->genderizerServiceFactory = new genderizer\GenderizerServiceFactory($this->context, $this->baseUrl);
         }
         return $this->genderizerServiceFactory;
     }
@@ -78,7 +108,7 @@ class ServiceFactory {
      */
     public function matcherServices() {
         if ($this->matcherServiceFactory==null) {
-            $this->matcherServiceFactory = new matcher\MatcherServiceFactory($this->context);
+            $this->matcherServiceFactory = new matcher\MatcherServiceFactory($this->context, $this->baseUrl);
         }
         return $this->matcherServiceFactory;
     }
@@ -88,7 +118,7 @@ class ServiceFactory {
      */
     public function formatterServices() {
         if ($this->formatterServiceFactory==null) {
-            $this->formatterServiceFactory = new formatter\FormatterServiceFactory($this->context);
+            $this->formatterServiceFactory = new formatter\FormatterServiceFactory($this->context, $this->baseUrl);
         }
         return $this->formatterServiceFactory;
     }
@@ -98,7 +128,7 @@ class ServiceFactory {
      */
     public function emailServices() {
         if ($this->emailServiceFactory==null) {
-            $this->emailServiceFactory = new email\EmailServiceFactory($this->context);
+            $this->emailServiceFactory = new email\EmailServiceFactory($this->context, $this->baseUrl);
         }
         return $this->emailServiceFactory;
     }

@@ -16,13 +16,15 @@ require_once(__DIR__.'/namefieldformatter/NameFieldFormatterService.php');
 class FormatterServiceFactory {
 
     private $context;
+    private $baseUrl;
     private $personNameFormatterService;
     private $nameFieldFormatterService;
 
     /**
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -30,7 +32,7 @@ class FormatterServiceFactory {
      */
     public function personNameFormatter() {
         if ($this->personNameFormatterService==null) {
-            $this->personNameFormatterService = new PersonNameFormatterService($this->context);
+            $this->personNameFormatterService = new PersonNameFormatterService($this->context, $this->baseUrl);
         }
         return $this->personNameFormatterService;
     }
@@ -40,7 +42,7 @@ class FormatterServiceFactory {
      */
     public function nameFieldFormatter() {
         if ($this->nameFieldFormatterService==null) {
-            $this->nameFieldFormatterService = new NameFieldFormatterService($this->context);
+            $this->nameFieldFormatterService = new NameFieldFormatterService($this->context, $this->baseUrl);
         }
         return $this->nameFieldFormatterService;
     }

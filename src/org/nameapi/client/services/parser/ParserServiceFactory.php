@@ -12,12 +12,14 @@ require_once(__DIR__.'/personnameparser/PersonNameParserService.php');
 class ParserServiceFactory {
 
     private $context;
+    private $baseUrl;
     private $personNameParser;
 
     /**
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -25,7 +27,7 @@ class ParserServiceFactory {
      */
     public function personNameParser() {
         if ($this->personNameParser==null) {
-            $this->personNameParser = new personnameparser\PersonNameParserService($this->context);
+            $this->personNameParser = new personnameparser\PersonNameParserService($this->context, $this->baseUrl);
         }
         return $this->personNameParser;
     }

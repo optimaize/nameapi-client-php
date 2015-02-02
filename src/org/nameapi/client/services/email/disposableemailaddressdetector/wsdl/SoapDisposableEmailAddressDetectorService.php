@@ -25,8 +25,8 @@ class SoapDisposableEmailAddressDetectorService extends BaseSoapClient {
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(), $wsdl = 'http://api.nameapi.org/soap/v4.0/email/disposableemailaddressdetector?wsdl') {
-        parent::__construct($wsdl, self::$classmap, $options);
+    public function __construct(array $options = array(), $baseUrl) {
+        parent::__construct($baseUrl.'email/disposableemailaddressdetector?wsdl', self::$classmap, $options);
     }
 
     /**

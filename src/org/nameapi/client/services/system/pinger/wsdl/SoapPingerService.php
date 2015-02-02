@@ -24,8 +24,8 @@ class SoapPingerService extends BaseSoapClient {
      * @param string $wsdl The wsdl file to use
      * @access public
      */
-    public function __construct(array $options = array(), $wsdl = 'http://api.nameapi.org/soap/v4.0/system/pinger?wsdl') {
-        parent::__construct($wsdl, self::$classmap, $options);
+    public function __construct(array $options = array(), $baseUrl) {
+        parent::__construct($baseUrl.'system/pinger?wsdl', self::$classmap, $options);
     }
 
 

@@ -18,9 +18,9 @@ class NameFieldFormatterService {
     private $context;
     private $soapNameFieldFormatterService;
 
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapNameFieldFormatterService = new wsdl\SoapNameFieldFormatterService();
+        $this->soapNameFieldFormatterService = new wsdl\SoapNameFieldFormatterService(array(), $baseUrl);
     }
 
     /**

@@ -30,9 +30,9 @@ class PersonNameParserService {
     /**
      * @access public
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapPersonNameParser = new wsdl\SoapPersonNameParserService();
+        $this->soapPersonNameParser = new wsdl\SoapPersonNameParserService(array(), $baseUrl);
     }
 
     /**

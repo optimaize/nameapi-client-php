@@ -19,8 +19,8 @@ class SoapNameFieldFormatterService extends BaseSoapClient {
 
     /**
      */
-    public function __construct(array $options = array(), $wsdl = 'http://api.nameapi.org/soap/v4.0/formatter/namefieldformatter?wsdl') {
-        parent::__construct($wsdl, self::$classmap, $options);
+    public function __construct(array $options = array(), $baseUrl) {
+        parent::__construct($baseUrl.'formatter/namefieldformatter?wsdl', self::$classmap, $options);
     }
 
     public function formatNameField(FormatNameFieldArguments $parameters) {

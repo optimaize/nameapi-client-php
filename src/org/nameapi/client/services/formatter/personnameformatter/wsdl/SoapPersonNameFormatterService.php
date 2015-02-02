@@ -17,8 +17,8 @@ class SoapPersonNameFormatterService extends BaseSoapClient {
     private static $classmap = array(
     );
 
-    public function __construct(array $options = array(), $wsdl = 'http://api.nameapi.org/soap/v4.0/formatter/personnameformatter?wsdl') {
-        parent::__construct($wsdl, self::$classmap, $options);
+    public function __construct(array $options = array(), $baseUrl) {
+        parent::__construct($baseUrl.'formatter/personnameformatter?wsdl', self::$classmap, $options);
     }
 
     public function format(FormatPersonNameArguments $parameters) {

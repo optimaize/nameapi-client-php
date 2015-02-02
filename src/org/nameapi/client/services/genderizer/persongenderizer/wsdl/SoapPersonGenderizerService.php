@@ -22,8 +22,8 @@ class SoapPersonGenderizerService extends BaseSoapClient {
 
     /**
      */
-    public function __construct(array $options = array(), $wsdl = 'http://api.nameapi.org/soap/v4.0/genderizer/persongenderizer?wsdl') {
-        parent::__construct($wsdl, self::$classmap, $options);
+    public function __construct(array $options = array(), $baseUrl) {
+        parent::__construct($baseUrl.'genderizer/persongenderizer?wsdl', self::$classmap, $options);
     }
 
     /**

@@ -14,12 +14,14 @@ require_once(__DIR__.'/pinger/PingerService.php');
 class SystemServiceFactory {
 
     private $context;
+    private $baseUrl;
     private $pingerService;
 
     /**
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -27,7 +29,7 @@ class SystemServiceFactory {
      */
     public function pinger() {
         if ($this->pingerService==null) {
-            $this->pingerService = new PingerService($this->context);
+            $this->pingerService = new PingerService($this->context, $this->baseUrl);
         }
         return $this->pingerService;
     }

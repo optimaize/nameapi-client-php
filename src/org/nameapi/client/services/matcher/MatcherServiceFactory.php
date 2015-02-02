@@ -12,12 +12,14 @@ require_once(__DIR__.'/personmatcher/PersonMatcherService.php');
 class MatcherServiceFactory {
 
     private $context;
+    private $baseUrl;
     private $personMatcher;
 
     /**
      */
-    public function __construct(Context $context) {
+    public function __construct(Context $context, $baseUrl) {
         $this->context = $context;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -25,7 +27,7 @@ class MatcherServiceFactory {
      */
     public function personMatcher() {
         if ($this->personMatcher==null) {
-            $this->personMatcher = new personmatcher\PersonMatcherService($this->context);
+            $this->personMatcher = new personmatcher\PersonMatcherService($this->context, $this->baseUrl);
         }
         return $this->personMatcher;
     }

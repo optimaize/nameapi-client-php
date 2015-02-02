@@ -16,8 +16,8 @@ class SoapPersonMatcherService extends BaseSoapClient {
     private static $classmap = array(
     );
 
-    public function __construct(array $options = array(), $wsdl = 'http://api.nameapi.org/soap/v4.0/matcher/personmatcher?wsdl') {
-        parent::__construct($wsdl, self::$classmap, $options);
+    public function __construct(array $options = array(), $baseUrl) {
+        parent::__construct($baseUrl.'matcher/personmatcher?wsdl', self::$classmap, $options);
     }
 
     /**
