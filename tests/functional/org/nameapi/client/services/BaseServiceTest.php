@@ -6,6 +6,7 @@ namespace org\nameapi\client\services;
 spl_autoload_register();
 
 require_once(__DIR__.'/../../../../../../src/org/nameapi/client/services/ServiceFactory.php');
+require_once(__DIR__.'/../../../../../../src/org/nameapi/client/services/Host.php');
 
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\context\Priority;
@@ -34,7 +35,11 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
      * @return ServiceFactory
      */
     protected function makeServiceFactory() {
-        return new ServiceFactory($this->makeContext());
+        //this is what you usually want, for production:
+        return new ServiceFactory($this->makeContext(), Host::standard(), '4.0');
+
+        //current release candidate for the next production version:
+        //return new ServiceFactory($this->makeContext(), Host::http("rc-api.nameapi.org"), '4.1');
     }
 
 }
