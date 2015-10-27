@@ -30,10 +30,11 @@ Then you need a Context that explains a bit your working environment, something 
 ```php
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\context\Priority;
-use org\nameapi\ontology\input\context\TextCase;
+use org\nameapi\client\services\ServiceFactory;
+
 $context = Context::builder()
     ->apiKey('your-api-key')
-    ->priority(Priority::REALTIME)
+    ->priority(Priority::REALTIME())
     ->build();
 ```
 
@@ -172,6 +173,6 @@ The DEA-Detector checks email addresses against a list of known "trash domains" 
 ```php
 $deaDetector = $serviceFactory->emailServices()->disposableEmailAddressDetector();
 $result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
-echo $result->getDisposable()->toString()); //will print 'YES'
+echo $result->getDisposable(); //will print 'YES'
 ```
 
