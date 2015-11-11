@@ -3,6 +3,9 @@
 namespace org\nameapi\ontology\input\entities\person\age;
 
 include_once('AgeInfo.php');
+include_once('BirthDate.php');
+include_once('BirthYear.php');
+include_once('BirthYearRange.php');
 
 /**
  * Creates instances of {@link AgeInfo}.
