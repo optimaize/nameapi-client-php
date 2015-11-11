@@ -30,7 +30,7 @@ class NameFieldFormatterService {
      */
     public function format(NameField $nameField, FormatterProperties $properties) {
         $parameters = new wsdl\FormatNameFieldArguments($this->context, $nameField, $properties->toWsdl());
-        $result = $this->$soapNameFieldFormatterService->formatNameField($parameters)->return;
+        $result = $this->soapNameFieldFormatterService->formatNameField($parameters)->return;
         return new FormatterResult($result->formatted, $result->unknown);
 
     }
