@@ -12,6 +12,8 @@ require_once(__DIR__.'/matcher/MatcherServiceFactory.php');
 require_once(__DIR__.'/formatter/FormatterServiceFactory.php');
 require_once(__DIR__.'/email/EmailServiceFactory.php');
 
+require_once(__DIR__.'/../lib/RestHttpClient.php');
+
 require_once(__DIR__.'/../commonwsdl/exception/FaultBean.php');
 require_once(__DIR__.'/../commonwsdl/PriceArguments.php');
 require_once(__DIR__.'/../commonwsdl/PriceResponse.php');
@@ -41,7 +43,7 @@ class ServiceFactory {
     private $apiVersion;
 
     /**
-     * Something like 'http://api.nameapi.org/soap/v4.0/'
+     * Something like 'http://api.nameapi.org/rest/v5.0/'
      */
     private $baseUrl;
 
@@ -57,7 +59,7 @@ class ServiceFactory {
      * @var $apiKey
      * @var $context
      * @var $host defaults to Host::standard()
-     * @var $apiVersion default is the "latest stable", currently that is 4.0.
+     * @var $apiVersion default is the "latest stable", currently that is 5.0.
      *      You want to change this to target another version, for example a release candidate or a development version.
      */
     public function __construct($apiKey, Context $context, Host $host=null, $apiVersion=null) {
@@ -69,11 +71,11 @@ class ServiceFactory {
             $this->host = $host;
         }
         if ($host==null) {
-            $this->apiVersion = '4.0';
+            $this->apiVersion = '5.0';
         } else {
             $this->apiVersion = $apiVersion;
         }
-        $this->baseUrl = $this->host->toString() . '/soap/v'.$this->apiVersion.'/';
+        $this->baseUrl = $this->host->toString() . '/rest/v'.$this->apiVersion.'/';
     }
 
 

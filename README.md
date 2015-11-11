@@ -14,7 +14,7 @@ All you need to send requests is your own api key, get it from nameapi.org.
 You can download the source code and make it available to your code. Or you can check it out directly
 from this GitHub project. Currently there is no phar and no composer available.
 
-The only requirement is that the php_soap extension is enabled.
+The only requirement is that the php_curl extension is enabled.
 
 
 ## Setup code
@@ -48,8 +48,8 @@ $serviceFactory = new ServiceFactory('your-api-key', $context);
 This code sends a simple ping to nameapi to test the connection:
 
 ```php
-$pinger = $serviceFactory->systemServices()->pinger();
-$pong = $pinger->ping();
+$ping = $serviceFactory->systemServices()->ping();
+$pong = $ping->ping();
 ```
 
 If the response is 'pong' then all is fine and you can move on to the real goodies.
