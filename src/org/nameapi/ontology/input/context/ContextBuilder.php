@@ -6,7 +6,7 @@ class ContextBuilder {
 
     private $apiKey     = null;
     private $priority   = null;
-    private $geo        = null;
+    private $place      = null;
     private $properties = null;
     private $textCase   = null;
 
@@ -21,11 +21,11 @@ class ContextBuilder {
     }
 
     /**
-     * @param string $geo
+     * @param string $place
      * @return ContextBuilder
      */
-    function geo($geo) {
-        $this->geo = $geo;
+    function place($place) {
+        $this->place = $place;
         return $this;
     }
 
@@ -63,7 +63,7 @@ class ContextBuilder {
      * @return Context
      */
     function build() {
-        return new Context($this->apiKey, $this->priority, $this->geo, $this->textCase, $this->properties);
+        return new Context($this->apiKey, $this->priority, $this->place, $this->textCase, $this->properties);
     }
 
 }
