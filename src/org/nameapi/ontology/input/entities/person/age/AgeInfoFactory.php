@@ -10,30 +10,23 @@ include_once('AgeInfo.php');
 class AgeInfoFactory {
 
     /**
-     * @return AgeInfo
-     */
-    static function forEmpty() {
-        return new AgeInfo(null, null, null, null);
-    }
-
-    /**
      * Example: forDate(1986, 12, 31);
      * @param int $year 4-digit year
      * @param int $month 1-2-digit month from 1-12
      * @param int $day 1-2-digit day from 1-31
-     * @return AgeInfo
+     * @return BirthDate
      */
     static function forDate($year, $month, $day) {
-        return new AgeInfo($year, $month, $day, null);
+        return new BirthDate($year, $month, $day);
     }
 
     /**
      * Example: forYear(1986);
      * @param int $year 4-digit year
-     * @return AgeInfo
+     * @return BirthYear
      */
     static function forYear($year) {
-        return new AgeInfo($year, null, null, null);
+        return new BirthYear($year);
     }
 
     /**
@@ -43,7 +36,7 @@ class AgeInfoFactory {
      * @return AgeInfo
      */
     static function forYearRange($yearStartIncl, $yearEndIncl) {
-        return new AgeInfo(null, null, null, array($yearStartIncl,$yearEndIncl));
+        return new BirthYearRange(new YearRange($yearStartIncl,$yearEndIncl));
     }
 
 }
