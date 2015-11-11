@@ -30,9 +30,8 @@ Then you need a Context that explains a bit your working environment, something 
 ```php
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\context\Priority;
-use org\nameapi\ontology\input\context\TextCase;
 $context = Context::builder()
-    ->apiKey('your-api-key')
+    ->place('US')
     ->priority(Priority::REALTIME)
     ->build();
 ```
@@ -40,7 +39,7 @@ $context = Context::builder()
 Then you can already create the service factory which gives you access to all nameapi services:
 
 ```php
-$serviceFactory = new ServiceFactory($context);
+$serviceFactory = new ServiceFactory('your-api-key', $context);
 ```
 
 

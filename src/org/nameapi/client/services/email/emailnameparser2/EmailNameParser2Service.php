@@ -31,7 +31,7 @@ class EmailNameParser2Service {
     private $context;
     private $soapEmailNameParserService;
 
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
         $this->soapEmailNameParserService = new wsdl\SoapEmailNameParser2Service(array(), $baseUrl);
     }

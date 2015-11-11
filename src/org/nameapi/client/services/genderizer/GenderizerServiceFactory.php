@@ -12,13 +12,15 @@ require_once(__DIR__.'/persongenderizer/PersonGenderizerService.php');
  */
 class GenderizerServiceFactory {
 
+    private $apiKey;
     private $context;
     private $baseUrl;
     private $personGenderizerService;
 
     /**
      */
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
+        $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
     }
@@ -29,7 +31,7 @@ class GenderizerServiceFactory {
      */
     public function personGenderizer() {
         if ($this->personGenderizerService==null) {
-            $this->personGenderizerService = new persongenderizer\PersonGenderizerService($this->context, $this->baseUrl);
+            $this->personGenderizerService = new persongenderizer\PersonGenderizerService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->personGenderizerService;
     }

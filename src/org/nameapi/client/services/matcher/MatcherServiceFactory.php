@@ -11,13 +11,15 @@ require_once(__DIR__.'/personmatcher/PersonMatcherService.php');
  */
 class MatcherServiceFactory {
 
+    private $apiKey;
     private $context;
     private $baseUrl;
     private $personMatcher;
 
     /**
      */
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
+        $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
     }
@@ -28,7 +30,7 @@ class MatcherServiceFactory {
      */
     public function personMatcher() {
         if ($this->personMatcher==null) {
-            $this->personMatcher = new personmatcher\PersonMatcherService($this->context, $this->baseUrl);
+            $this->personMatcher = new personmatcher\PersonMatcherService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->personMatcher;
     }

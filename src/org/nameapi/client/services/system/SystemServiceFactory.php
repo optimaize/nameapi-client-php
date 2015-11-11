@@ -13,13 +13,15 @@ require_once(__DIR__.'/pinger/PingerService.php');
  */
 class SystemServiceFactory {
 
+    private $apiKey;
     private $context;
     private $baseUrl;
     private $pingerService;
 
     /**
      */
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
+        $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
     }

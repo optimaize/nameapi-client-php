@@ -24,7 +24,7 @@ class DisposableEmailAddressDetectorService {
     private $context;
     private $soapDisposableEmailAddressDetectorService;
 
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
         $this->soapDisposableEmailAddressDetectorService = new wsdl\SoapDisposableEmailAddressDetectorService(array(), $baseUrl);
     }

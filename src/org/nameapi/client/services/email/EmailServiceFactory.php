@@ -17,6 +17,7 @@ require_once(__DIR__.'/emailnameparser2/EmailNameParser2Service.php');
  */
 class EmailServiceFactory {
 
+    private $apiKey;
     private $context;
     private $baseUrl;
     private $disposableEmailAddressDetector;
@@ -25,7 +26,8 @@ class EmailServiceFactory {
 
     /**
      */
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
+        $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
     }
@@ -36,7 +38,7 @@ class EmailServiceFactory {
      */
     public function disposableEmailAddressDetector() {
         if ($this->disposableEmailAddressDetector==null) {
-            $this->disposableEmailAddressDetector = new DisposableEmailAddressDetectorService($this->context, $this->baseUrl);
+            $this->disposableEmailAddressDetector = new DisposableEmailAddressDetectorService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->disposableEmailAddressDetector;
     }
@@ -47,7 +49,7 @@ class EmailServiceFactory {
      */
     public function emailNameParser() {
         if ($this->emailNameParser==null) {
-            $this->emailNameParser = new EmailNameParserService($this->context, $this->baseUrl);
+            $this->emailNameParser = new EmailNameParserService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->emailNameParser;
     }
@@ -58,7 +60,7 @@ class EmailServiceFactory {
      */
     public function emailNameParser2() {
         if ($this->emailNameParser2==null) {
-            $this->emailNameParser2 = new EmailNameParser2Service($this->context, $this->baseUrl);
+            $this->emailNameParser2 = new EmailNameParser2Service($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->emailNameParser2;
     }

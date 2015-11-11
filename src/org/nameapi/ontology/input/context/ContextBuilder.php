@@ -4,21 +4,11 @@ namespace org\nameapi\ontology\input\context;
 
 class ContextBuilder {
 
-    private $apiKey     = null;
     private $priority   = null;
     private $place      = null;
     private $properties = null;
     private $textCase   = null;
 
-
-    /**
-     * @param string $apiKey
-     * @return ContextBuilder
-     */
-    function apiKey($apiKey) {
-        $this->apiKey = $apiKey;
-        return $this;
-    }
 
     /**
      * @param string $place
@@ -63,7 +53,7 @@ class ContextBuilder {
      * @return Context
      */
     function build() {
-        return new Context($this->apiKey, $this->priority, $this->place, $this->textCase, $this->properties);
+        return new Context($this->priority, $this->place, $this->textCase, $this->properties);
     }
 
 }

@@ -32,7 +32,7 @@ class PersonNameParserService {
     /**
      * @access public
      */
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
         $this->soapPersonNameParser = new wsdl\SoapPersonNameParserService(array(), $baseUrl);
     }

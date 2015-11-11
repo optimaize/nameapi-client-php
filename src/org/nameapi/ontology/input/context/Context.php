@@ -9,7 +9,6 @@ include_once('Priority.php');
 
 class Context {
 
-    private $apiKey = null;
     private $priority = null;
     private $place = null;
     private $textCase = null;
@@ -20,15 +19,13 @@ class Context {
     }
 
     /**
-     * @param string $apiKey
      * @param priority $priority
      * @param string $place
      * @param TextCase $textCase
      * @param array $properties
      * @access public
      */
-    public function __construct($apiKey, $priority, $place, $textCase, $properties) {
-        $this->apiKey = $apiKey;
+    public function __construct($priority, $place, $textCase, $properties) {
         $this->priority = $priority;
         $this->place = $place;
         $this->textCase = $textCase;
@@ -36,13 +33,6 @@ class Context {
     }
 
 
-
-    /**
-     * @return null|string
-     */
-    public function getApiKey() {
-        return $this->apiKey;
-    }
 
     /**
      * @return null|string

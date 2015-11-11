@@ -28,7 +28,7 @@ class PersonNameFormatterService {
     private $context;
     private $soapPersonNameFormatterService;
 
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
         $this->soapPersonNameFormatterService = new wsdl\SoapPersonNameFormatterService(array(), $baseUrl);
     }

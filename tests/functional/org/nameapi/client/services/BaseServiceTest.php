@@ -25,7 +25,6 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
             die("Put your api key in the \$apiKey variable to run these functional tests!");
         }
         return Context::builder()
-            ->apiKey($this->apiKey)
             ->priority(Priority::REALTIME())
             ->textCase(TextCase::TITLE_CASE())
             ->build();
@@ -36,10 +35,7 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
      */
     protected function makeServiceFactory() {
         //this is what you usually want, for production:
-        return new ServiceFactory($this->makeContext(), Host::standard(), '4.0');
-
-        //current release candidate for the next production version:
-        //return new ServiceFactory($this->makeContext(), Host::http("rc-api.nameapi.org"), '4.1');
+        return new ServiceFactory($this->apiKey, $this->makeContext(), Host::standard(), '4.0');
     }
 
 }

@@ -34,7 +34,7 @@ class PersonMatcherService {
     /**
      * @access public
      */
-    public function __construct(Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
         $this->soapPersonMatcher = new wsdl\SoapPersonMatcherService(array(), $baseUrl);
     }

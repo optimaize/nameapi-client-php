@@ -28,6 +28,8 @@ require_once(__DIR__.'/../../ontology/input/entities/person/NaturalInputPersonBu
  */
 class ServiceFactory {
 
+    private $apiKey;
+
     private $context;
 
     private $host;
@@ -52,12 +54,14 @@ class ServiceFactory {
 
 
     /**
+     * @var $apiKey
      * @var $context
      * @var $host defaults to Host::standard()
      * @var $apiVersion default is the "latest stable", currently that is 4.0.
      *      You want to change this to target another version, for example a release candidate or a development version.
      */
-    public function __construct(Context $context, Host $host=null, $apiVersion=null) {
+    public function __construct($apiKey, Context $context, Host $host=null, $apiVersion=null) {
+        $this->apiKey = $apiKey;
         $this->context = $context;
         if ($host==null) {
             $this->host = Host::standard();
@@ -78,7 +82,7 @@ class ServiceFactory {
      */
     public function systemServices() {
         if ($this->systemServiceFactory==null) {
-            $this->systemServiceFactory = new system\SystemServiceFactory($this->context, $this->baseUrl);
+            $this->systemServiceFactory = new system\SystemServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->systemServiceFactory;
     }
@@ -88,7 +92,7 @@ class ServiceFactory {
      */
     public function parserServices() {
         if ($this->parserServiceFactory==null) {
-            $this->parserServiceFactory = new parser\ParserServiceFactory($this->context, $this->baseUrl);
+            $this->parserServiceFactory = new parser\ParserServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->parserServiceFactory;
     }
@@ -98,7 +102,7 @@ class ServiceFactory {
      */
     public function genderizerServices() {
         if ($this->genderizerServiceFactory==null) {
-            $this->genderizerServiceFactory = new genderizer\GenderizerServiceFactory($this->context, $this->baseUrl);
+            $this->genderizerServiceFactory = new genderizer\GenderizerServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->genderizerServiceFactory;
     }
@@ -108,7 +112,7 @@ class ServiceFactory {
      */
     public function matcherServices() {
         if ($this->matcherServiceFactory==null) {
-            $this->matcherServiceFactory = new matcher\MatcherServiceFactory($this->context, $this->baseUrl);
+            $this->matcherServiceFactory = new matcher\MatcherServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->matcherServiceFactory;
     }
@@ -118,7 +122,7 @@ class ServiceFactory {
      */
     public function formatterServices() {
         if ($this->formatterServiceFactory==null) {
-            $this->formatterServiceFactory = new formatter\FormatterServiceFactory($this->context, $this->baseUrl);
+            $this->formatterServiceFactory = new formatter\FormatterServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->formatterServiceFactory;
     }
@@ -128,7 +132,7 @@ class ServiceFactory {
      */
     public function emailServices() {
         if ($this->emailServiceFactory==null) {
-            $this->emailServiceFactory = new email\EmailServiceFactory($this->context, $this->baseUrl);
+            $this->emailServiceFactory = new email\EmailServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->emailServiceFactory;
     }
