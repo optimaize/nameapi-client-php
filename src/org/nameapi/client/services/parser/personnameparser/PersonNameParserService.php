@@ -64,21 +64,25 @@ class PersonNameParserService {
             ['inputPerson'=>$person, 'context'=>$this->context]
         );
 
-        $matches = array(); //ParsedPersonMatch
-        foreach ($response->matches as $match) {
-            $names = array();
-            foreach ($match->parsedPerson->names as $name) {
-                $terms = array();
-                foreach ($name->terms as $term) {
-                    array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
+        try {
+            $matches = array(); //ParsedPersonMatch
+            foreach ($response->matches as $match) {
+                $names = array();
+                foreach ($match->parsedPerson->names as $name) {
+                    $terms = array();
+                    foreach ($name->terms as $term) {
+                        array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
+                    }
+                    array_push($names, new OutputPersonName($terms));
                 }
-                array_push($names, new OutputPersonName($terms));
+                $parsedPerson = new ParsedPerson(new PersonType($match->parsedPerson->personType), $names);
+                $parsedPersonMatch = new ParsedPersonMatch($parsedPerson, $match->likeliness, $match->confidence);
+                array_push($matches, $parsedPersonMatch);
             }
-            $parsedPerson = new ParsedPerson(new PersonType($match->parsedPerson->personType), $names);
-            $parsedPersonMatch = new ParsedPersonMatch($parsedPerson, $match->likeliness, $match->confidence);
-            array_push($matches, $parsedPersonMatch);
+            return new PersonNameParserResult($matches);
+        } catch (\Exception $e) {
+            throw new ApiException("Server sent unexpected or unsupported response: ".$e->getMessage(), 500);
         }
-        return new PersonNameParserResult($matches);
     }
 
 }
