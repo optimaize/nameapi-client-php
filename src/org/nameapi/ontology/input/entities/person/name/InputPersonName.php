@@ -25,17 +25,17 @@ class InputPersonName {
     }
 
     /**
-     * @var NameField[] $names
+     * @var NameField[] $nameFields
      * @access public
      */
-    public $names = null;
+    public $nameFields = null;
 
     /**
-     * @param NameField[] $names
+     * @param NameField[] $nameFields
      * @access public
      */
-    public function __construct($names) {
-        $this->names = $names;
+    public function __construct($nameFields) {
+        $this->nameFields = $nameFields;
     }
 
 }

@@ -69,8 +69,6 @@ class NaturalInputPersonBuilder {
 
 
     function __construct() {
-        $this->gender = new StoragePersonGender('UNKNOWN');
-        $this->maritalStatus = new MaritalStatus('UNKNOWN');
     }
 
 

@@ -7,12 +7,12 @@ namespace org\nameapi\ontology\input\entities\person\age;
  */
 class BirthYear extends AgeInfo {
 
-    private $type = 'BirthYear';
+    public $type = 'BirthYear';
 
     /**
      * @var int $year
      */
-    private $year;
+    public $year;
 
 
     /**
@@ -23,13 +23,6 @@ class BirthYear extends AgeInfo {
     public function __construct($year) {
         if ($year<0 || $year>2100) throw new \Exception("Year is out of legal range: ".$year."!");
         $this->year = $year;
-    }
-
-    /**
-     * @return int
-     */
-    public function getYear() {
-        return $this->year;
     }
 
 }

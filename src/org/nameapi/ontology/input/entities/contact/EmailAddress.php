@@ -7,20 +7,13 @@ class EmailAddress {
     /**
      * @var string $emailAddress
      */
-    private $emailAddress;
+    public $emailAddress;
 
     /**
      * @param string $emailAddress
      */
     public function __construct($emailAddress) {
         $this->emailAddress = $emailAddress;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmailAddress() {
-        return $this->emailAddress;
     }
 
 }

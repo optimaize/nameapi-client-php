@@ -67,6 +67,9 @@ class RestHttpClient
     public function callApiGet($resourcePath, $queryParams, $headerParams) {
         return $this->callApi($resourcePath, 'GET', $queryParams, null, $headerParams);
     }
+    public function callApiPost($resourcePath, $queryParams, $headerParams, $postData) {
+        return $this->callApi($resourcePath, 'POST', $queryParams, $postData, $headerParams);
+    }
 
     /**
      * Make the HTTP call (Sync)
@@ -90,7 +93,7 @@ class RestHttpClient
         }
 
         if ($postData && is_object($postData) or is_array($postData)) { // json model
-            $postData = json_encode($this->serializer->sanitizeForSerialization($postData));
+            $postData = json_encode($postData);
         }
 
         $url = $this->config->getBaseUrl() . $resourcePath;

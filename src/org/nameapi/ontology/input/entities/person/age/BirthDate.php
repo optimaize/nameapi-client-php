@@ -7,22 +7,22 @@ namespace org\nameapi\ontology\input\entities\person\age;
  */
 class BirthDate extends AgeInfo {
 
-    private $type = 'BirthDate';
+    public $type = 'BirthDate';
 
     /**
      * @var int $year
      */
-    private $year;
+    public $year;
 
     /**
      * @var int $month
      */
-    private $month;
+    public $month;
 
     /**
      * @var int $day
      */
-    private $day;
+    public $day;
 
 
     /**
@@ -39,27 +39,6 @@ class BirthDate extends AgeInfo {
         $this->year = $year;
         $this->month = $month;
         $this->day = $day;
-    }
-
-    /**
-     * @return int
-     */
-    public function getYear() {
-        return $this->year;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMonth() {
-        return $this->month;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDay() {
-        return $this->day;
     }
 
 }

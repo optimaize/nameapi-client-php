@@ -7,12 +7,12 @@ namespace org\nameapi\ontology\input\entities\person\age;
  */
 class BirthYearRange extends AgeInfo {
 
-    private $type = 'BirthYearRange';
+    public $type = 'BirthYearRange';
 
     /**
      * @var YearRange $yearRange
      */
-    private $yearRange;
+    public $yearRange;
 
 
 
@@ -23,13 +23,6 @@ class BirthYearRange extends AgeInfo {
      */
     public function __construct($yearRange) {
         $this->yearRange = $yearRange;
-    }
-
-    /**
-     * @return YearRange
-     */
-    public function getYearRange() {
-        return $this->yearRange;
     }
 
 }

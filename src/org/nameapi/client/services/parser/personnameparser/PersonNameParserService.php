@@ -5,18 +5,20 @@ namespace org\nameapi\client\services\parser\personnameparser;
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 use org\nameapi\ontology\input\entities\person\PersonType;
+use org\nameapi\client\lib\RestHttpClient;
+use org\nameapi\client\lib\Configuration;
+use org\nameapi\client\lib\ApiException;
 
 use org\nameapi\client\services\parser\OutputTermType;
 use org\nameapi\client\services\parser\Term;
 use org\nameapi\client\services\parser\OutputPersonName;
 
-require_once(__DIR__.'/wsdl/SoapPersonNameParserService.php');
 require_once(__DIR__.'/PersonNameParserResult.php');
 
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/soap/v4.0/parser/personnameparser?wsdl
+ * http://api.nameapi.org/rest/v5.0/parser/personnameparser
  *
  * HOW TO USE:
  * $personNameParser = $myServiceFactory->nameParserServiceFactory()->personNameParser();
@@ -26,15 +28,25 @@ require_once(__DIR__.'/PersonNameParserResult.php');
  */
 class PersonNameParserService {
 
+    private static $RESOURCE_PATH = "parser/personnameparser";
+
     private $context;
-    private $soapPersonNameParser;
+
+    /**
+     * @var RestHttpClient
+     */
+    private $restHttpClient;
+
 
     /**
      * @access public
      */
     public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapPersonNameParser = new wsdl\SoapPersonNameParserService(array(), $baseUrl);
+        $configuration = new Configuration();
+        $configuration->setApiKey($apiKey);
+        $configuration->setBaseUrl($baseUrl);
+        $this->restHttpClient = new RestHttpClient($configuration);
     }
 
     /**
@@ -42,10 +54,18 @@ class PersonNameParserService {
      * @return PersonNameParserResult
      */
     public function parse(NaturalInputPerson $person) {
-        $parameters = new wsdl\ParseArguments($this->context, $person);
-        $result = $this->soapPersonNameParser->parse($parameters);
+        $queryParams = array();
+        $headerParams = array();
+
+        list($response, $httpHeader) = $this->restHttpClient->callApiPost(
+            PersonNameParserService::$RESOURCE_PATH,
+            $queryParams,
+            $headerParams,
+            ['inputPerson'=>$person, 'context'=>$this->context]
+        );
+
         $matches = array(); //ParsedPersonMatch
-        foreach ($result->parsedPersonMatches as $match) {
+        foreach ($response->matches as $match) {
             $names = array();
             foreach ($match->parsedPerson->names as $name) {
                 $terms = array();

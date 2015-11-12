@@ -15,12 +15,12 @@ class NameField {
     /**
      * @var string $string
      */
-    private $string;
+    public $string;
 
     /**
      * @var string $fieldType
      */
-    private $fieldType;
+    public $fieldType;
 
     /**
      * @param string $string for example "Peter".
@@ -30,20 +30,6 @@ class NameField {
     public function __construct($string, $fieldType) {
         $this->string = $string;
         $this->fieldType = $fieldType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getString() {
-        return $this->string;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFieldType() {
-        return $this->fieldType;
     }
 
 }

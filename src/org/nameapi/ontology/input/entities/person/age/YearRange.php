@@ -9,11 +9,11 @@ class YearRange {
     /**
      * @var int $startIncluding
      */
-    private $startIncluding;
+    public $startIncluding;
     /**
      * @var int $startIncluding
      */
-    private $endIncluding;
+    public $endIncluding;
 
 
 
@@ -27,18 +27,5 @@ class YearRange {
         $this->startIncluding = $startIncluding;
         $this->endIncluding = $endIncluding;
     }
-
-    /**
-     * @return int
-     */
-    public function getStartIncluding() {
-        return $this->startIncluding;
-    }
-    /**
-     * @return int
-     */
-    public function getEndIncluding() {
-        return $this->endIncluding;
-    }
-
+    
 }

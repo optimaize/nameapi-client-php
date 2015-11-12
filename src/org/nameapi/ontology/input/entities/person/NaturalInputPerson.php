@@ -23,58 +23,59 @@ class NaturalInputPerson {
         return new NaturalInputPersonBuilder();
     }
 
+    public $type = 'NaturalInputPerson';
 
     /**
      * @var InputPersonName|null $personName
      */
-    private $personName = null;
+    public $personName = null;
 
     /**
      * @var StoragePersonGender $gender
      */
-    private $gender = null;
+    public $gender = null;
 
     /**
      * @var AgeInfo|null $ageInfo
      */
-    private $ageInfo = null;
+    public $ageInfo = null;
 
     /**
-     * @var MaritalStatus $maritalStatus
+     * @var string $maritalStatus
      */
-    private $maritalStatus = null;
+    public $maritalStatus = null;
 
     /**
      * @var string[]|null $nationalities
      */
-    private $nationalities = null;
+    public $nationalities = null;
 
     /**
      * @var string[]|null $nativeLanguages
      */
-    private $nativeLanguages = null;
+    public $nativeLanguages = null;
 
     /**
      * @var string|null $correspondenceLanguage
      */
-    private $correspondenceLanguage = null;
+    public $correspondenceLanguage = null;
 
     /**
      * @var string|null $religion
      */
-    private $religion = null;
+    public $religion = null;
 
-    private $addresses = null;
+    public $addresses = null;
 
     /**
      * @var TelNumber[]|null $telNumbers
      */
-    private $telNumbers = null;
+    public $telNumbers = null;
 
     /**
      * @var EmailAddress[]|null $emailAddresses
      */
-    private $emailAddresses = null;
+    public $emailAddresses = null;
 
 
     /**
@@ -100,12 +101,10 @@ class NaturalInputPerson {
                                 $religion,
                                 $addresses,
                                 $telNumbers, $emailAddresses) {
-        if ($gender==null) throw new \Exception("Param gender is mandatory, use UNKNOWN!");
-        if ($maritalStatus==null) throw new \Exception("Param maritalStatus is mandatory, use UNKNOWN!");
         $this->personName = $personName;
-        $this->gender = $gender;
+        $this->gender = ($gender!=null) ? (String)$gender : null;
         $this->ageInfo = $ageInfo;
-        $this->maritalStatus = $maritalStatus;
+        $this->maritalStatus = ($maritalStatus!=null) ? (String)$maritalStatus : null;
         $this->nationalities = $nationalities;
         $this->nativeLanguages = $nativeLanguages;
         $this->correspondenceLanguage = $correspondenceLanguage;
@@ -113,85 +112,6 @@ class NaturalInputPerson {
         $this->addresses = $addresses;
         $this->telNumbers = $telNumbers;
         $this->emailAddresses = $emailAddresses;
-    }
-
-    /**
-     * @return InputPersonName|null
-     */
-    public function getPersonName() {
-        return $this->personName;
-    }
-
-    /**
-     * @return storagePersonGender
-     */
-    public function getGender() {
-        return $this->gender;
-    }
-
-    /**
-     *
-     * @return AgeInfo|null
-     */
-    public function getAgeInfo() {
-        return $this->ageInfo;
-    }
-
-    /**
-     * @return MaritalStatus
-     */
-    public function getMaritalStatus() {
-        return $this->maritalStatus;
-    }
-
-    /**
-     * @return string[]|null
-     */
-    public function getNationalities() {
-        return $this->nationalities;
-    }
-
-    /**
-     * @return string[]|null
-     */
-    public function getNativeLanguages() {
-        return $this->nativeLanguages;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCorrespondenceLanguage() {
-        return $this->correspondenceLanguage;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getReligion() {
-        return $this->religion;
-    }
-
-    //TODO not used yet
-//    /**
-//     * @return null
-//     */
-//    public function getAddresses() {
-//        return $this->addresses;
-//    }
-
-    /**
-     * @return null|EmailAddress[]
-     */
-    public function getEmailAddresses() {
-        return $this->emailAddresses;
-    }
-
-    /**
-     * @return null|TelNumber[]
-     */
-    public function getTelNumbers() {
-        return $this->telNumbers;
     }
 
 }

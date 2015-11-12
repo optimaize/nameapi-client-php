@@ -7,20 +7,13 @@ class TelNumber {
     /**
      * @var string $fullNumber
      */
-    private $fullNumber = null;
+    public $fullNumber = null;
 
     /**
      * @param string $fullNumber
      */
     public function __construct($fullNumber) {
         $this->fullNumber = $fullNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFullNumber() {
-        return $this->fullNumber;
     }
 
 }
