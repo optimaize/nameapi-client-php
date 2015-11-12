@@ -6,8 +6,10 @@ use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\name\NameField;
 use org\nameapi\client\services\formatter\FormatterProperties;
 use org\nameapi\client\services\formatter\FormatterResult;
+use org\nameapi\client\lib\RestHttpClient;
+use org\nameapi\client\lib\Configuration;
+use org\nameapi\client\lib\ApiException;
 
-require_once(__DIR__.'/wsdl/SoapNameFieldFormatterService.php');
 
 
 /**
@@ -15,12 +17,21 @@ require_once(__DIR__.'/wsdl/SoapNameFieldFormatterService.php');
  */
 class NameFieldFormatterService {
 
+    private static $RESOURCE_PATH = "formatter/namefieldformatter";
+
     private $context;
-    private $soapNameFieldFormatterService;
+
+    /**
+     * @var RestHttpClient
+     */
+    private $restHttpClient;
 
     public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapNameFieldFormatterService = new wsdl\SoapNameFieldFormatterService(array(), $baseUrl);
+        $configuration = new Configuration();
+        $configuration->setApiKey($apiKey);
+        $configuration->setBaseUrl($baseUrl);
+        $this->restHttpClient = new RestHttpClient($configuration);
     }
 
     /**
@@ -29,10 +40,7 @@ class NameFieldFormatterService {
      * @return FormatterResult
      */
     public function format(NameField $nameField, FormatterProperties $properties) {
-        $parameters = new wsdl\FormatNameFieldArguments($this->context, $nameField, $properties->toWsdl());
-        $result = $this->soapNameFieldFormatterService->formatNameField($parameters)->return;
-        return new FormatterResult($result->formatted, $result->unknown);
-
+        throw new ApiException("Method not implemented as of now.", 501);
     }
 
 } 
