@@ -11,13 +11,13 @@ class DisposableEmailAddressDetectorServiceTest extends BaseServiceTest {
     public function testIsDisposable_yes() {
         $deaDetector = $this->makeServiceFactory()->emailServices()->disposableEmailAddressDetector();
         $result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
-        $this->assertEquals('YES', (string)$result->getDisposable());
+        $this->assertTrue($result->getDisposable()->isDisposable());
     }
 
     public function testIsDisposable_no() {
         $deaDetector = $this->makeServiceFactory()->emailServices()->disposableEmailAddressDetector();
         $result = $deaDetector->isDisposable("larry@google.com");
-        $this->assertEquals('NO', (string)$result->getDisposable());
+        $this->assertFalse($result->getDisposable()->isDisposable());
     }
 
 }

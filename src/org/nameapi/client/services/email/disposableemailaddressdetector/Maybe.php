@@ -17,13 +17,19 @@ class Maybe {
     private $value = null;
 
     public function __construct($value) {
-        if ($value!='YES' && $value!='NO' && $value!='UNKNOWN') {
-            throw new \Exception('Invalid value for Maybe: '.$value.'!');
+        if (($value!=='YES') && ($value!=='NO') && ($value!=='UNKNOWN')) {
+            throw new \Exception('Invalid value for Maybe: >>>'.$value.'<<<!');
         }
         $this->value = $value;
     }
 
 
+    /**
+     * @return bool
+     */
+    public function isDisposable() {
+        return $this->value === 'YES';
+    }
 
     public function __toString() {
         return $this->value;

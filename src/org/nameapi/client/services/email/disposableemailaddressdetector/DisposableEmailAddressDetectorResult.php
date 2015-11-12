@@ -14,7 +14,7 @@ class DisposableEmailAddressDetectorResult {
      * @access public
      */
     public function __construct($disposable) {
-        $this->disposable = new Maybe($disposable);
+        $this->disposable = $disposable;
     }
 
     /**

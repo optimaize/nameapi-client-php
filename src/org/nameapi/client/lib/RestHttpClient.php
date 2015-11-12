@@ -64,8 +64,8 @@ class RestHttpClient
         return $this->serializer;
     }
 
-    public function callApiGet($resourcePath, $queryParams, $headerParams, $responseType=null) {
-        return $this->callApi($resourcePath, 'GET', $queryParams, null, $headerParams, $responseType);
+    public function callApiGet($resourcePath, $queryParams, $headerParams) {
+        return $this->callApi($resourcePath, 'GET', $queryParams, null, $headerParams);
     }
 
     /**
@@ -75,11 +75,10 @@ class RestHttpClient
      * @param array  $queryParams  parameters to be place in query URL
      * @param array  $postData     parameters to be placed in POST body
      * @param array  $headerParams parameters to be place in request header
-     * @param string $responseType expected response type of the endpoint
      * @throws ApiException on a non 2xx response
      * @return mixed
      */
-    public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams, $responseType=null) {
+    public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams) {
         $headers = array();
         $headers[] = "Accept: application/json";
         $headers[] = "Content-Type: application/json";
@@ -175,11 +174,6 @@ class RestHttpClient
         if ($response_info['http_code'] == 0) {
             throw new ApiException("API call to $url timed out: ".serialize($response_info), 0, null, null);
         } else if ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299 ) {
-            // return raw body if response is a file
-            if ($responseType == '\SplFileObject') {
-                return array($http_body, $http_header);
-            }
-
             $data = json_decode($http_body);
             if (json_last_error() > 0) { // if response is a string
                 $data = $http_body;

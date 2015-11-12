@@ -21,6 +21,7 @@ class PingService {
     private static $RESOURCE_PATH = "system/ping";
 
     private $context;
+
     /**
      * @var RestHttpClient
      */
@@ -37,34 +38,21 @@ class PingService {
     }
 
     /**
-     * @return string
+     * @return string 'pong'
      */
     public function ping() {
         $queryParams = array();
         $headerParams = array();
 
-        // make the API Call
-        try {
-            list($response, $httpHeader) = $this->restHttpClient->callApiGet(
-                PingService::$RESOURCE_PATH,
-                $queryParams,
-                $headerParams,
-                'string'
-            );
-
-            //TODO why deserialize again???
-            return $this->restHttpClient->getSerializer()->deserialize($response, 'string');
-        } catch (ApiException $e) { //TODO other exceptions could be thrown, who translates them to ApiException???
-            switch ($e->getCode()) {
-                //TODO why would a 200 be an exception???
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
+        list($response, $httpHeader) = $this->restHttpClient->callApiGet(
+            PingService::$RESOURCE_PATH,
+            $queryParams,
+            $headerParams
+        );
+        if ($response !== 'pong') {
+            throw new ApiException("Server sent unexpected response: ".$response, 500);
         }
+        return $response;
     }
 
 }
