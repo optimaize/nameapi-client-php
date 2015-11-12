@@ -14,10 +14,6 @@ require_once(__DIR__.'/email/EmailServiceFactory.php');
 
 require_once(__DIR__.'/../lib/RestHttpClient.php');
 
-require_once(__DIR__.'/../commonwsdl/exception/FaultBean.php');
-require_once(__DIR__.'/../commonwsdl/PriceArguments.php');
-require_once(__DIR__.'/../commonwsdl/PriceResponse.php');
-
 require_once(__DIR__.'/../../ontology/input/context/Context.php');
 require_once(__DIR__.'/../../ontology/input/entities/contact/EmailAddressFactory.php');
 require_once(__DIR__.'/../../ontology/input/entities/contact/TelNumberFactory.php');
@@ -145,28 +141,5 @@ class ServiceFactory {
         }
         return $this->emailServiceFactory;
     }
-
-
-    public static $classmap = array(
-        'soapContext' => 'org\nameapi\ontology\input\context\Context',
-
-        'faultBean'    => 'org\nameapi\client\commonwsdl\exception\FaultBean',
-
-        'price'         => 'org\nameapi\client\commonwsdl\PriceArguments',
-        'priceResponse' => 'org\nameapi\client\commonwsdl\PriceResponse',
-
-        'soapSimpleNaturalPerson'  => '\org\nameapi\ontology\input\entities\person\NaturalInputPerson',
-        'soapPersonName'           => '\org\nameapi\ontology\input\entities\person\name\InputPersonName',
-        'soapFieldOrTypeBasedTerm' => '\org\nameapi\ontology\input\entities\person\name\NameField',
-        'soapAgeInfo'              => '\org\nameapi\ontology\input\entities\person\age\AgeInfo',
-        //'soapAddressRelation'      => '\org\nameapi\soapAddressRelation',
-        //'soapAddress'              => '\org\nameapi\soapAddress',
-        //'soapStreetInfo'           => '\org\nameapi\soapStreetInfo',
-        'soapEmailAddress'         => '\org\nameapi\ontology\input\entities\contact\EmailAddress',
-        'soapTelNumber'            => '\org\nameapi\ontology\input\entities\contact\TelNumber',
-
-//    'properties'    => '\org\nameapi\properties',
-//    'entry'         => '\org\nameapi\entry',
-    );
 
 }
