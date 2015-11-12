@@ -14,8 +14,7 @@ use \Exception;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ApiException extends Exception
-{
+class ApiException extends Exception {
 
     /**
      * The HTTP body of the server response either as Json or string.

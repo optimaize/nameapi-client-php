@@ -4,7 +4,6 @@ namespace org\nameapi\client\lib;
 
 require_once(__DIR__.'/ApiException.php');
 require_once(__DIR__.'/Configuration.php');
-require_once(__DIR__.'/ObjectSerializer.php');
 
 /**
  * Performs the HTTP actions.
@@ -19,8 +18,7 @@ require_once(__DIR__.'/ObjectSerializer.php');
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class RestHttpClient
-{
+class RestHttpClient {
 
     public static $PATCH = "PATCH";
     public static $POST = "POST";
@@ -36,33 +34,19 @@ class RestHttpClient
      */
     protected $config;
 
-    /**
-     * Object Serializer
-     * @var ObjectSerializer
-     */
-    protected $serializer;
 
     /**
      * Constructor of the class
      * @param Configuration $config config for this ApiClient
      */
-    public function __construct(Configuration $config = null)
-    {
+    public function __construct(Configuration $config = null) {
         if ($config == null) {
             $config = Configuration::getDefaultConfiguration();
         }
 
         $this->config = $config;
-        $this->serializer = new ObjectSerializer();
     }
 
-    /**
-     * @return ObjectSerializer
-     */
-    public function getSerializer()
-    {
-        return $this->serializer;
-    }
 
     public function callApiGet($resourcePath, $queryParams, $headerParams) {
         return $this->callApi($resourcePath, 'GET', $queryParams, null, $headerParams);

@@ -7,8 +7,7 @@ namespace org\nameapi\client\lib;
  *
  * Based on auto-generated code from https://github.com/swagger-api/swagger-codegen
  */
-class Configuration
-{
+class Configuration {
 
     private static $_defaultConfiguration = null;
 
