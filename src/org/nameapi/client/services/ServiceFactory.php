@@ -38,12 +38,19 @@ class ServiceFactory {
 
     /**
      * Set to the "latest stable" version,
-     *
+     * @var string
      */
     private $apiVersion;
 
     /**
+     * Either 'rest' or 'soap'.
+     * @var string
+     */
+    private $technology = 'rest';
+
+    /**
      * Something like 'http://api.nameapi.org/rest/v5.0/'
+     * Gets constructed based on other attributes in here.
      */
     private $baseUrl;
 
@@ -75,7 +82,7 @@ class ServiceFactory {
         } else {
             $this->apiVersion = $apiVersion;
         }
-        $this->baseUrl = $this->host->toString() . '/rest/v'.$this->apiVersion.'/';
+        $this->baseUrl = $this->host->toString() . '/'.$this->technology.'/v'.$this->apiVersion.'/';
     }
 
 

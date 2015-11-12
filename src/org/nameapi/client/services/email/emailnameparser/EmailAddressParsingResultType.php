@@ -4,15 +4,13 @@ namespace org\nameapi\client\services\email\emailnameparser;
 
 
 /**
- * Class EmailAddressParsingResultType
+ * Class EmailAddressParsingResultType2
  *
  * Possible values are:
  *
- * DEPARTMENT
- * The email address belongs to a department, such as accounting@example.com.
- *
- * TECHNICAL
- * It is a technical email address for the domain, such as hostmaster@example.com.
+ * FUNCTIONAL
+ * The email address belongs to a department (eg accounting@example.com) or is
+ * technical (eg hostmaster@example.com).
  *
  * INITIALS
  * The email address contains a person's initials such as ab@example.com.
@@ -43,8 +41,7 @@ final class EmailAddressParsingResultType {
     private $value = null;
 
     public function __construct($value) {
-        if ($value!=='DEPARTMENT'
-            && $value!=='TECHNICAL'
+        if ($value!=='FUNCTIONAL'
             && $value!=='INITIALS'
             && $value!=='PERSON_NAME'
             && $value!=='PSEUDONYM'
