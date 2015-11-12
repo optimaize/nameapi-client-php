@@ -11,14 +11,16 @@ use org\nameapi\client\services\matcher\GenderMatcherResult;
 use org\nameapi\client\services\matcher\GenderMatchType;
 use org\nameapi\client\services\matcher\AgeMatcherResult;
 use org\nameapi\client\services\matcher\AgeMatchType;
+use org\nameapi\client\lib\RestHttpClient;
+use org\nameapi\client\lib\Configuration;
+use org\nameapi\client\lib\ApiException;
 
-require_once(__DIR__.'/wsdl/SoapPersonMatcherService.php');
 require_once(__DIR__.'/PersonMatcherResult.php');
 
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/soap/v4.0/matcher/personmatcher?wsdl
+ * http://api.nameapi.org/rest/v5.0/matcher/personmatcher
  *
  * HOW TO USE:
  * $personMatcher = $myServiceFactory->matcherServiceFactory()->personMatcher();
@@ -28,15 +30,24 @@ require_once(__DIR__.'/PersonMatcherResult.php');
  */
 class PersonMatcherService {
 
+    private static $RESOURCE_PATH = "matcher/personmatcher";
+
     private $context;
-    private $soapPersonMatcher;
+
+    /**
+     * @var RestHttpClient
+     */
+    private $restHttpClient;
 
     /**
      * @access public
      */
     public function __construct($apiKey, Context $context, $baseUrl) {
         $this->context = $context;
-        $this->soapPersonMatcher = new wsdl\SoapPersonMatcherService(array(), $baseUrl);
+        $configuration = new Configuration();
+        $configuration->setApiKey($apiKey);
+        $configuration->setBaseUrl($baseUrl);
+        $this->restHttpClient = new RestHttpClient($configuration);
     }
 
     /**
@@ -45,19 +56,32 @@ class PersonMatcherService {
      * @return PersonMatcherResult
      */
     public function match(NaturalInputPerson $person1, NaturalInputPerson $person2) {
-        $parameters = new wsdl\MatchArguments($this->context, $person1, $person2);
-        $result = $this->soapPersonMatcher->match($parameters);
+        $queryParams = array();
+        $headerParams = array();
 
-        $genderWarnings = isSet($result->genderMatcherResult->warnings) ? $result->genderMatcherResult->warnings : null;
-
-        return new PersonMatcherResult(
-            new PersonMatchType($result->matchType),
-            new PersonMatchComposition($result->matchComposition),
-            $result->points, $result->confidence,
-            new PersonNameMatcherResult(new PersonNameMatchType($result->personNameMatcherResult->matchType)),
-            new GenderMatcherResult(new GenderMatchType($result->genderMatcherResult->matchType), $result->genderMatcherResult->confidence, $genderWarnings),
-            new AgeMatcherResult(new AgeMatchType($result->ageMatcherResult->matchType))
+        list($response, $httpHeader) = $this->restHttpClient->callApiPost(
+            PersonMatcherService::$RESOURCE_PATH,
+            $queryParams,
+            $headerParams,
+            ['inputPerson1'=>$person1, 'inputPerson2'=>$person2, 'context'=>$this->context]
         );
+
+        try {
+            return new PersonMatcherResult(
+                new PersonMatchType($response->matchType),
+                new PersonMatchComposition($response->personMatchComposition),
+                $response->points, $response->confidence,
+                new PersonNameMatcherResult(new PersonNameMatchType($response->personNameMatcherResult->matchType)),
+                new GenderMatcherResult(
+                    new GenderMatchType($response->genderMatcherResult->matchType),
+                    isSet($response->genderMatcherResult->confidence) ? $response->genderMatcherResult->confidence : null,
+                    isSet($response->genderMatcherResult->warnings) ? $response->genderMatcherResult->warnings : null
+                ),
+                new AgeMatcherResult(new AgeMatchType($response->ageMatcherResult->matchType))
+            );
+        } catch (\Exception $e) {
+            throw new ApiException("Server sent unexpected or unsupported response: ".$e->getMessage(), 500);
+        }
     }
 
 }
