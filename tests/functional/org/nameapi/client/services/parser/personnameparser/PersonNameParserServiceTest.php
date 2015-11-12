@@ -24,4 +24,17 @@ class PersonNameParserServiceTest extends BaseServiceTest {
         $this->assertEquals('Doe',  $name->getFirst('SURNAME')->getString());
     }
 
+    public function testParseSingleGivenName() {
+        $personNameParser = $this->makeServiceFactory()->parserServices()->personNameParser();
+        $inputPerson = NaturalInputPerson::builder()
+            ->name(InputPersonName::westernBuilder()
+                ->fullname( "John" )
+                ->build())
+            ->build();
+        $parseResult = $personNameParser->parse($inputPerson);
+        $bestMatch = $parseResult->getBestMatch();
+        $name = $bestMatch->getParsedPerson()->getFirstName();
+        $this->assertEquals('John', $name->getFirst('GIVENNAME')->getString());
+    }
+
 }
