@@ -32,14 +32,4 @@ class FormatterProperties {
         return $this;
     }
 
-    /**
-     * @return wsdl\SoapFormatterProperties
-     */
-    public function toWsdl() {
-        return new wsdl\SoapFormatterProperties(
-            $this->caseChoice,
-            $this->nameOrderChoice,
-            $this->formatUnknownInput
-        );
-    }
 }
