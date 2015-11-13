@@ -35,7 +35,7 @@ abstract class BaseServiceTest extends \PHPUnit_Framework_TestCase {
      */
     protected function makeServiceFactory() {
         //this is what you usually want, for production:
-        return new ServiceFactory($this->apiKey, $this->makeContext(), Host::standard(), '4.0');
+        return new ServiceFactory($this->apiKey, $this->makeContext(), Host::standard(), '5.0');
     }
 
 }
