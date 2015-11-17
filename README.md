@@ -3,18 +3,25 @@ nameapi-client-php
 
 PHP Client for the NameAPI Web Service at http://www.nameapi.org/
 
-There are functional tests (in tests/functional) that demonstrate how to use this library.
-The tests are run with PHPUnit.
-
 All you need to send requests is your own api key, get it from nameapi.org.
 
 
 ## Library setup
 
+The recommended way is to use Composer. The project at https://github.com/optimaize/nameapi-client-php-example-composer 
+shows how that's done.
+
 You can download the source code and make it available to your code. Or you can check it out directly
-from this GitHub project. Currently there is no phar and no composer available.
+from this GitHub project. Currently there is no phar available.
 
 The only requirement is that the php_curl extension is enabled.
+
+
+## Functional tests
+
+Functional tests that demonstrate how the services work, and that they work, are in 
+https://github.com/optimaize/nameapi-client-php-functionaltests you can look at the code, and you can 
+even run those tests using your api key and PHPUnit.
 
 
 ## Setup code
