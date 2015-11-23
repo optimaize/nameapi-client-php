@@ -3,8 +3,6 @@
 namespace org\nameapi\client\services\matcher\personmatcher;
 
 use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\http\RestHttpClient;
-use org\nameapi\client\http\RestHttpClientConfig;
 use org\nameapi\client\services\BaseService;
 use org\nameapi\client\services\matcher\AgeMatcherResult;
 use org\nameapi\client\services\matcher\AgeMatchType;

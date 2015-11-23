@@ -32,7 +32,7 @@ class ServiceException extends Exception {
      * @param HttpResponseData $httpData
      * @param Exception $cause
      */
-    public function __construct($message, FaultInfo $faultInfo, HttpResponseData $httpData, $cause=null) {
+    public function __construct($message, FaultInfo $faultInfo=null, HttpResponseData $httpData=null, $cause=null) {
         parent::__construct($message, 0, $cause);
         $this->faultInfo = $faultInfo;
         $this->httpData = $httpData;

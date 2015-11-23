@@ -3,8 +3,6 @@
 namespace org\nameapi\client\services\email\emailnameparser;
 
 use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\http\RestHttpClient;
-use org\nameapi\client\http\RestHttpClientConfig;
 use org\nameapi\client\services\BaseService;
 use org\nameapi\ontology\input\context\Context;
 

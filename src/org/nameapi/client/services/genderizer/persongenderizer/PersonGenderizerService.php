@@ -3,8 +3,6 @@
 namespace org\nameapi\client\services\genderizer\persongenderizer;
 
 use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\http\RestHttpClient;
-use org\nameapi\client\http\RestHttpClientConfig;
 use org\nameapi\client\services\BaseService;
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;

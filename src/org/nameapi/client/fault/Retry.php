@@ -27,7 +27,7 @@ class Retry
      * @param RetryType $retryType
      * @param int $retryInSeconds
      */
-    public function __construct(RetryType $retryType, $retryInSeconds)
+    public function __construct(RetryType $retryType, $retryInSeconds=null)
     {
         $this->retryType = $retryType;
         $this->retryInSeconds = $retryInSeconds;
