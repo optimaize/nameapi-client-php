@@ -1,13 +1,13 @@
 <?php
 
-namespace org\nameapi\client\lib;
+namespace org\nameapi\client\http;
 
 /**
  * Configuration for the RestHttpClient.
  *
  * Based on auto-generated code from https://github.com/swagger-api/swagger-codegen
  */
-class Configuration {
+class RestHttpClientConfig {
 
     private static $_defaultConfiguration = null;
 
@@ -141,7 +141,7 @@ class Configuration {
      *
      * @param bool $debug Debug flag
      *
-     * @return Configuration
+     * @return RestHttpClientConfig
      */
     public function setDebug($debug)
     {
@@ -164,7 +164,7 @@ class Configuration {
      *
      * @param string $debugFile Debug file
      *
-     * @return Configuration
+     * @return RestHttpClientConfig
      */
     public function setDebugFile($debugFile)
     {
@@ -187,7 +187,7 @@ class Configuration {
      *
      * @param string $tempFolderPath Temp folder path
      *
-     * @return Configuration
+     * @return RestHttpClientConfig
      */
     public function setTempFolderPath($tempFolderPath)
     {
@@ -210,7 +210,7 @@ class Configuration {
      *
      * @param boolean $sslVerification True if the certificate should be validated, false otherwise
      *
-     * @return Configuration
+     * @return RestHttpClientConfig
      */
     public function setSSLVerification($sslVerification)
     {
@@ -231,12 +231,12 @@ class Configuration {
     /**
      * Gets the default configuration instance
      *
-     * @return Configuration
+     * @return RestHttpClientConfig
      */
     public static function getDefaultConfiguration()
     {
         if (self::$_defaultConfiguration == null) {
-            self::$_defaultConfiguration = new Configuration();
+            self::$_defaultConfiguration = new RestHttpClientConfig();
         }
 
         return self::$_defaultConfiguration;
@@ -245,11 +245,11 @@ class Configuration {
     /**
      * Sets the detault configuration instance
      *
-     * @param Configuration $config An instance of the Configuration Object
+     * @param RestHttpClientConfig $config An instance of the Configuration Object
      *
      * @return void
      */
-    public static function setDefaultConfiguration(Configuration $config)
+    public static function setDefaultConfiguration(RestHttpClientConfig $config)
     {
         self::$_defaultConfiguration = $config;
     }
@@ -261,7 +261,7 @@ class Configuration {
      */
     public static function toDebugReport()
     {
-        $report  = "PHP SDK (Swagger\Client) Debug Report:\n";
+        $report  = "RestHttpClientConfig Debug Report:\n";
         $report .= "    OS: ".php_uname()."\n";
         $report .= "    PHP Version: ".phpversion()."\n";
         $report .= "    Swagger Spec Version: v5.0\n";

@@ -2,16 +2,16 @@
 
 namespace org\nameapi\client\services\parser\personnameparser;
 
+use org\nameapi\client\fault\ServiceException;
+use org\nameapi\client\http\RestHttpClient;
+use org\nameapi\client\http\RestHttpClientConfig;
+use org\nameapi\client\services\BaseService;
+use org\nameapi\client\services\parser\OutputPersonName;
+use org\nameapi\client\services\parser\OutputTermType;
+use org\nameapi\client\services\parser\Term;
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 use org\nameapi\ontology\input\entities\person\PersonType;
-use org\nameapi\client\lib\RestHttpClient;
-use org\nameapi\client\lib\Configuration;
-use org\nameapi\client\lib\ApiException;
-
-use org\nameapi\client\services\parser\OutputTermType;
-use org\nameapi\client\services\parser\Term;
-use org\nameapi\client\services\parser\OutputPersonName;
 
 require_once(__DIR__.'/PersonNameParserResult.php');
 
@@ -26,41 +26,28 @@ require_once(__DIR__.'/PersonNameParserResult.php');
  *
  * @since v4.0
  */
-class PersonNameParserService {
+class PersonNameParserService extends BaseService {
 
     private static $RESOURCE_PATH = "parser/personnameparser";
 
-    private $context;
 
-    /**
-     * @var RestHttpClient
-     */
-    private $restHttpClient;
-
-
-    /**
-     * @access public
-     */
     public function __construct($apiKey, Context $context, $baseUrl) {
-        $this->context = $context;
-        $configuration = new Configuration();
-        $configuration->setApiKey($apiKey);
-        $configuration->setBaseUrl($baseUrl);
-        $this->restHttpClient = new RestHttpClient($configuration);
+        parent::__construct($apiKey, $context, $baseUrl);
     }
+
 
     /**
      * @param NaturalInputPerson $person
      * @return PersonNameParserResult
+     * @throws ServiceException
      */
     public function parse(NaturalInputPerson $person) {
         $queryParams = array();
         $headerParams = array();
 
-        list($response, $httpHeader) = $this->restHttpClient->callApiPost(
+        list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonNameParserService::$RESOURCE_PATH,
-            $queryParams,
-            $headerParams,
+            $queryParams, $headerParams,
             ['inputPerson'=>$person, 'context'=>$this->context]
         );
 
@@ -81,7 +68,7 @@ class PersonNameParserService {
             }
             return new PersonNameParserResult($matches);
         } catch (\Exception $e) {
-            throw new ApiException("Server sent unexpected or unsupported response: ".$e->getMessage(), 500);
+            throw $this->unmarshallingFailed($response, $httpResponseData);
         }
     }
 

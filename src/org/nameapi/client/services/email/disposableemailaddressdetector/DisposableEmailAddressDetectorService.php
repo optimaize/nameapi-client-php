@@ -2,10 +2,11 @@
 
 namespace org\nameapi\client\services\email\disposableemailaddressdetector;
 
+use org\nameapi\client\fault\ServiceException;
+use org\nameapi\client\http\RestHttpClient;
+use org\nameapi\client\http\RestHttpClientConfig;
+use org\nameapi\client\services\BaseService;
 use org\nameapi\ontology\input\context\Context;
-use org\nameapi\client\lib\RestHttpClient;
-use org\nameapi\client\lib\Configuration;
-use org\nameapi\client\lib\ApiException;
 
 require_once(__DIR__.'/DisposableEmailAddressDetectorResult.php');
 require_once(__DIR__.'/Maybe.php');
@@ -21,28 +22,19 @@ require_once(__DIR__.'/Maybe.php');
  *
  * @since v4.0
  */
-class DisposableEmailAddressDetectorService {
+class DisposableEmailAddressDetectorService extends BaseService {
 
     private static $RESOURCE_PATH = "email/disposableemailaddressdetector";
 
-    private $context;
-
-    /**
-     * @var RestHttpClient
-     */
-    private $restHttpClient;
-
     public function __construct($apiKey, Context $context, $baseUrl) {
-        $this->context = $context;
-        $configuration = new Configuration();
-        $configuration->setApiKey($apiKey);
-        $configuration->setBaseUrl($baseUrl);
-        $this->restHttpClient = new RestHttpClient($configuration);
+        parent::__construct($apiKey, $context, $baseUrl);
     }
+
 
     /**
      * @param string $emailAddress
      * @return DisposableEmailAddressDetectorResult
+     * @throws ServiceException
      */
     public function isDisposable($emailAddress) {
         $queryParams = array(
@@ -50,15 +42,14 @@ class DisposableEmailAddressDetectorService {
         );
         $headerParams = array();
 
-        list($response, $httpHeader) = $this->restHttpClient->callApiGet(
+        list($response, $httpResponseData) = $this->restHttpClient->callApiGet(
             DisposableEmailAddressDetectorService::$RESOURCE_PATH,
-            $queryParams,
-            $headerParams
+            $queryParams, $headerParams
         );
         try {
             return new DisposableEmailAddressDetectorResult(new Maybe($response->disposable));
         } catch (\Exception $e) {
-            throw new ApiException("Server sent unexpected or unsupported response: ".$e->getMessage(), 500);
+            throw $this->unmarshallingFailed($response, $httpResponseData);
         }
     }
 

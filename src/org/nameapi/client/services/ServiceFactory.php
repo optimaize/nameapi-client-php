@@ -4,6 +4,7 @@ namespace org\nameapi\client\services;
 
 use org\nameapi\ontology\input\context\Context;
 
+require_once(__DIR__.'/BaseService.php');
 require_once(__DIR__.'/Host.php');
 require_once(__DIR__.'/system/SystemServiceFactory.php');
 require_once(__DIR__.'/parser/ParserServiceFactory.php');
@@ -12,7 +13,7 @@ require_once(__DIR__.'/matcher/MatcherServiceFactory.php');
 require_once(__DIR__.'/formatter/FormatterServiceFactory.php');
 require_once(__DIR__.'/email/EmailServiceFactory.php');
 
-require_once(__DIR__.'/../lib/RestHttpClient.php');
+require_once(__DIR__.'/../http/RestHttpClient.php');
 
 require_once(__DIR__.'/../../ontology/input/context/Context.php');
 require_once(__DIR__.'/../../ontology/input/entities/contact/EmailAddressFactory.php');

@@ -2,10 +2,11 @@
 
 namespace org\nameapi\client\services\system\ping;
 
+use org\nameapi\client\fault\ServiceException;
+use org\nameapi\client\http\RestHttpClient;
+use org\nameapi\client\http\RestHttpClientConfig;
+use org\nameapi\client\services\BaseService;
 use org\nameapi\ontology\input\context\Context;
-use org\nameapi\client\lib\RestHttpClient;
-use org\nameapi\client\lib\Configuration;
-use org\nameapi\client\lib\ApiException;
 
 
 /**
@@ -16,41 +17,28 @@ use org\nameapi\client\lib\ApiException;
  * $ping = $myServiceFactory->systemServices()->pingService();
  * $pong = $ping->ping();
  */
-class PingService {
+class PingService extends BaseService {
 
     private static $RESOURCE_PATH = "system/ping";
 
-    private $context;
-
-    /**
-     * @var RestHttpClient
-     */
-    private $restHttpClient;
-
-    /**
-     */
     public function __construct($apiKey, Context $context, $baseUrl) {
-        $this->context = $context;
-        $configuration = new Configuration();
-        $configuration->setApiKey($apiKey);
-        $configuration->setBaseUrl($baseUrl);
-        $this->restHttpClient = new RestHttpClient($configuration);
+        parent::__construct($apiKey, $context, $baseUrl);
     }
 
     /**
      * @return string 'pong'
+     * @throws ServiceException
      */
     public function ping() {
         $queryParams = array();
         $headerParams = array();
 
-        list($response, $httpHeader) = $this->restHttpClient->callApiGet(
+        list($response, $httpResponseData) = $this->restHttpClient->callApiGet(
             PingService::$RESOURCE_PATH,
-            $queryParams,
-            $headerParams
+            $queryParams, $headerParams
         );
         if ($response !== 'pong') {
-            throw new ApiException("Server sent unexpected response: ".$response, 500);
+            throw $this->unmarshallingFailed($response, $httpResponseData);
         }
         return $response;
     }

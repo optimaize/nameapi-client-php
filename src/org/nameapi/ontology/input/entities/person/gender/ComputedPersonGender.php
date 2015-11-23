@@ -3,7 +3,7 @@
 namespace org\nameapi\ontology\input\entities\person\gender;
 
 /**
- * Class ComputedPersonGender
+ * Enum class ComputedPersonGender
  *
  * Possible values are: MALE, FEMALE, NEUTRAL, UNKNOWN, INDETERMINABLE, CONFLICT.
  *

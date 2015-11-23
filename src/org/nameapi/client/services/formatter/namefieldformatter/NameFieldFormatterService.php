@@ -2,37 +2,26 @@
 
 namespace org\nameapi\client\services\formatter\namefieldformatter;
 
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\entities\person\name\NameField;
+use org\nameapi\client\http\RestHttpClient;
+use org\nameapi\client\http\RestHttpClientConfig;
+use org\nameapi\client\services\BaseService;
 use org\nameapi\client\services\formatter\FormatterProperties;
 use org\nameapi\client\services\formatter\FormatterResult;
-use org\nameapi\client\lib\RestHttpClient;
-use org\nameapi\client\lib\Configuration;
-use org\nameapi\client\lib\ApiException;
-
+use org\nameapi\ontology\input\context\Context;
+use org\nameapi\ontology\input\entities\person\name\NameField;
 
 
 /**
  *
  */
-class NameFieldFormatterService {
+class NameFieldFormatterService extends BaseService {
 
     private static $RESOURCE_PATH = "formatter/namefieldformatter";
 
-    private $context;
-
-    /**
-     * @var RestHttpClient
-     */
-    private $restHttpClient;
-
     public function __construct($apiKey, Context $context, $baseUrl) {
-        $this->context = $context;
-        $configuration = new Configuration();
-        $configuration->setApiKey($apiKey);
-        $configuration->setBaseUrl($baseUrl);
-        $this->restHttpClient = new RestHttpClient($configuration);
+        parent::__construct($apiKey, $context, $baseUrl);
     }
+
 
     /**
      * @param NameField $nameField
@@ -40,7 +29,7 @@ class NameFieldFormatterService {
      * @return FormatterResult
      */
     public function format(NameField $nameField, FormatterProperties $properties) {
-        throw new ApiException("Method not implemented as of now.", 501);
+        throw new \Exception("Method not implemented as of now.", 501);
     }
 
 } 

@@ -4,7 +4,7 @@ namespace org\nameapi\ontology\input\entities\person\gender;
 
 
 /**
- * Class StoragePersonGender
+ * Enum class StoragePersonGender
  *
  * This is how common database applications usually store the gender for a person.
  *

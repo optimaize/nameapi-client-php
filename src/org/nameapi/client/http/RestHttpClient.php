@@ -1,9 +1,17 @@
 <?php
 
-namespace org\nameapi\client\lib;
+namespace org\nameapi\client\http;
 
-require_once(__DIR__.'/ApiException.php');
-require_once(__DIR__.'/Configuration.php');
+require_once(__DIR__.'/../fault/ServiceException.php');
+require_once(__DIR__.'/RestHttpClientConfig.php');
+
+use org\nameapi\client\fault\ServiceException;
+use org\nameapi\client\fault\FaultInfo;
+use org\nameapi\client\fault\FaultInfoUnmarshaller;
+use org\nameapi\client\fault\Blame;
+use org\nameapi\client\fault\Retry;
+use org\nameapi\client\fault\HttpResponseData;
+
 
 /**
  * Performs the HTTP actions.
@@ -29,19 +37,18 @@ class RestHttpClient {
     public static $DELETE = "DELETE";
 
     /**
-     * Configuration
-     * @var Configuration
+     * @var RestHttpClientConfig
      */
     protected $config;
 
 
     /**
      * Constructor of the class
-     * @param Configuration $config config for this ApiClient
+     * @param RestHttpClientConfig $config config for this ApiClient
      */
-    public function __construct(Configuration $config = null) {
+    public function __construct(RestHttpClientConfig $config = null) {
         if ($config == null) {
-            $config = Configuration::getDefaultConfiguration();
+            $config = RestHttpClientConfig::getDefaultConfiguration();
         }
 
         $this->config = $config;
@@ -62,7 +69,7 @@ class RestHttpClient {
      * @param array  $queryParams  parameters to be place in query URL
      * @param array  $postData     parameters to be placed in POST body
      * @param array  $headerParams parameters to be place in request header
-     * @throws ApiException on a non 2xx response
+     * @throws ServiceException on a non 2xx response
      * @return mixed
      */
     public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams) {
@@ -70,7 +77,7 @@ class RestHttpClient {
         $headers[] = "Accept: application/json";
         $headers[] = "Content-Type: application/json";
 
-        if ($headerParams) {
+        if (!empty($headerParams)) {
             foreach ($headerParams as $key => $val) {
                 $headers[] = "$key: $val";
             }
@@ -98,7 +105,7 @@ class RestHttpClient {
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }
 
-        if (!$queryParams) $queryParams = array();
+        if (is_null($queryParams)) $queryParams = array();
         $queryParams['apiKey'] = $this->config->getApiKey();
         $url = ($url . '?' . http_build_query($queryParams));
 
@@ -120,7 +127,13 @@ class RestHttpClient {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
             curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
         } else if ($method != self::$GET) {
-            throw new ApiException('Method ' . $method . ' is not recognized.');
+            $faultInfo = new FaultInfo(
+                'BadRequest', new Blame('CLIENT'),
+                'Method ' . $method . ' is not recognized.',
+                1100, null,
+                Retry::no(), Retry::no()
+            );
+            throw new ServiceException($faultInfo->getMessage(), $faultInfo, null);
         }
         if ($this->config->getDebug()) {
             error_log("[DEBUG] URL is $url", 3, $this->config->getDebugFile());
@@ -151,6 +164,7 @@ class RestHttpClient {
         $http_header = substr($response, 0, $http_header_size);
         $http_body = substr($response, $http_header_size);
         $response_info = curl_getinfo($curl);
+        $httpResponseData = new HttpResponseData($url, $response_info['http_code'], $http_body, $http_header);
 
         // debug HTTP response body
         if ($this->config->getDebug()) {
@@ -159,7 +173,13 @@ class RestHttpClient {
 
         // Handle the response
         if ($response_info['http_code'] == 0) {
-            throw new ApiException("API call to $url timed out: ".serialize($response_info), 0, null, null);
+            $faultInfo = new FaultInfo(
+                'NetworkTimeout', new Blame('SERVER'),
+                "API call to $url timed out: ".serialize($response_info),
+                null, null,
+                Retry::no(), Retry::no()
+            );
+            throw new ServiceException($faultInfo->getMessage(), $faultInfo, $httpResponseData);
         } else if ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299 ) {
             $data = json_decode($http_body);
             if (json_last_error() > 0) { // if response is a string
@@ -171,12 +191,21 @@ class RestHttpClient {
                 $data = $http_body;
             }
 
-            throw new ApiException(
-                "[".$response_info['http_code']."] Error connecting to the API ($url)",
-                $response_info['http_code'], $http_header, $data
-            );
+            $faultInfo = null;
+            $msg = null;
+            try {
+                $faultInfo = FaultInfoUnmarshaller::unmarshallJsonObject($data);
+                $msg = $faultInfo->getMessage();
+            } catch (\Exception $e) {
+                //TODO log.
+                //I'm not throwing this because it would hide the original error.
+                $msg = $e->getMessage();
+            }
+            throw new ServiceException($msg, $faultInfo, $httpResponseData);
         }
-        return array($data, $http_header);
+        return array($data, $httpResponseData);
     }
+
+
 
 }
