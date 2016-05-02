@@ -14,9 +14,9 @@ use org\nameapi\ontology\input\context\Priority;
  *
  *
  */
-class PingServiceTest extends \PHPUnit_Framework_TestCase {
+class DisposableEmailAddressDetectorServiceTest extends \PHPUnit_Framework_TestCase {
 
-    public function testPing() {
+    public function testDea() {
         //setup code:
         $context = Context::builder()
             ->priority(Priority::REALTIME())
@@ -25,11 +25,11 @@ class PingServiceTest extends \PHPUnit_Framework_TestCase {
         $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc50-api.nameapi.org'), '5.0');
 
         //the call:
-        $pingService = $serviceFactory->systemServices()->ping();
-        $result = $pingService->ping();
+        $deaDetector = $serviceFactory->emailServices()->disposableEmailAddressDetector();
+        $result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
 
         //the assertions:
-        $this->assertEquals('pong', $result);
+        $this->assertEquals('YES', (string)$result->getDisposable());
     }
 
 }
