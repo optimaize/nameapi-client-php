@@ -3,6 +3,7 @@
 namespace org\nameapi\client\services\parser\personnameparser;
 
 require_once(__DIR__.'/ParsedPerson.php');
+require_once(__DIR__.'/ParserDispute.php');
 
 class ParsedPersonMatch {
 
@@ -10,6 +11,11 @@ class ParsedPersonMatch {
      * @var ParsedPerson $parsedPerson
      */
     private $parsedPerson = null;
+
+    /**
+     * @var ParserDispute[] $parserDisputes
+     */
+    private $parserDisputes = null;
 
     /**
      * @var float $likeliness
@@ -25,12 +31,14 @@ class ParsedPersonMatch {
      * @param ParsedPerson $parsedPerson
      * @param float $likeliness
      * @param float $confidence
+     * @param $parserDisputes
      * @access public
      */
-    public function __construct($parsedPerson, $likeliness, $confidence) {
+    public function __construct(ParsedPerson $parsedPerson, $likeliness, $confidence, $parserDisputes) {
         $this->parsedPerson = $parsedPerson;
         $this->likeliness = $likeliness;
         $this->confidence = $confidence;
+        $this->parserDisputes = $parserDisputes;
     }
 
     /**
@@ -52,6 +60,14 @@ class ParsedPersonMatch {
      */
     public function getConfidence() {
         return $this->confidence;
+    }
+
+    /**
+     * Usually empty, that's good.
+     * @return ParserDispute[]
+     */
+    public function getParserDisputes() {
+        return $this->parserDisputes;
     }
 
 }

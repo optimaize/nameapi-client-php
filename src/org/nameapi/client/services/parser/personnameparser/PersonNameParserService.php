@@ -2,6 +2,9 @@
 
 namespace org\nameapi\client\services\parser\personnameparser;
 
+require_once(__DIR__.'/PersonNameParserResult.php');
+require_once(__DIR__.'/../../genderizer/persongenderizer/PersonGenderResult.php');
+
 use org\nameapi\client\fault\ServiceException;
 use org\nameapi\client\services\BaseService;
 use org\nameapi\client\services\parser\OutputPersonName;
@@ -10,8 +13,9 @@ use org\nameapi\client\services\parser\Term;
 use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 use org\nameapi\ontology\input\entities\person\PersonType;
-
-require_once(__DIR__.'/PersonNameParserResult.php');
+use org\nameapi\ontology\input\entities\person\PersonRole;
+use org\nameapi\client\services\genderizer\persongenderizer\PersonGenderResult;
+use org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;
 
 
 /**
@@ -52,16 +56,54 @@ class PersonNameParserService extends BaseService {
         try {
             $matches = array(); //ParsedPersonMatch
             foreach ($response->matches as $match) {
-                $names = array();
-                foreach ($match->parsedPerson->names as $name) {
-                    $terms = array();
-                    foreach ($name->terms as $term) {
+                $gender = new PersonGenderResult(
+                    new ComputedPersonGender($match->parsedPerson->gender->gender),
+                    (isset( $match->parsedPerson->gender->maleProportion) ?  $match->parsedPerson->gender->maleProportion : null),
+                    $match->parsedPerson->gender->confidence
+                );
+
+                $terms = array();
+                if (isSet($match->parsedPerson->outputPersonName->terms)) {
+                    foreach ($match->parsedPerson->outputPersonName->terms as $term) {
                         array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
                     }
-                    array_push($names, new OutputPersonName($terms));
                 }
-                $parsedPerson = new ParsedPerson(new PersonType($match->parsedPerson->personType), $names);
-                $parsedPersonMatch = new ParsedPersonMatch($parsedPerson, $match->likeliness, $match->confidence);
+                $outputPersonName = new OutputPersonName($terms);
+
+                $people = array();
+                if (isSet($match->parsedPerson->people)) {
+                    foreach ($match->parsedPerson->people as $onePerson) {
+                        $terms = array();
+                        foreach ($onePerson->terms as $term) {
+                            array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
+                        }
+                        array_push($names, new OutputPersonName($terms));
+                    }
+                }
+
+                $parsedPerson = new ParsedPerson(
+                    new PersonType($match->parsedPerson->personType),
+                    new PersonRole($match->parsedPerson->personRole),
+                    $gender,
+                    $match->parsedPerson->addressingGivenName,
+                    $match->parsedPerson->addressingSurname,
+                    $outputPersonName,
+                    $people
+                );
+
+                $parserDisputes = array();
+                if (isSet($match->parsedPerson->parserDisputes)) {
+                    foreach ($match->parsedPerson->parserDisputes as $dispute) {
+                        array_push($parserDisputes, new ParserDispute(new DisputeType($dispute->disputeType), $dispute->message));
+                    }
+                }
+
+                $parsedPersonMatch = new ParsedPersonMatch(
+                    $parsedPerson,
+                    $match->likeliness,
+                    $match->confidence,
+                    $parserDisputes
+                );
                 array_push($matches, $parsedPersonMatch);
             }
             return new PersonNameParserResult($matches);

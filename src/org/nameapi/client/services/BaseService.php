@@ -2,6 +2,8 @@
 
 namespace org\nameapi\client\services;
 
+require_once(__DIR__.'/../fault/FaultInfo.php');
+
 use org\nameapi\client\fault\Blame;
 use org\nameapi\client\fault\FaultInfo;
 use org\nameapi\client\fault\Retry;

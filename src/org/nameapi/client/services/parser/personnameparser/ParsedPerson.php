@@ -3,10 +3,14 @@
 namespace org\nameapi\client\services\parser\personnameparser;
 
 require_once(__DIR__.'/../../../../ontology/input/entities/person/PersonType.php');
+require_once(__DIR__.'/../../../../ontology/input/entities/person/PersonRole.php');
+require_once(__DIR__.'/../../genderizer/persongenderizer/PersonGenderResult.php');
 require_once(__DIR__.'/../OutputPersonName.php');
 
 use org\nameapi\ontology\input\entities\person\PersonType;
+use org\nameapi\ontology\input\entities\person\PersonRole;
 use org\nameapi\client\services\parser\OutputPersonName;
+use org\nameapi\client\services\genderizer\persongenderizer\PersonGenderResult;
 
 
 class ParsedPerson {
@@ -15,16 +19,43 @@ class ParsedPerson {
      * @var PersonType $personType
      */
     private $personType = null;
+    /**
+     * @var PersonRole $personRole
+     */
+    private $personRole = null;
+    /**
+     * @var PersonGenderResult $gender
+     */
+    private $gender = null;
+
+    private $addressingGivenName = null;
+    private $addressingSurname = null;
 
     /**
-     * @var OutputPersonName[] $names
+     * @var OutputPersonName $outputPersonName
      */
-    private $names = null;
+    private $outputPersonName = null;
 
-    public function __construct(PersonType $personType, array $names) {
-        if (!$names) throw new \Exception("Names may not be empty!");
-        $this->personType = $personType;
-        $this->names      = $names;
+    /**
+     * @var ParsedPerson[] $people
+     */
+    private $people = null;
+
+    public function __construct(PersonType $personType,
+                                PersonRole $personRole,
+                                PersonGenderResult $gender,
+                                $addressingGivenName,
+                                $addressingSurname,
+                                OutputPersonName $outputPersonName,
+                                array $people) {
+        //if (!$names) throw new \Exception("Names may not be empty!");
+        $this->personType           = $personType;
+        $this->personRole           = $personRole;
+        $this->gender               = $gender;
+        $this->addressingGivenName  = $addressingGivenName;
+        $this->addressingSurname    = $addressingSurname;
+        $this->outputPersonName     = $outputPersonName;
+        $this->people               = $people;
     }
 
     /**
@@ -35,39 +66,55 @@ class ParsedPerson {
     }
 
     /**
-     * Usually just one, but multiple when the person type is NATURAL_MULTIPLE.
-     * @return OutputPersonName[]
+     * @return PersonRole
      */
-    public function getNames() {
-        return $this->names;
+    public function getPersonRole() {
+        return $this->personRole;
+    }
+
+    /**
+     * @return PersonGenderResult
+     */
+    public function getGender() {
+        return $this->gender;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAddressingGivenName() {
+        return $this->addressingGivenName;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAddressingSurname() {
+        return $this->addressingSurname;
     }
 
     /**
      * @return OutputPersonName
      */
-    public function getFirstName() {
-        return $this->names[0];
+    public function getOutputPersonName() {
+        return $this->outputPersonName;
     }
 
     /**
-     * @throws \Exception if there is not exactly one.
-     * @return OutputPersonName
+     * Returns the people contained withhin this person.
+     *
+     * <p>If the getPersonType() is 'MULTIPLE' then expect content here. But also 'FAMILY' and 'LEGAL' can
+     * have entries here.</p>
+     *
+     * @return ParsedPerson[]
      */
-    public function getSingleName() {
-        if (sizeof($this->names) != 1) {
-            throw new \Exception('Expected exactly 1 name, got '.sizeof($this->names).'!');
-        }
-        return $this->names[0];
+    public function getPeople() {
+        return $this->people;
     }
 
 
     public function __toString() {
-        $nameStr = '';
-        foreach ($this->names as $name) {
-            if ($nameStr != '') $nameStr .= ',';
-            $nameStr .= $name;
-        }
-        $str = 'ParsedPerson{personType='.$this->personType.', names='.$nameStr.'}';
+        $str = 'ParsedPerson{personType='.$this->personType.'}';
         return $str;
     }
 }
