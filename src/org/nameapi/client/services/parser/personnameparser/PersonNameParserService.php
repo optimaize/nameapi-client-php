@@ -56,11 +56,14 @@ class PersonNameParserService extends BaseService {
         try {
             $matches = array(); //ParsedPersonMatch
             foreach ($response->matches as $match) {
-                $gender = new PersonGenderResult(
-                    new ComputedPersonGender($match->parsedPerson->gender->gender),
-                    (isset( $match->parsedPerson->gender->maleProportion) ?  $match->parsedPerson->gender->maleProportion : null),
-                    $match->parsedPerson->gender->confidence
-                );
+                $gender = null;
+                if (isSet($match->parsedPerson->gender)) {
+                    $gender = new PersonGenderResult(
+                        new ComputedPersonGender($match->parsedPerson->gender->gender),
+                        (isset( $match->parsedPerson->gender->maleProportion) ?  $match->parsedPerson->gender->maleProportion : null),
+                        $match->parsedPerson->gender->confidence
+                    );
+                }
 
                 $terms = array();
                 if (isSet($match->parsedPerson->outputPersonName->terms)) {
@@ -85,8 +88,8 @@ class PersonNameParserService extends BaseService {
                     new PersonType($match->parsedPerson->personType),
                     new PersonRole($match->parsedPerson->personRole),
                     $gender,
-                    $match->parsedPerson->addressingGivenName,
-                    $match->parsedPerson->addressingSurname,
+                    (isSet($match->parsedPerson->addressingGivenName)) ? $match->parsedPerson->addressingGivenName : null,
+                    (isSet($match->parsedPerson->addressingSurname)) ? $match->parsedPerson->addressingSurname : null,
                     $outputPersonName,
                     $people
                 );
