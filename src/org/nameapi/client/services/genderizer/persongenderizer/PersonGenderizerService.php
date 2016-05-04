@@ -43,7 +43,7 @@ class PersonGenderizerService extends BaseService {
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonGenderizerService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            ['inputPerson'=>$person, 'context'=>$this->context]
+            array('inputPerson'=>$person, 'context'=>$this->context)
         );
         try {
             return new PersonGenderResult(new ComputedPersonGender(

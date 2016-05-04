@@ -46,7 +46,7 @@ class PersonNameFormatterService extends BaseService {
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonNameFormatterService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            ['inputPerson'=>$person, 'properties'=>$properties, 'context'=>$this->context]
+            array('inputPerson'=>$person, 'properties'=>$properties, 'context'=>$this->context)
         );
         try {
             return new FormatterResult($response->formatted, $response->unknown);

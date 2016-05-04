@@ -48,7 +48,7 @@ class PersonMatcherService extends BaseService {
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonMatcherService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            ['inputPerson1'=>$person1, 'inputPerson2'=>$person2, 'context'=>$this->context]
+            array('inputPerson1'=>$person1, 'inputPerson2'=>$person2, 'context'=>$this->context)
         );
 
         try {
