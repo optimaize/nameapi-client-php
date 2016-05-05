@@ -56,47 +56,13 @@ class PersonNameParserService extends BaseService {
         try {
             $matches = array(); //ParsedPersonMatch
             foreach ($response->matches as $match) {
-                $gender = null;
-                if (isSet($match->parsedPerson->gender)) {
-                    $gender = new PersonGenderResult(
-                        new ComputedPersonGender($match->parsedPerson->gender->gender),
-                        (isset( $match->parsedPerson->gender->maleProportion) ?  $match->parsedPerson->gender->maleProportion : null),
-                        $match->parsedPerson->gender->confidence
-                    );
-                }
+                $pp = $match->parsedPerson;
 
-                $terms = array();
-                if (isSet($match->parsedPerson->outputPersonName->terms)) {
-                    foreach ($match->parsedPerson->outputPersonName->terms as $term) {
-                        array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
-                    }
-                }
-                $outputPersonName = new OutputPersonName($terms);
-
-                $people = array();
-                if (isSet($match->parsedPerson->people)) {
-                    foreach ($match->parsedPerson->people as $onePerson) {
-                        $terms = array();
-                        foreach ($onePerson->terms as $term) {
-                            array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
-                        }
-                        array_push($names, new OutputPersonName($terms));
-                    }
-                }
-
-                $parsedPerson = new ParsedPerson(
-                    new PersonType($match->parsedPerson->personType),
-                    new PersonRole($match->parsedPerson->personRole),
-                    $gender,
-                    (isSet($match->parsedPerson->addressingGivenName)) ? $match->parsedPerson->addressingGivenName : null,
-                    (isSet($match->parsedPerson->addressingSurname)) ? $match->parsedPerson->addressingSurname : null,
-                    $outputPersonName,
-                    $people
-                );
+                $parsedPerson = $this->extractPerson($pp);
 
                 $parserDisputes = array();
-                if (isSet($match->parsedPerson->parserDisputes)) {
-                    foreach ($match->parsedPerson->parserDisputes as $dispute) {
+                if (isSet($match->parserDisputes)) {
+                    foreach ($match->parserDisputes as $dispute) {
                         array_push($parserDisputes, new ParserDispute(new DisputeType($dispute->disputeType), $dispute->message));
                     }
                 }
@@ -113,6 +79,53 @@ class PersonNameParserService extends BaseService {
         } catch (\Exception $e) {
             throw $this->unmarshallingFailed($response, $httpResponseData);
         }
+    }
+
+    private function extractGender($parsedPerson) {
+        if (!isSet($parsedPerson->gender)) {
+            return null;
+        }
+        return new PersonGenderResult(
+            new ComputedPersonGender($parsedPerson->gender->gender),
+            (isset( $parsedPerson->gender->maleProportion) ?  $parsedPerson->gender->maleProportion : null),
+            $parsedPerson->gender->confidence
+        );
+    }
+
+    private function extractTerms($parsedPerson) {
+        $terms = array();
+        if (isSet($parsedPerson->outputPersonName) && isSet($parsedPerson->outputPersonName->terms)) {
+            foreach ($parsedPerson->outputPersonName->terms as $term) {
+                array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
+            }
+        }
+        return new OutputPersonName($terms);
+    }
+
+    private function extractPeople($parsedPerson) {
+        $people = array();
+        if (isSet($parsedPerson->people)) {
+            foreach ($parsedPerson->people as $onePerson) {
+                $extractedPerson = $this->extractPerson($onePerson);
+                array_push($people, $extractedPerson);
+            }
+        }
+        return $people;
+    }
+
+    private function extractPerson($pp) {
+        $gender = $this->extractGender($pp);
+        $outputPersonName = $this->extractTerms($pp);
+        $people = $this->extractPeople($pp);
+        return new ParsedPerson(
+            new PersonType($pp->personType),
+            new PersonRole($pp->personRole),
+            $gender,
+            (isSet($pp->addressingGivenName)) ? $pp->addressingGivenName : null,
+            (isSet($pp->addressingSurname)) ? $pp->addressingSurname : null,
+            $outputPersonName,
+            $people
+        );
     }
 
 }
