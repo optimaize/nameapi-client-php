@@ -32,7 +32,7 @@ class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
             ->name(InputPersonName::westernBuilder()
                 ->fullname( "John Doe" )
                 ->build())
-            ->gender(new org\nameapi\ontology\input\entities\person\gender\StoragePersonGender("FEMALE"))
+            ->gender("FEMALE")
             ->build();
         $parseResult = $personNameParser->parse($inputPerson);
 

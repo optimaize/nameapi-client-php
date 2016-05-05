@@ -20,10 +20,14 @@ class ContextBuilder {
     }
 
     /**
-     * @param Priority $priority
+     * @param $priority
+     *        either an instance of Priority, or a string in upper case.
      * @return ContextBuilder
      */
     function priority($priority) {
+        if (is_string($priority)) {
+            $priority = new Priority($priority);
+        }
         $this->priority = $priority;
         return $this;
     }

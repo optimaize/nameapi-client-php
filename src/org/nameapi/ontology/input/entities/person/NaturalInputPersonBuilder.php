@@ -82,10 +82,14 @@ class NaturalInputPersonBuilder {
     }
 
     /**
-     * @param StoragePersonGender $gender
+     * @param $gender
+     *        either an instance of StoragePersonGender, or a string in upper case like 'MALE'.
      * @return NaturalInputPersonBuilder
      */
     public function gender($gender) {
+        if (is_string($gender)) {
+            $gender = new StoragePersonGender($gender);
+        }
         $this->gender = $gender;
         return $this;
     }
