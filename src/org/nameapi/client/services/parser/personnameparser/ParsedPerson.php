@@ -43,7 +43,7 @@ class ParsedPerson {
 
     public function __construct(PersonType $personType,
                                 PersonRole $personRole,
-                                PersonGenderResult $gender,
+                                $gender,
                                 $addressingGivenName,
                                 $addressingSurname,
                                 OutputPersonName $outputPersonName,
@@ -73,7 +73,7 @@ class ParsedPerson {
     }
 
     /**
-     * @return PersonGenderResult
+     * @return PersonGenderResult or null
      */
     public function getGender() {
         return $this->gender;
@@ -101,12 +101,12 @@ class ParsedPerson {
     }
 
     /**
-     * Returns the people contained withhin this person.
+     * Returns the people contained within this person.
      *
      * <p>If the getPersonType() is 'MULTIPLE' then expect content here. But also 'FAMILY' and 'LEGAL' can
      * have entries here.</p>
      *
-     * @return ParsedPerson[]
+     * @return ParsedPerson[] the array may be empty
      */
     public function getPeople() {
         return $this->people;
