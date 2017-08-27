@@ -181,3 +181,15 @@ $result = $deaDetector->isDisposable("abcdefgh@10minutemail.com");
 echo $result->getDisposable()->toString()); //will print 'YES'
 ```
 
+
+## Risk Detector
+
+The Risk-Detector checks all data in the person input, including the name, address, birthdate, 
+email address and phone number for fake and suspicious data.
+
+```php
+$riskDetector = $serviceFactory->riskServices()->personRiskDetector();
+$riskResult = $riskDetector->detect($inputPerson);
+var_dump($riskResult);
+```
+

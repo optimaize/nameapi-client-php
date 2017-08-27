@@ -13,6 +13,7 @@ require_once(__DIR__.'/genderizer/GenderizerServiceFactory.php');
 require_once(__DIR__.'/matcher/MatcherServiceFactory.php');
 require_once(__DIR__.'/formatter/FormatterServiceFactory.php');
 require_once(__DIR__.'/email/EmailServiceFactory.php');
+require_once(__DIR__.'/riskdetector/RiskDetectorServiceFactory.php');
 
 require_once(__DIR__.'/../http/RestHttpClient.php');
 
@@ -59,6 +60,7 @@ class ServiceFactory {
     private $matcherServiceFactory;
     private $formatterServiceFactory;
     private $emailServiceFactory;
+    private $riskServiceFactory;
 
 
     /**
@@ -153,6 +155,17 @@ class ServiceFactory {
             $this->emailServiceFactory = new email\EmailServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->emailServiceFactory;
+    }
+
+    /**
+     * @return riskdetector\RiskDetectorServiceFactory
+     * @since v5.3
+     */
+    public function riskServices() {
+        if ($this->riskServiceFactory==null) {
+            $this->riskServiceFactory = new riskdetector\RiskDetectorServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+        }
+        return $this->riskServiceFactory;
     }
 
 }
