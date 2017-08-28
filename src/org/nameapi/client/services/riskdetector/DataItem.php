@@ -39,7 +39,7 @@ final class DataItem {
 
     public function __construct($value) {
         if ($value!=='NAME' && $value!=='ADDRESS' && $value!=='AGE' && $value!=='EMAIL' && $value!=='TEL') {
-            throw new \Exception('Invalid value for RiskType: '.$value.'!');
+            throw new \Exception('Invalid value for DataItem: '.$value.'!');
         }
         $this->value = $value;
     }

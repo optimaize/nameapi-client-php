@@ -79,7 +79,7 @@ final class FakeRiskType extends RiskType {
 
     public function __construct($value) {
         if ($value!=='RANDOM_TYPING' && $value!=='PLACEHOLDER' && $value!=='FICTIONAL' && $value!=='FAMOUS' && $value!=='HUMOROUS' && $value!=='INVALID' && $value!=='OTHER') {
-            throw new \Exception('Invalid value for RiskType: '.$value.'!');
+            throw new \Exception('Invalid value for FakeRiskType: '.$value.'!');
         }
         $this->value = $value;
     }

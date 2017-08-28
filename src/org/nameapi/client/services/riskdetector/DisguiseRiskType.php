@@ -51,7 +51,7 @@ final class DisguiseRiskType extends RiskType {
 
     public function __construct($value) {
         if ($value!=='PADDING' && $value!=='STUTTER_TYPING' && $value!=='SPACED_TYPING' && $value!=='OTHER') {
-            throw new \Exception('Invalid value for RiskType: '.$value.'!');
+            throw new \Exception('Invalid value for DisguiseRiskType: '.$value.'!');
         }
         $this->value = $value;
     }
