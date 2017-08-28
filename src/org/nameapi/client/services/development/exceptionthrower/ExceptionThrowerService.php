@@ -9,7 +9,7 @@ use org\nameapi\ontology\input\context\Context;
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/development/exceptionthrower
+ * http://api.nameapi.org/rest/v5.3/development/exceptionthrower
  *
  * <p>The use is for development only; to see what happens when the server throws exceptions, and how they arrive
  * at your end.</p>

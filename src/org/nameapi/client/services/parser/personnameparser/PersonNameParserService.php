@@ -20,7 +20,7 @@ use org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/parser/personnameparser
+ * http://api.nameapi.org/rest/v5.3/parser/personnameparser
  *
  * HOW TO USE:
  * $personNameParser = $myServiceFactory->nameParserServiceFactory()->personNameParser();

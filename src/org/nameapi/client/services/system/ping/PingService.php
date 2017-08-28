@@ -9,7 +9,7 @@ use org\nameapi\ontology\input\context\Context;
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/system/ping
+ * http://api.nameapi.org/rest/v5.3/system/ping
  *
  * HOW TO USE:
  * $ping = $myServiceFactory->systemServices()->pingService();

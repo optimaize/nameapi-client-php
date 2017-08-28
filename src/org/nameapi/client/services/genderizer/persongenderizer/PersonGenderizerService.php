@@ -13,7 +13,7 @@ require_once(__DIR__.'/PersonGenderResult.php');
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/genderizer/persongenderizer
+ * http://api.nameapi.org/rest/v5.3/genderizer/persongenderizer
  *
  * HOW TO USE:
  * $personGenderizer = $myServiceFactory->genderizerServices()->personGenderizer();

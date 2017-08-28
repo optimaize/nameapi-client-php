@@ -11,7 +11,7 @@ require_once(__DIR__.'/Maybe.php');
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/email/disposableemailaddressdetector
+ * http://api.nameapi.org/rest/v5.3/email/disposableemailaddressdetector
  *
  * HOW TO USE:
  * $deaDetector = $myServiceFactory->emailServices()->disposableEmailAddressDetector();

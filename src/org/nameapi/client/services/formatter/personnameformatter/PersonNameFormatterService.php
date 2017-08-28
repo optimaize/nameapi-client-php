@@ -16,7 +16,7 @@ require_once(__DIR__.'/../FormatterProperties.php');
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/formatter/personnameformatter
+ * http://api.nameapi.org/rest/v5.3/formatter/personnameformatter
  *
  * HOW TO USE:
  * $personNameFormatter = $myServiceFactory->formatterServices()->personNameFormatter();

@@ -10,7 +10,7 @@ require_once(__DIR__.'/EmailNameParserResult.php');
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/email/emailnameparser
+ * http://api.nameapi.org/rest/v5.3/email/emailnameparser
  *
  * HOW TO USE:
  * $emailNameParser = $myServiceFactory->emailServices()->emailNameParser();

@@ -13,7 +13,7 @@ class RestHttpClientConfig {
 
     protected $apiKey;
     protected $baseUrl;
-    protected $userAgent =  "NameAPI PHP Client 5.0";
+    protected $userAgent =  "NameAPI PHP Client 5.3";
 
 
     /**
@@ -264,7 +264,7 @@ class RestHttpClientConfig {
         $report  = "RestHttpClientConfig Debug Report:\n";
         $report .= "    OS: ".php_uname()."\n";
         $report .= "    PHP Version: ".phpversion()."\n";
-        $report .= "    Swagger Spec Version: v5.0\n";
+        $report .= "    Swagger Spec Version: v5.3\n";
         $report .= "    SDK Package Version: 1.0.0\n";
         $report .= "    Temp Folder Path: ".self::getDefaultConfiguration()->getTempFolderPath()."\n";
 

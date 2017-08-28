@@ -50,7 +50,7 @@ class ServiceFactory {
     private $technology = 'rest';
 
     /**
-     * Something like 'http://api.nameapi.org/rest/v5.0/'
+     * Something like 'http://api.nameapi.org/rest/v5.3/'
      * Gets constructed based on other attributes in here.
      */
     private $baseUrl;
@@ -69,7 +69,7 @@ class ServiceFactory {
      * @var $apiKey
      * @var $context
      * @var $host defaults to Host::standard()
-     * @var $apiVersion default is the "latest stable", currently that is 5.0.
+     * @var $apiVersion default is the "latest stable", currently that is 5.3.
      *      You want to change this to target another version, for example a release candidate or a development version.
      */
     public function __construct($apiKey, Context $context, Host $host=null, $apiVersion=null) {
@@ -81,7 +81,7 @@ class ServiceFactory {
             $this->host = $host;
         }
         if ($apiVersion==null) {
-            $this->apiVersion = '5.0';
+            $this->apiVersion = '5.3';
         } else {
             $this->apiVersion = $apiVersion;
         }

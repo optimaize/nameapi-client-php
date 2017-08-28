@@ -22,7 +22,7 @@ class DisposableEmailAddressDetectorServiceTest extends \PHPUnit_Framework_TestC
             ->priority(Priority::REALTIME())
             ->build();
         $myApiKey = 'test'; //grab one from nameapi.org
-        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc50-api.nameapi.org'), '5.0');
+        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc53-api.nameapi.org'), '5.3');
 
         //the call:
         $deaDetector = $serviceFactory->emailServices()->disposableEmailAddressDetector();

@@ -18,7 +18,7 @@ require_once(__DIR__.'/PersonMatcherResult.php');
 
 /**
  * This is the service class for the web service offered at
- * http://api.nameapi.org/rest/v5.0/matcher/personmatcher
+ * http://api.nameapi.org/rest/v5.3/matcher/personmatcher
  *
  * HOW TO USE:
  * $personMatcher = $myServiceFactory->matcherServiceFactory()->personMatcher();
