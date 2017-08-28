@@ -2,7 +2,7 @@
 
 namespace org\nameapi\ontology\input\entities\contact;
 
-class TelNumber {
+class TelNumber implements \JsonSerializable {
 
     /**
      * @var string $fullNumber
@@ -14,6 +14,13 @@ class TelNumber {
      */
     public function __construct($fullNumber) {
         $this->fullNumber = $fullNumber;
+    }
+
+    public function jsonSerialize() {
+        return array(
+            'type'       => "SimpleTelNumber",
+            'fullNumber' => $this->fullNumber,
+        );
     }
 
 }

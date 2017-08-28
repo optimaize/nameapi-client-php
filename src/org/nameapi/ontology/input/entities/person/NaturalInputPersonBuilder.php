@@ -4,6 +4,9 @@ namespace org\nameapi\ontology\input\entities\person;
 
 require_once(__DIR__.'/NaturalInputPerson.php');
 
+use org\nameapi\ontology\input\entities\address\InputAddress;
+use org\nameapi\ontology\input\entities\address\AddressRelation;
+use org\nameapi\ontology\input\entities\address\UseForAllAddressRelation;
 use org\nameapi\ontology\input\entities\contact\EmailAddress;
 use org\nameapi\ontology\input\entities\contact\TelNumber;
 use org\nameapi\ontology\input\entities\person\age\AgeInfo;
@@ -12,6 +15,9 @@ use org\nameapi\ontology\input\entities\person\gender\StoragePersonGender;
 
 /**
  * Builder for {@link NaturalInputPerson}.
+ *
+ * <p>The setters don't do anything other than setting the value. They don't check if the value was
+ * set already, they don't trim the values.</p>
  */
 class NaturalInputPersonBuilder {
 
@@ -55,6 +61,9 @@ class NaturalInputPersonBuilder {
      */
     private $religion = null;
 
+    /**
+     * @var AddressRelation[]|null $addresses
+     */
     private $addresses = null;
 
     /**
@@ -66,6 +75,7 @@ class NaturalInputPersonBuilder {
      * @var EmailAddress[]|null $emailAddresses
      */
     private $emailAddresses = null;
+
 
 
     function __construct() {
@@ -190,16 +200,31 @@ class NaturalInputPersonBuilder {
 
 
     /**
+     * @param InputAddress $address
+     * @return NaturalInputPersonBuilder
+     */
+    public function addAddressForAll(InputAddress $address) {
+        if ($this->addresses==null) {
+            $this->addresses = array();
+        }
+        array_push($this->addresses, new UseForAllAddressRelation($address));
+        return $this;
+    }
+
+
+    /**
      * @return NaturalInputPerson
      */
     public function build() {
-        return new NaturalInputPerson($this->personName, $this->gender,
-                                $this->ageInfo, $this->maritalStatus,
-                                $this->nationalities, $this->nativeLanguages,
-                                $this->correspondenceLanguage,
-                                $this->religion,
-                                $this->addresses,
-                                $this->telNumbers, $this->emailAddresses);
+        return new NaturalInputPerson(
+            $this->personName, $this->gender,
+            $this->ageInfo, $this->maritalStatus,
+            $this->nationalities, $this->nativeLanguages,
+            $this->correspondenceLanguage,
+            $this->religion,
+            $this->addresses,
+            $this->telNumbers, $this->emailAddresses
+        );
     }
 
 }

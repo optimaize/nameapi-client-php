@@ -2,7 +2,7 @@
 
 namespace org\nameapi\ontology\input\entities\contact;
 
-class EmailAddress {
+class EmailAddress implements \JsonSerializable {
 
     /**
      * @var string $emailAddress
@@ -16,4 +16,10 @@ class EmailAddress {
         $this->emailAddress = $emailAddress;
     }
 
+    public function jsonSerialize() {
+        return array(
+            'type'         => "EmailAddressImpl",
+            'emailAddress' => $this->emailAddress,
+        );
+    }
 }

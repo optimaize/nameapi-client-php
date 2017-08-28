@@ -13,6 +13,7 @@ use org\nameapi\ontology\input\entities\contact\TelNumber;
 use org\nameapi\ontology\input\entities\person\age\AgeInfo;
 use org\nameapi\ontology\input\entities\person\name\InputPersonName;
 use org\nameapi\ontology\input\entities\person\gender\StoragePersonGender;
+use org\nameapi\ontology\input\entities\address\AddressRelation;
 
 class NaturalInputPerson {
 
@@ -65,6 +66,9 @@ class NaturalInputPerson {
      */
     public $religion = null;
 
+    /**
+     * @var AddressRelation[]|null $addresses
+     */
     public $addresses = null;
 
     /**
@@ -89,10 +93,9 @@ class NaturalInputPerson {
      * @param string[]|null $nativeLanguages
      * @param string|null $correspondenceLanguage
      * @param string|null $religion
-     * @param $addresses|null TODO not used yet
+     * @param AddressRelation[]|null $addresses
      * @param TelNumber[]|null $telNumbers
      * @param EmailAddress[]|null $emailAddresses
-     * @throws Exception
      */
     public function __construct(InputPersonName $personName, $gender,
                                 $ageInfo, $maritalStatus,

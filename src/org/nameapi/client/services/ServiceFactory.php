@@ -21,6 +21,8 @@ require_once(__DIR__.'/../../ontology/input/context/Context.php');
 require_once(__DIR__.'/../../ontology/input/entities/contact/EmailAddressFactory.php');
 require_once(__DIR__.'/../../ontology/input/entities/contact/TelNumberFactory.php');
 require_once(__DIR__.'/../../ontology/input/entities/person/NaturalInputPersonBuilder.php');
+require_once(__DIR__.'/../../ontology/input/entities/address/StructuredAddressBuilder.php');
+require_once(__DIR__.'/../../ontology/input/entities/address/UseForAllAddressRelation.php');
 
 
 
