@@ -12,7 +12,7 @@ namespace org\nameapi\ontology\input\entities\address;
  *  - country
  *
  */
-abstract class PlaceInfo implements \JsonSerializable {
+abstract class PlaceInfo {
 
 }
 

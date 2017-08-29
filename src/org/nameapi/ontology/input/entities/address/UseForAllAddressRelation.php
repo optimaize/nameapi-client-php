@@ -12,6 +12,11 @@ require_once(__DIR__.'/AddressRelation.php');
 class UseForAllAddressRelation extends AddressRelation {
 
     /**
+     * Used for JSON marshalling only.
+     */
+    public $type = 'UseForAllAddressRelation';
+
+    /**
      * @var InputAddress $address
      */
     public $address;
@@ -23,32 +28,6 @@ class UseForAllAddressRelation extends AddressRelation {
      */
     public function __construct(InputAddress $address) {
         $this->address = $address;
-    }
-
-
-
-    public function jsonSerialize() {
-//        $x = array(
-//            '@type' => "UseForAllAddressRelation",
-//            'address' => $this->address,
-//        );
-//        var_dump($x);
-
-        return array(
-            'type' => "UseForAllAddressRelation",
-            'address' => $this->address,
-        );
-
-//        $x = array(
-//            '@type' => "UseForAllAddressRelation",
-//            'address' => json_encode($this->address),
-//        );
-//        var_dump($x);
-
-//        return array(
-//            '@type' => "UseForAllAddressRelation",
-//            'address' => json_encode($this->address),
-//        );
     }
 
 }

@@ -16,6 +16,11 @@ class StructuredStreetInfo extends StreetInfo {
         return new StructuredStreetInfoBuilder();
     }
 
+    /**
+     * Used for JSON marshalling only.
+     */
+    public $type = 'StructuredStreetInfo';
+
 
     /**
      * @var string|null $streetName
@@ -59,19 +64,6 @@ class StructuredStreetInfo extends StreetInfo {
         $this->staircase = $staircase;
         $this->floor = $floor;
         $this->apartment = $apartment;
-    }
-
-
-    public function jsonSerialize() {
-        return array(
-            'type'        => "StructuredStreetInfo",
-            'streetName'  => $this->streetName,
-            'houseNumber' => $this->houseNumber,
-            'building'    => $this->building,
-            'staircase'   => $this->staircase,
-            'floor'       => $this->floor,
-            'apartment'   => $this->apartment,
-        );
     }
 
 }

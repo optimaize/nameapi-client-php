@@ -11,7 +11,7 @@ namespace org\nameapi\ontology\input\entities\address;
  *  - apartment/suite
  *
  */
-abstract class StreetInfo implements \JsonSerializable {
+abstract class StreetInfo {
 
 }
 

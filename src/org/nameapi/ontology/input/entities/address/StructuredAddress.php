@@ -20,6 +20,10 @@ class StructuredAddress extends InputAddress {
         return new StructuredAddressBuilder();
     }
 
+    /**
+     * Used for JSON marshalling only.
+     */
+    public $type = 'StructuredAddress';
 
     /**
      * @var StreetInfo|null $streetInfo
@@ -44,16 +48,6 @@ class StructuredAddress extends InputAddress {
         $this->pobox = $pobox;
         $this->placeInfo = $placeInfo;
     }
-
-    public function jsonSerialize() {
-        return array(
-            'type'       => "StructuredAddress",
-            'streetInfo' => $this->streetInfo,
-            'pobox'      => $this->pobox,
-            'placeInfo'  => $this->placeInfo,
-        );
-    }
-
 
 }
 

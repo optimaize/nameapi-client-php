@@ -16,6 +16,11 @@ class StructuredPlaceInfo extends PlaceInfo {
         return new StructuredPlaceInfoBuilder();
     }
 
+    /**
+     * Used for JSON marshalling only.
+     */
+    public $type = 'StructuredPlaceInfo';
+
 
     /**
      * @var string|null $locality
@@ -51,18 +56,6 @@ class StructuredPlaceInfo extends PlaceInfo {
         $this->neighborhood = $neighborhood;
         $this->region       = $region;
         $this->country      = $country;
-    }
-
-
-    public function jsonSerialize() {
-        return array(
-            'type'           => "StructuredPlaceInfo",
-            'locality'       => $this->locality,
-            'postalCode'     => $this->postalCode,
-            'neighborhood'   => $this->neighborhood,
-            'region'         => $this->region,
-            'country'        => $this->country,
-        );
     }
 
 }

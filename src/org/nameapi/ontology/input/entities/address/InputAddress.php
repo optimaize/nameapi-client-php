@@ -8,7 +8,7 @@ namespace org\nameapi\ontology\input\entities\address;
  *
  * @see StructuredAddressBuilder
  */
-abstract class InputAddress implements \JsonSerializable {
+abstract class InputAddress {
 
 }
 
