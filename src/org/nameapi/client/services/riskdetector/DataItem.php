@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
+namespace Org\NameApi\Client\Services\RiskDetector;
 
 
 /**
@@ -30,23 +30,25 @@ namespace org\nameapi\client\services\riskdetector;
  * Includes telephone numbers, fax numbers, mobile phone numbers etc.
  *
  */
-final class DataItem {
+final class DataItem
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='NAME' && $value!=='ADDRESS' && $value!=='AGE' && $value!=='EMAIL' && $value!=='TEL') {
-            throw new \Exception('Invalid value for DataItem: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value !== 'NAME' && $value !== 'ADDRESS' && $value !== 'AGE' && $value !== 'EMAIL' && $value !== 'TEL') {
+            throw new \Exception('Invalid value for DataItem: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

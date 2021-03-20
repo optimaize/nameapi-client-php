@@ -1,12 +1,13 @@
 <?php
 
-namespace org\nameapi\client\services;
+namespace Org\NameApi\Client\Services;
 
 
 /**
  * Encapsulates the protocol, host name and port number in one object.
  */
-class Host {
+class Host
+{
 
     /**
      * Default is 'http'.
@@ -26,39 +27,45 @@ class Host {
      */
     private $portNumber;
 
-    public static function standard() {
-        return new Host('http', 'api.nameapi.org', 80);
-    }
-    public static function http($hostName) {
-        return new Host('http', $hostName, 80);
-    }
-    public static function https($hostName) {
-        return new Host('https', $hostName, 443);
-    }
-
-
     /**
      * Constructor
      */
-    public function __construct($protocol, $hostName, $portNumber) {
+    public function __construct($protocol, $hostName, $portNumber)
+    {
         $this->protocol = $protocol;
         $this->hostName = $hostName;
         $this->portNumber = $portNumber;
     }
 
+    public static function standard()
+    {
+        return new Host('http', 'api.nameapi.org', 80);
+    }
+
+    public static function http($hostName)
+    {
+        return new Host('http', $hostName, 80);
+    }
+
+    public static function https($hostName)
+    {
+        return new Host('https', $hostName, 443);
+    }
+
     /**
      * Returns something like 'http://api.nameapi.org' and omits the port if it's a default port (like 80 for http).
      */
-    public function toString() {
+    public function toString()
+    {
         $str = $this->protocol . '://' . $this->hostName;
-        if ($this->protocol==='http' && $this->portNumber==80) {
+        if ($this->protocol === 'http' && $this->portNumber == 80) {
             //don't add port
-        } else if ($this->protocol==='https' && $this->portNumber==443) {
+        } else if ($this->protocol === 'https' && $this->portNumber == 443) {
             //don't add port
         } else {
-            $str .= ':'. $this->portNumber;
+            $str .= ':' . $this->portNumber;
         }
         return $str;
     }
 
-} 
+}

@@ -1,16 +1,16 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\contact;
+namespace Org\NameApi\Ontology\Input\Entities\Contact;
 
-require_once(__DIR__.'/EmailAddress.php');
-
-class EmailAddressFactory {
+class EmailAddressFactory
+{
 
     /**
      * @param $string
      * @return EmailAddress
      */
-    static function forAddress($string) {
+    static function forAddress($string)
+    {
         return new EmailAddress($string);
     }
 

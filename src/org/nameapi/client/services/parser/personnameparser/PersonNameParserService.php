@@ -1,21 +1,18 @@
 <?php
 
-namespace org\nameapi\client\services\parser\personnameparser;
+namespace Org\NameApi\Client\Services\Parser\PersonNameParser;
 
-require_once(__DIR__.'/PersonNameParserResult.php');
-require_once(__DIR__.'/../../genderizer/persongenderizer/PersonGenderResult.php');
-
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\client\services\parser\OutputPersonName;
-use org\nameapi\client\services\parser\OutputTermType;
-use org\nameapi\client\services\parser\Term;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-use org\nameapi\ontology\input\entities\person\PersonType;
-use org\nameapi\ontology\input\entities\person\PersonRole;
-use org\nameapi\client\services\genderizer\persongenderizer\PersonGenderResult;
-use org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\Client\Services\Genderizer\PersonGenderizer\PersonGenderResult;
+use Org\NameApi\Client\Services\Parser\OutputPersonName;
+use Org\NameApi\Client\Services\Parser\OutputTermType;
+use Org\NameApi\Client\Services\Parser\Term;
+use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\ontology\input\entities\person\gender\ComputedPersonGender;
+use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
+use Org\NameApi\ontology\input\entities\person\PersonRole;
+use Org\NameApi\ontology\input\entities\person\PersonType;
 
 
 /**
@@ -28,12 +25,14 @@ use org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;
  *
  * @since v4.0
  */
-class PersonNameParserService extends BaseService {
+class PersonNameParserService extends BaseService
+{
 
     private static $RESOURCE_PATH = "parser/personnameparser";
 
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -43,14 +42,15 @@ class PersonNameParserService extends BaseService {
      * @return PersonNameParserResult
      * @throws ServiceException
      */
-    public function parse(NaturalInputPerson $person) {
+    public function parse(NaturalInputPerson $person)
+    {
         $queryParams = array();
         $headerParams = array();
 
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonNameParserService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            array('inputPerson'=>$person, 'context'=>$this->context)
+            array('inputPerson' => $person, 'context' => $this->context)
         );
 
         try {
@@ -61,7 +61,7 @@ class PersonNameParserService extends BaseService {
                 $parsedPerson = $this->extractPerson($pp);
 
                 $parserDisputes = array();
-                if (isSet($match->parserDisputes)) {
+                if (isset($match->parserDisputes)) {
                     foreach ($match->parserDisputes as $dispute) {
                         array_push($parserDisputes, new ParserDispute(new DisputeType($dispute->disputeType), $dispute->message));
                     }
@@ -81,39 +81,8 @@ class PersonNameParserService extends BaseService {
         }
     }
 
-    private function extractGender($parsedPerson) {
-        if (!isSet($parsedPerson->gender)) {
-            return null;
-        }
-        return new PersonGenderResult(
-            new ComputedPersonGender($parsedPerson->gender->gender),
-            (isset( $parsedPerson->gender->maleProportion) ?  $parsedPerson->gender->maleProportion : null),
-            $parsedPerson->gender->confidence
-        );
-    }
-
-    private function extractTerms($parsedPerson) {
-        $terms = array();
-        if (isSet($parsedPerson->outputPersonName) && isSet($parsedPerson->outputPersonName->terms)) {
-            foreach ($parsedPerson->outputPersonName->terms as $term) {
-                array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
-            }
-        }
-        return new OutputPersonName($terms);
-    }
-
-    private function extractPeople($parsedPerson) {
-        $people = array();
-        if (isSet($parsedPerson->people)) {
-            foreach ($parsedPerson->people as $onePerson) {
-                $extractedPerson = $this->extractPerson($onePerson);
-                array_push($people, $extractedPerson);
-            }
-        }
-        return $people;
-    }
-
-    private function extractPerson($pp) {
+    private function extractPerson($pp)
+    {
         $gender = $this->extractGender($pp);
         $outputPersonName = $this->extractTerms($pp);
         $people = $this->extractPeople($pp);
@@ -121,11 +90,46 @@ class PersonNameParserService extends BaseService {
             new PersonType($pp->personType),
             new PersonRole($pp->personRole),
             $gender,
-            (isSet($pp->addressingGivenName)) ? $pp->addressingGivenName : null,
-            (isSet($pp->addressingSurname)) ? $pp->addressingSurname : null,
+            (isset($pp->addressingGivenName)) ? $pp->addressingGivenName : null,
+            (isset($pp->addressingSurname)) ? $pp->addressingSurname : null,
             $outputPersonName,
             $people
         );
+    }
+
+    private function extractGender($parsedPerson)
+    {
+        if (!isset($parsedPerson->gender)) {
+            return null;
+        }
+        return new PersonGenderResult(
+            new ComputedPersonGender($parsedPerson->gender->gender),
+            (isset($parsedPerson->gender->maleProportion) ? $parsedPerson->gender->maleProportion : null),
+            $parsedPerson->gender->confidence
+        );
+    }
+
+    private function extractTerms($parsedPerson)
+    {
+        $terms = array();
+        if (isset($parsedPerson->outputPersonName) && isset($parsedPerson->outputPersonName->terms)) {
+            foreach ($parsedPerson->outputPersonName->terms as $term) {
+                array_push($terms, new Term($term->string, new OutputTermType($term->termType)));
+            }
+        }
+        return new OutputPersonName($terms);
+    }
+
+    private function extractPeople($parsedPerson)
+    {
+        $people = array();
+        if (isset($parsedPerson->people)) {
+            foreach ($parsedPerson->people as $onePerson) {
+                $extractedPerson = $this->extractPerson($onePerson);
+                array_push($people, $extractedPerson);
+            }
+        }
+        return $people;
     }
 
 }

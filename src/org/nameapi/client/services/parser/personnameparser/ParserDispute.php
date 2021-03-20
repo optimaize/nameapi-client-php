@@ -1,10 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\parser\personnameparser;
+namespace Org\NameApi\Client\Services\Parser\PersonNameParser;
 
-require_once(__DIR__.'/DisputeType.php');
-
-class ParserDispute {
+class ParserDispute
+{
 
     /**
      * @var DisputeType $disputeType
@@ -21,7 +20,8 @@ class ParserDispute {
      * @param string $message
      * @access public
      */
-    public function __construct(DisputeType $disputeType, $message) {
+    public function __construct(DisputeType $disputeType, $message)
+    {
         $this->disputeType = $disputeType;
         $this->message = $message;
     }
@@ -29,14 +29,16 @@ class ParserDispute {
     /**
      * @return DisputeType
      */
-    public function getDisputeType() {
+    public function getDisputeType()
+    {
         return $this->disputeType;
     }
 
     /**
      * @return string
      */
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
 

@@ -1,17 +1,19 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\name\builder;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Name\Builder;
 
-use org\nameapi\ontology\input\entities\person\name\NameField;
-use org\nameapi\ontology\input\entities\person\name\types\CommonNameFieldType;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\NameField;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\Types\CommonNameFieldType;
 
-class WesternInputPersonNameBuilder extends InputPersonNameBuilder {
+class WesternInputPersonNameBuilder extends InputPersonNameBuilder
+{
 
     /**
      * @param $string
      * @return $this
      */
-    public function givenName($string) {
+    public function givenName($string)
+    {
         $this->nameField(new NameField($string, CommonNameFieldType::GIVENNAME));
         return $this;
     }
@@ -20,7 +22,8 @@ class WesternInputPersonNameBuilder extends InputPersonNameBuilder {
      * @param $string
      * @return $this
      */
-    public function surname($string) {
+    public function surname($string)
+    {
         $this->nameField(new NameField($string, CommonNameFieldType::SURNAME));
         return $this;
     }

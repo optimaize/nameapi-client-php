@@ -1,8 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
-
-require_once(__DIR__.'/StructuredAddress.php');
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 /**
  * Builder for a StructuredAddress.
@@ -10,7 +8,8 @@ require_once(__DIR__.'/StructuredAddress.php');
  * <p>The setters don't do anything other than setting the value. They don't check if the value was
  * set already, they don't trim the values.</p>
  */
-class StructuredAddressBuilder {
+class StructuredAddressBuilder
+{
 
     /**
      * @var StreetInfo|null $streetInfo
@@ -26,7 +25,8 @@ class StructuredAddressBuilder {
     private $placeInfo;
 
 
-    function __construct() {
+    function __construct()
+    {
     }
 
 
@@ -34,7 +34,8 @@ class StructuredAddressBuilder {
      * @param StreetInfo|null $streetInfo
      * @return StructuredAddressBuilder
      */
-    public function streetInfo($streetInfo) {
+    public function streetInfo($streetInfo)
+    {
         $this->streetInfo = $streetInfo;
         return $this;
     }
@@ -43,7 +44,8 @@ class StructuredAddressBuilder {
      * @param string|null $pobox
      * @return StructuredAddressBuilder
      */
-    public function pobox($pobox) {
+    public function pobox($pobox)
+    {
         $this->pobox = $pobox;
         return $this;
     }
@@ -52,7 +54,8 @@ class StructuredAddressBuilder {
      * @param PlaceInfo|null $placeInfo
      * @return StructuredAddressBuilder
      */
-    public function placeInfo($placeInfo) {
+    public function placeInfo($placeInfo)
+    {
         $this->placeInfo = $placeInfo;
         return $this;
     }
@@ -61,7 +64,8 @@ class StructuredAddressBuilder {
     /**
      * @return StructuredAddress
      */
-    public function build() {
+    public function build()
+    {
         return new StructuredAddress(
             $this->streetInfo,
             $this->pobox,

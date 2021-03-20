@@ -1,12 +1,10 @@
 <?php
 
-namespace org\nameapi\client\services\email\emailnameparser;
+namespace Org\NameApi\Client\Services\Email\EmailNameParser;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\ontology\input\context\Context;
-
-require_once(__DIR__.'/EmailNameParserResult.php');
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * This is the service class for the web service offered at
@@ -18,11 +16,13 @@ require_once(__DIR__.'/EmailNameParserResult.php');
  *
  * @since v4.0
  */
-class EmailNameParserService extends BaseService {
+class EmailNameParserService extends BaseService
+{
 
     private static $RESOURCE_PATH = "email/emailnameparser";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -32,9 +32,10 @@ class EmailNameParserService extends BaseService {
      * @return EmailNameParserResult
      * @throws ServiceException
      */
-    public function parse($emailAddress) {
+    public function parse($emailAddress)
+    {
         $queryParams = array(
-            'emailAddress'=>$emailAddress
+            'emailAddress' => $emailAddress
         );
         $headerParams = array();
 
@@ -44,16 +45,16 @@ class EmailNameParserService extends BaseService {
         );
         try {
             $matches = array();
-            if (isSet($response->nameMatches)) {
+            if (isset($response->nameMatches)) {
                 foreach ($response->nameMatches as $match) {
                     $givenNames = array();
-                    $surnames   = array();
-                    if (isSet($match->givenNames)) {
+                    $surnames = array();
+                    if (isset($match->givenNames)) {
                         foreach ($match->givenNames as $name) {
                             array_push($givenNames, new NameFromEmailAddress($name->name, new EmailAddressNameType($name->nameType)));
                         }
                     }
-                    if (isSet($match->surnames)) {
+                    if (isset($match->surnames)) {
                         foreach ($match->surnames as $name) {
                             array_push($surnames, new NameFromEmailAddress($name->name, new EmailAddressNameType($name->nameType)));
                         }
@@ -70,4 +71,4 @@ class EmailNameParserService extends BaseService {
         }
     }
 
-} 
+}

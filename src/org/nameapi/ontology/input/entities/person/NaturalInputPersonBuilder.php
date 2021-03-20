@@ -1,17 +1,15 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person;
+namespace Org\NameApi\Ontology\Input\Entities\Person;
 
-require_once(__DIR__.'/NaturalInputPerson.php');
-
-use org\nameapi\ontology\input\entities\address\InputAddress;
-use org\nameapi\ontology\input\entities\address\AddressRelation;
-use org\nameapi\ontology\input\entities\address\UseForAllAddressRelation;
-use org\nameapi\ontology\input\entities\contact\EmailAddress;
-use org\nameapi\ontology\input\entities\contact\TelNumber;
-use org\nameapi\ontology\input\entities\person\age\AgeInfo;
-use org\nameapi\ontology\input\entities\person\name\InputPersonName;
-use org\nameapi\ontology\input\entities\person\gender\StoragePersonGender;
+use Org\NameApi\Ontology\Input\Entities\Address\AddressRelation;
+use Org\NameApi\Ontology\Input\Entities\Address\InputAddress;
+use Org\NameApi\Ontology\Input\Entities\Address\UseForAllAddressRelation;
+use Org\NameApi\Ontology\Input\Entities\Contact\EmailAddress;
+use Org\NameApi\Ontology\Input\Entities\Contact\TelNumber;
+use Org\NameApi\Ontology\Input\Entities\Person\Age\AgeInfo;
+use Org\NameApi\Ontology\Input\Entities\Person\Gender\StoragePersonGender;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\InputPersonName;
 
 /**
  * Builder for {@link NaturalInputPerson}.
@@ -19,7 +17,8 @@ use org\nameapi\ontology\input\entities\person\gender\StoragePersonGender;
  * <p>The setters don't do anything other than setting the value. They don't check if the value was
  * set already, they don't trim the values.</p>
  */
-class NaturalInputPersonBuilder {
+class NaturalInputPersonBuilder
+{
 
     /**
      * @var InputPersonName|null $personName
@@ -77,8 +76,8 @@ class NaturalInputPersonBuilder {
     private $emailAddresses = null;
 
 
-
-    function __construct() {
+    function __construct()
+    {
     }
 
 
@@ -86,7 +85,8 @@ class NaturalInputPersonBuilder {
      * @param InputPersonName|null $personName
      * @return NaturalInputPersonBuilder
      */
-    public function name(InputPersonName $personName) {
+    public function name(InputPersonName $personName)
+    {
         $this->personName = $personName;
         return $this;
     }
@@ -96,7 +96,8 @@ class NaturalInputPersonBuilder {
      *        either an instance of StoragePersonGender, or a string in upper case like 'MALE'.
      * @return NaturalInputPersonBuilder
      */
-    public function gender($gender) {
+    public function gender($gender)
+    {
         if (is_string($gender)) {
             $gender = new StoragePersonGender($gender);
         }
@@ -108,7 +109,8 @@ class NaturalInputPersonBuilder {
      * @param AgeInfo $ageInfo
      * @return NaturalInputPersonBuilder
      */
-    public function ageInfo(AgeInfo $ageInfo) {
+    public function ageInfo(AgeInfo $ageInfo)
+    {
         $this->ageInfo = $ageInfo;
         return $this;
     }
@@ -117,7 +119,8 @@ class NaturalInputPersonBuilder {
      * @param MaritalStatus $maritalStatus
      * @return NaturalInputPersonBuilder
      */
-    public function maritalStatus($maritalStatus) {
+    public function maritalStatus($maritalStatus)
+    {
         $this->maritalStatus = $maritalStatus;
         return $this;
     }
@@ -126,8 +129,9 @@ class NaturalInputPersonBuilder {
      * @param string $nationality
      * @return NaturalInputPersonBuilder
      */
-    public function addNationality($nationality) {
-        if ($this->nationalities==null) {
+    public function addNationality($nationality)
+    {
+        if ($this->nationalities == null) {
             $this->nationalities = array();
         }
         array_push($this->nationalities, $nationality);
@@ -138,8 +142,9 @@ class NaturalInputPersonBuilder {
      * @param string $nativeLanguage
      * @return NaturalInputPersonBuilder
      */
-    public function addNativeLanguage($nativeLanguage) {
-        if ($this->nativeLanguages==null) {
+    public function addNativeLanguage($nativeLanguage)
+    {
+        if ($this->nativeLanguages == null) {
             $this->nativeLanguages = array();
         }
         array_push($this->nativeLanguages, $nativeLanguage);
@@ -150,7 +155,8 @@ class NaturalInputPersonBuilder {
      * @param string $correspondenceLanguage
      * @return NaturalInputPersonBuilder
      */
-    public function correspondenceLanguage($correspondenceLanguage) {
+    public function correspondenceLanguage($correspondenceLanguage)
+    {
         $this->correspondenceLanguage = $correspondenceLanguage;
         return $this;
     }
@@ -159,7 +165,8 @@ class NaturalInputPersonBuilder {
      * @param string $religion
      * @return NaturalInputPersonBuilder
      */
-    public function religion($religion) {
+    public function religion($religion)
+    {
         $this->religion = $religion;
         return $this;
     }
@@ -172,12 +179,13 @@ class NaturalInputPersonBuilder {
      * @param string|TelNumber $telNumber
      * @return NaturalInputPersonBuilder
      */
-    public function addTelNumber($telNumber) {
-        if ($this->telNumbers==null) {
+    public function addTelNumber($telNumber)
+    {
+        if ($this->telNumbers == null) {
             $this->telNumbers = array();
         }
         if (is_string($telNumber)) {
-            $telNumber = \org\nameapi\ontology\input\entities\contact\TelNumberFactory::forNumber($telNumber);
+            $telNumber = \Org\NameApi\Ontology\Input\Entities\Contact\TelNumberFactory::forNumber($telNumber);
         }
         array_push($this->telNumbers, $telNumber);
         return $this;
@@ -187,12 +195,13 @@ class NaturalInputPersonBuilder {
      * @param string|EmailAddress $emailAddress
      * @return NaturalInputPersonBuilder
      */
-    public function addEmailAddress($emailAddress) {
-        if ($this->emailAddresses==null) {
+    public function addEmailAddress($emailAddress)
+    {
+        if ($this->emailAddresses == null) {
             $this->emailAddresses = array();
         }
         if (is_string($emailAddress)) {
-            $emailAddress = \org\nameapi\ontology\input\entities\contact\EmailAddressFactory::forAddress($emailAddress);
+            $emailAddress = \Org\NameApi\Ontology\Input\Entities\Contact\EmailAddressFactory::forAddress($emailAddress);
         }
         array_push($this->emailAddresses, $emailAddress);
         return $this;
@@ -203,8 +212,9 @@ class NaturalInputPersonBuilder {
      * @param InputAddress $address
      * @return NaturalInputPersonBuilder
      */
-    public function addAddressForAll(InputAddress $address) {
-        if ($this->addresses==null) {
+    public function addAddressForAll(InputAddress $address)
+    {
+        if ($this->addresses == null) {
             $this->addresses = array();
         }
         array_push($this->addresses, new UseForAllAddressRelation($address));
@@ -215,7 +225,8 @@ class NaturalInputPersonBuilder {
     /**
      * @return NaturalInputPerson
      */
-    public function build() {
+    public function build()
+    {
         return new NaturalInputPerson(
             $this->personName, $this->gender,
             $this->ageInfo, $this->maritalStatus,

@@ -1,11 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\matcher;
+namespace Org\NameApi\Client\Services\Matcher;
 
-require_once(__DIR__.'/GenderMatchType.php');
-
-
-class GenderMatcherResult {
+class GenderMatcherResult
+{
 
     /**
      * @var GenderMatchType $type
@@ -27,7 +25,8 @@ class GenderMatcherResult {
      * @param float $confidence
      * @param string[] $warnings
      */
-    public function __construct(GenderMatchType $type, $confidence, $warnings) {
+    public function __construct(GenderMatchType $type, $confidence, $warnings)
+    {
         $this->matchType = $type;
         $this->confidence = $confidence;
     }
@@ -35,21 +34,24 @@ class GenderMatcherResult {
     /**
      * @return GenderMatchType
      */
-    public function getMatchType() {
+    public function getMatchType()
+    {
         return $this->matchType;
     }
 
     /**
      * @return float
      */
-    public function getConfidence() {
+    public function getConfidence()
+    {
         return $this->confidence;
     }
 
     /**
      * @return string[]
      */
-    public function getWarnings() {
+    public function getWarnings()
+    {
         return $this->warnings;
     }
 

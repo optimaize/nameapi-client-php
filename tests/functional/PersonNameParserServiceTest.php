@@ -1,12 +1,14 @@
 <?php
 
-require '../../src/org/nameapi/client/services/ServiceFactory.php';
-use org\nameapi\client\services\Host;
-use org\nameapi\client\services\ServiceFactory;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\context\Priority;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-use org\nameapi\ontology\input\entities\person\name\InputPersonName;
+namespace Tests\Functional;
+
+use Org\NameApi\Client\Services\Host;
+use Org\NameApi\Client\Services\ServiceFactory;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Priority;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\InputPersonName;
+use Org\NameApi\Ontology\Input\Entities\Person\NaturalInputPerson;
+use PHPUnit\Framework\TestCase;
 
 
 /**
@@ -16,9 +18,11 @@ use org\nameapi\ontology\input\entities\person\name\InputPersonName;
  *
  *
  */
-class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
+class PersonNameParserServiceTest extends TestCase
+{
 
-    public function testParse() {
+    public function testParse()
+    {
         //setup code:
         $context = Context::builder()
             ->priority(Priority::REALTIME())
@@ -30,7 +34,7 @@ class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
         //the call:
         $inputPerson = NaturalInputPerson::builder()
             ->name(InputPersonName::westernBuilder()
-                ->fullname( "John Doe" )
+                ->fullname("John Doe")
                 ->build())
             ->gender("FEMALE")
             ->build();
@@ -49,7 +53,8 @@ class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('GENDER', (string)$bestMatch->getParserDisputes()[0]->getDisputeType());
     }
 
-    public function test_parseTwoPeople() {
+    public function test_parseTwoPeople()
+    {
         //setup code:
         $context = Context::builder()
             ->priority(Priority::REALTIME())
@@ -61,7 +66,7 @@ class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
         //the call:
         $inputPerson = NaturalInputPerson::builder()
             ->name(InputPersonName::westernBuilder()
-                ->fullname( "Peter und Daniela Meyer" )
+                ->fullname("Peter und Daniela Meyer")
                 ->build())
             ->build();
         $parseResult = $personNameParser->parse($inputPerson);

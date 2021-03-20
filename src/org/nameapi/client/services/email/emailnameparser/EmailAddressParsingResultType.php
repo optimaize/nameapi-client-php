@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\email\emailnameparser;
+namespace Org\NameApi\Client\Services\Email\EmailNameParser;
 
 
 /**
@@ -33,28 +33,31 @@ namespace org\nameapi\client\services\email\emailnameparser;
  *
  *
  */
-final class EmailAddressParsingResultType {
+final class EmailAddressParsingResultType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='FUNCTIONAL'
-            && $value!=='INITIALS'
-            && $value!=='PERSON_NAME'
-            && $value!=='PSEUDONYM'
-            && $value!=='NOT_A_NAME'
-            && $value!=='UNKNOWN'
+    public function __construct($value)
+    {
+        if ($value !== 'FUNCTIONAL'
+            && $value !== 'INITIALS'
+            && $value !== 'PERSON_NAME'
+            && $value !== 'PSEUDONYM'
+            && $value !== 'NOT_A_NAME'
+            && $value !== 'UNKNOWN'
         ) {
-            throw new \Exception('Invalid value for EmailAddressParsingResultType: '.$value.'!');
+            throw new \Exception('Invalid value for EmailAddressParsingResultType: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

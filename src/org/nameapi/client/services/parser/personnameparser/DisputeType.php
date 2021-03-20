@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\parser\personnameparser;
+namespace Org\NameApi\Client\Services\Parser\PersonNameParser;
 
 
 /**
@@ -41,23 +41,25 @@ namespace org\nameapi\client\services\parser\personnameparser;
  * @since 5.3
  *
  */
-final class DisputeType {
+final class DisputeType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='GENDER' && $value!=='SPELLING' && $value!=='TRANSPOSITION' && $value!=='DUPLICATE_CONTENT' && $value!=='SYNTAX') {
-            throw new \Exception('Invalid value for DisputeType: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value !== 'GENDER' && $value !== 'SPELLING' && $value !== 'TRANSPOSITION' && $value !== 'DUPLICATE_CONTENT' && $value !== 'SYNTAX') {
+            throw new \Exception('Invalid value for DisputeType: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

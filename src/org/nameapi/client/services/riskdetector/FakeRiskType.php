@@ -1,8 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
-
-require_once(__DIR__ . '/RiskType.php');
+namespace Org\NameApi\Client\Services\RiskDetector;
 
 /**
  * Classification of risks.
@@ -70,23 +68,25 @@ require_once(__DIR__ . '/RiskType.php');
  * Everything that does not fit into any of the other categories.
  *
  */
-final class FakeRiskType extends RiskType {
+final class FakeRiskType extends RiskType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='RANDOM_TYPING' && $value!=='PLACEHOLDER' && $value!=='FICTIONAL' && $value!=='FAMOUS' && $value!=='HUMOROUS' && $value!=='INVALID' && $value!=='OTHER') {
-            throw new \Exception('Invalid value for FakeRiskType: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value !== 'RANDOM_TYPING' && $value !== 'PLACEHOLDER' && $value !== 'FICTIONAL' && $value !== 'FAMOUS' && $value !== 'HUMOROUS' && $value !== 'INVALID' && $value !== 'OTHER') {
+            throw new \Exception('Invalid value for FakeRiskType: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

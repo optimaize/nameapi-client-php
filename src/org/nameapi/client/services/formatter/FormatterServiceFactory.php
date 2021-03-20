@@ -1,19 +1,16 @@
 <?php
 
-namespace org\nameapi\client\services\formatter;
+namespace Org\NameApi\Client\Services\Formatter;
 
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\client\services\formatter\personnameformatter\PersonNameFormatterService;
-use org\nameapi\client\services\formatter\namefieldformatter\NameFieldFormatterService;
-
-require_once(__DIR__.'/personnameformatter/PersonNameFormatterService.php');
-require_once(__DIR__.'/namefieldformatter/NameFieldFormatterService.php');
-
+use Org\NameApi\Client\Services\Formatter\NameFieldFormatter\NameFieldFormatterService;
+use Org\NameApi\Client\Services\Formatter\PersonNameFormatter\PersonNameFormatterService;
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * Provides access to the formatter-related services.
  */
-class FormatterServiceFactory {
+class FormatterServiceFactory
+{
 
     private $apiKey;
     private $context;
@@ -23,7 +20,8 @@ class FormatterServiceFactory {
 
     /**
      */
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
@@ -33,8 +31,9 @@ class FormatterServiceFactory {
      * @return PersonNameFormatterService
      * @since v4.0
      */
-    public function personNameFormatter() {
-        if ($this->personNameFormatterService==null) {
+    public function personNameFormatter()
+    {
+        if ($this->personNameFormatterService == null) {
             $this->personNameFormatterService = new PersonNameFormatterService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->personNameFormatterService;
@@ -43,8 +42,9 @@ class FormatterServiceFactory {
     /**
      * @return NameFieldFormatterService
      */
-    public function nameFieldFormatter() {
-        if ($this->nameFieldFormatterService==null) {
+    public function nameFieldFormatter()
+    {
+        if ($this->nameFieldFormatterService == null) {
             $this->nameFieldFormatterService = new NameFieldFormatterService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->nameFieldFormatterService;

@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 
 /**
@@ -11,7 +11,8 @@ namespace org\nameapi\ontology\input\entities\address;
  *  - apartment/suite
  *
  */
-abstract class StreetInfo {
+abstract class StreetInfo
+{
 
 }
 

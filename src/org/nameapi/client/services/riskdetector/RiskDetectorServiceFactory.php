@@ -1,17 +1,17 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
+namespace Org\NameApi\Client\Services\RiskDetector;
 
-use org\nameapi\ontology\input\context\Context;
-
-require_once(__DIR__ . '/person/PersonRiskDetectorService.php');
+use Org\NameApi\Client\Services\RiskDetector\Person\PersonRiskDetectorService;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the risk-related services.
  *
  * @since v5.3
  */
-class RiskDetectorServiceFactory {
+class RiskDetectorServiceFactory
+{
 
     private $apiKey;
     private $context;
@@ -20,18 +20,20 @@ class RiskDetectorServiceFactory {
 
     /**
      */
-    public function __construct($apiKey, Context $context, $baseUrl) {
-        $this->apiKey  = $apiKey;
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
+        $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
     }
 
     /**
-     * @return riskdetector\PersonRiskDetectorService
+     * @return PersonRiskDetectorService
      */
-    public function personRiskDetector() {
-        if ($this->personRiskDetector==null) {
-            $this->personRiskDetector = new riskdetector\PersonRiskDetectorService($this->apiKey, $this->context, $this->baseUrl);
+    public function personRiskDetector()
+    {
+        if ($this->personRiskDetector == null) {
+            $this->personRiskDetector = new PersonRiskDetectorService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->personRiskDetector;
     }

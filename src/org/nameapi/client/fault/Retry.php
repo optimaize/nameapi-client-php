@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\fault;
+namespace Org\NameApi\Client\Fault;
 
 /**
  * Tells if and when the service request can be tried again in case of a failure.
@@ -8,15 +8,10 @@ namespace org\nameapi\client\fault;
 class Retry
 {
 
-    public static function no() {
-        return new Retry(new RetryType('NO'), null);
-    }
-
     /**
      * @var RetryType
      */
     private $retryType;
-
     /**
      * @var int
      */
@@ -27,10 +22,15 @@ class Retry
      * @param RetryType $retryType
      * @param int $retryInSeconds
      */
-    public function __construct(RetryType $retryType, $retryInSeconds=null)
+    public function __construct(RetryType $retryType, $retryInSeconds = null)
     {
         $this->retryType = $retryType;
         $this->retryInSeconds = $retryInSeconds;
+    }
+
+    public static function no()
+    {
+        return new Retry(new RetryType('NO'), null);
     }
 
     /**

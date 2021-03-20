@@ -1,8 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
-
-require_once(__DIR__ . '/RiskType.php');
+namespace Org\NameApi\Client\Services\RiskDetector;
 
 /**
  * Classification of disguise risks.
@@ -42,23 +40,25 @@ require_once(__DIR__ . '/RiskType.php');
  *    Same script: For example using the lower case L for an upper case i (l vs I) and vice versa, using a zero 0 for an oh O.
  *
  */
-final class DisguiseRiskType extends RiskType {
+final class DisguiseRiskType extends RiskType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='PADDING' && $value!=='STUTTER_TYPING' && $value!=='SPACED_TYPING' && $value!=='OTHER') {
-            throw new \Exception('Invalid value for DisguiseRiskType: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value !== 'PADDING' && $value !== 'STUTTER_TYPING' && $value !== 'SPACED_TYPING' && $value !== 'OTHER') {
+            throw new \Exception('Invalid value for DisguiseRiskType: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

@@ -1,12 +1,13 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\name\builder;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Name\Builder;
 
-use org\nameapi\ontology\input\entities\person\name\InputPersonName;
-use org\nameapi\ontology\input\entities\person\name\NameField;
-use org\nameapi\ontology\input\entities\person\name\types\CommonNameFieldType;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\InputPersonName;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\NameField;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\Types\CommonNameFieldType;
 
-class InputPersonNameBuilder {
+class InputPersonNameBuilder
+{
 
     /**
      * @var NameField[] $nameFields
@@ -18,7 +19,8 @@ class InputPersonNameBuilder {
      * @param $string
      * @return $this
      */
-    public function fullname($string) {
+    public function fullname($string)
+    {
         return $this->nameField(new NameField($string, CommonNameFieldType::FULLNAME));
     }
 
@@ -26,17 +28,20 @@ class InputPersonNameBuilder {
      * @param NameField $nameField
      * @return $this
      */
-    public function nameField(NameField $nameField) {
+    public function nameField(NameField $nameField)
+    {
         array_push($this->nameFields, $nameField);
         return $this;
     }
 
 
-    public function isEmpty() {
+    public function isEmpty()
+    {
         return empty($this->nameFields);
     }
 
-    public function build() {
+    public function build()
+    {
         return new InputPersonName($this->nameFields);
     }
 

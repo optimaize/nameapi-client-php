@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\matcher;
+namespace Org\NameApi\Client\Services\Matcher;
 
 
 /**
@@ -15,22 +15,25 @@ namespace org\nameapi\client\services\matcher;
  * DIFFERENT
  * </p>
  */
-final class PersonNameMatchType {
+final class PersonNameMatchType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='EQUAL' && $value!=='MATCHING' && $value!=='SIMILAR' && $value!=='NO_SIMILARITY_FOUND' && $value!=='DIFFERENT') {
-            throw new \Exception('Invalid value for PersonNameMatchType: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value !== 'EQUAL' && $value !== 'MATCHING' && $value !== 'SIMILAR' && $value !== 'NO_SIMILARITY_FOUND' && $value !== 'DIFFERENT') {
+            throw new \Exception('Invalid value for PersonNameMatchType: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

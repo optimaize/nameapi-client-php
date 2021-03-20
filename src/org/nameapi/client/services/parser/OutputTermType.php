@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\parser;
+namespace Org\NameApi\Client\Services\Parser;
 
 
 /**
@@ -24,14 +24,16 @@ namespace org\nameapi\client\services\parser;
  * BUSINESSNAME
  *
  */
-final class OutputTermType {
+final class OutputTermType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
+    public function __construct($value)
+    {
         //TODO verify it's one of the known types
 //        if ($value!=='SUCCESS' && $value!=='FAILURE' && $value!=='NO_INPUT') {
 //            throw new \Exception('Invalid value for ParsingStatus: '.$value.'!');
@@ -40,8 +42,8 @@ final class OutputTermType {
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

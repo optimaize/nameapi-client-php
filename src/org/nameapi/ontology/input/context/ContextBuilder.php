@@ -1,20 +1,22 @@
 <?php
 
-namespace org\nameapi\ontology\input\context;
+namespace Org\NameApi\Ontology\Input\Context;
 
-class ContextBuilder {
+class ContextBuilder
+{
 
-    private $priority   = null;
-    private $place      = null;
+    private $priority = null;
+    private $place = null;
     private $properties = null;
-    private $textCase   = null;
+    private $textCase = null;
 
 
     /**
      * @param string $place
      * @return ContextBuilder
      */
-    function place($place) {
+    function place($place)
+    {
         $this->place = $place;
         return $this;
     }
@@ -24,7 +26,8 @@ class ContextBuilder {
      *        either an instance of Priority, or a string in upper case.
      * @return ContextBuilder
      */
-    function priority($priority) {
+    function priority($priority)
+    {
         if (is_string($priority)) {
             $priority = new Priority($priority);
         }
@@ -36,7 +39,8 @@ class ContextBuilder {
      * @param TextCase $textCase
      * @return ContextBuilder
      */
-    function textCase($textCase) {
+    function textCase($textCase)
+    {
         $this->textCase = $textCase;
         return $this;
     }
@@ -46,8 +50,9 @@ class ContextBuilder {
      * @param string $value
      * @return ContextBuilder
      */
-    function property($key, $value) {
-        if ($this->properties==null) $this->properties = array();
+    function property($key, $value)
+    {
+        if ($this->properties == null) $this->properties = array();
         $this->properties[$key] = $value;
         return $this;
     }
@@ -56,7 +61,8 @@ class ContextBuilder {
     /**
      * @return Context
      */
-    function build() {
+    function build()
+    {
         return new Context($this->priority, $this->place, $this->textCase, $this->properties);
     }
 

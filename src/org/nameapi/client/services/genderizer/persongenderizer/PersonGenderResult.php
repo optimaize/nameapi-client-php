@@ -1,10 +1,11 @@
 <?php
 
-namespace org\nameapi\client\services\genderizer\persongenderizer;
+namespace Org\NameApi\Client\Services\Genderizer\PersonGenderizer;
 
-use \org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;
+use Org\NameApi\ontology\input\entities\person\gender\ComputedPersonGender;
 
-class PersonGenderResult {
+class PersonGenderResult
+{
 
     /**
      * @var ComputedPersonGender
@@ -26,7 +27,8 @@ class PersonGenderResult {
      * @param ComputedPersonGender $gender
      * @param float $maleProportion
      */
-    public function __construct(ComputedPersonGender $gender, $maleProportion, $confidence) {
+    public function __construct(ComputedPersonGender $gender, $maleProportion, $confidence)
+    {
         $this->gender = $gender;
         $this->maleProportion = $maleProportion;
         $this->confidence = $confidence;
@@ -35,7 +37,8 @@ class PersonGenderResult {
     /**
      * @return ComputedPersonGender
      */
-    public function getGender() {
+    public function getGender()
+    {
         return $this->gender;
     }
 
@@ -44,14 +47,16 @@ class PersonGenderResult {
      * @return float null if inapplicable or unknown.
      *         Range 0-1, 0.5 is neutral, high above is more male and closer to 0 is more female).
      */
-    public function getMalePercent() {
+    public function getMalePercent()
+    {
         return $this->maleProportion;
     }
 
     /**
      * @return float 0-1, the higher the better.
      */
-    public function getConfidence() {
+    public function getConfidence()
+    {
         return $this->confidence;
     }
 

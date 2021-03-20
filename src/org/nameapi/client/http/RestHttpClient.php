@@ -1,16 +1,12 @@
 <?php
 
-namespace org\nameapi\client\http;
+namespace Org\NameApi\Client\Http;
 
-require_once(__DIR__.'/../fault/ServiceException.php');
-require_once(__DIR__.'/RestHttpClientConfig.php');
-
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\fault\FaultInfo;
-use org\nameapi\client\fault\FaultInfoUnmarshaller;
-use org\nameapi\client\fault\Blame;
-use org\nameapi\client\fault\Retry;
-use org\nameapi\client\fault\HttpResponseData;
+use Org\NameApi\Client\Fault\Blame;
+use Org\NameApi\Client\Fault\FaultInfo;
+use Org\NameApi\Client\Fault\FaultInfoUnmarshaller;
+use Org\NameApi\Client\Fault\Retry;
+use Org\NameApi\Client\Fault\ServiceException;
 
 
 /**
@@ -26,7 +22,8 @@ use org\nameapi\client\fault\HttpResponseData;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class RestHttpClient {
+class RestHttpClient
+{
 
     public static $PATCH = "PATCH";
     public static $POST = "POST";
@@ -46,7 +43,8 @@ class RestHttpClient {
      * Constructor of the class
      * @param RestHttpClientConfig $config config for this ApiClient
      */
-    public function __construct(RestHttpClientConfig $config = null) {
+    public function __construct(RestHttpClientConfig $config = null)
+    {
         if ($config == null) {
             $config = RestHttpClientConfig::getDefaultConfiguration();
         }
@@ -55,24 +53,23 @@ class RestHttpClient {
     }
 
 
-    public function callApiGet($resourcePath, $queryParams, $headerParams) {
+    public function callApiGet($resourcePath, $queryParams, $headerParams)
+    {
         return $this->callApi($resourcePath, 'GET', $queryParams, null, $headerParams);
-    }
-    public function callApiPost($resourcePath, $queryParams, $headerParams, $postData) {
-        return $this->callApi($resourcePath, 'POST', $queryParams, $postData, $headerParams);
     }
 
     /**
      * Make the HTTP call (Sync)
      * @param string $resourcePath path to method endpoint
-     * @param string $method       method to call
-     * @param array  $queryParams  parameters to be place in query URL
-     * @param array  $postData     parameters to be placed in POST body
-     * @param array  $headerParams parameters to be place in request header
-     * @throws ServiceException on a non 2xx response
+     * @param string $method method to call
+     * @param array $queryParams parameters to be place in query URL
+     * @param array $postData parameters to be placed in POST body
+     * @param array $headerParams parameters to be place in request header
      * @return mixed
+     * @throws ServiceException on a non 2xx response
      */
-    public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams) {
+    public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams)
+    {
         $headers = array();
         $headers[] = "Accept: application/json";
         $headers[] = "Content-Type: application/json";
@@ -145,7 +142,7 @@ class RestHttpClient {
 
         // debugging for curl
         if ($this->config->getDebug()) {
-            error_log("[DEBUG] HTTP Request body  ~BEGIN~\n".print_r($postData, true)."\n~END~\n", 3, $this->config->getDebugFile());
+            error_log("[DEBUG] HTTP Request body  ~BEGIN~\n" . print_r($postData, true) . "\n~END~\n", 3, $this->config->getDebugFile());
 
             curl_setopt($curl, CURLOPT_VERBOSE, 1);
             //this doesn't work, i get:
@@ -168,19 +165,19 @@ class RestHttpClient {
 
         // debug HTTP response body
         if ($this->config->getDebug()) {
-            error_log("[DEBUG] HTTP Response body ~BEGIN~\n".print_r($http_body, true)."\n~END~\n", 3, $this->config->getDebugFile());
+            error_log("[DEBUG] HTTP Response body ~BEGIN~\n" . print_r($http_body, true) . "\n~END~\n", 3, $this->config->getDebugFile());
         }
 
         // Handle the response
         if ($response_info['http_code'] == 0) {
             $faultInfo = new FaultInfo(
                 'NetworkTimeout', new Blame('SERVER'),
-                "API call to $url timed out: ".serialize($response_info),
+                "API call to $url timed out: " . serialize($response_info),
                 null, null,
                 Retry::no(), Retry::no()
             );
             throw new ServiceException($faultInfo->getMessage(), $faultInfo, $httpResponseData);
-        } else if ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299 ) {
+        } else if ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299) {
             $data = json_decode($http_body);
             if (json_last_error() > 0) { // if response is a string
                 $data = $http_body;
@@ -206,6 +203,10 @@ class RestHttpClient {
         return array($data, $httpResponseData);
     }
 
+    public function callApiPost($resourcePath, $queryParams, $headerParams, $postData)
+    {
+        return $this->callApi($resourcePath, 'POST', $queryParams, $postData, $headerParams);
+    }
 
 
 }

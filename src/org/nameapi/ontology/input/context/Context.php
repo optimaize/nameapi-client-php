@@ -1,22 +1,14 @@
 <?php
 
-namespace org\nameapi\ontology\input\context;
+namespace Org\NameApi\Ontology\Input\Context;
 
-include_once('ContextBuilder.php');
-include_once('TextCase.php');
-include_once('Priority.php');
-
-
-class Context {
+class Context
+{
 
     public $priority = null;
     public $place = null;
     public $textCase = null;
     public $properties = null;
-
-    static function builder() {
-        return new ContextBuilder();
-    }
 
     /**
      * @param priority $priority
@@ -25,11 +17,48 @@ class Context {
      * @param array $properties
      * @access public
      */
-    public function __construct($priority, $place, $textCase, $properties) {
-        $this->priority = ($priority==null) ? null : (string)$priority;
+    public function __construct($priority, $place, $textCase, $properties)
+    {
+        $this->priority = ($priority == null) ? null : (string)$priority;
         $this->place = $place;
-        $this->textCase = ($textCase==null) ? null : (string)$textCase;
-        $this->properties = isSet($properties) ? $properties : array();
+        $this->textCase = ($textCase == null) ? null : (string)$textCase;
+        $this->properties = isset($properties) ? $properties : array();
     }
 
+    static function builder()
+    {
+        return new ContextBuilder();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTextCase()
+    {
+        return $this->textCase;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
 }

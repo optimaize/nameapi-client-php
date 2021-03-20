@@ -1,13 +1,12 @@
 <?php
 
-namespace org\nameapi\client\services\email\emailnameparser;
-
-require_once(__DIR__.'/NameFromEmailAddress.php');
+namespace Org\NameApi\Client\Services\Email\EmailNameParser;
 
 /**
  * One way (and ideally the only way) of parsing an email address.
  */
-class EmailNameParserMatch {
+class EmailNameParserMatch
+{
 
     /**
      * @var NameFromEmailAddress[] $givenNames
@@ -30,7 +29,8 @@ class EmailNameParserMatch {
      * @param NameFromEmailAddress[] $surnames
      * @param float $confidence
      */
-    public function __construct($givenNames, $surnames, $confidence) {
+    public function __construct($givenNames, $surnames, $confidence)
+    {
         $this->givenNames = $givenNames;
         $this->surnames = $surnames;
         $this->confidence = $confidence;
@@ -39,36 +39,40 @@ class EmailNameParserMatch {
     /**
      * @return NameFromEmailAddress[]
      */
-    public function getGivenNames() {
+    public function getGivenNames()
+    {
         return $this->givenNames;
     }
 
     /**
      * @return NameFromEmailAddress[]
      */
-    public function getSurnames() {
+    public function getSurnames()
+    {
         return $this->surnames;
     }
 
     /**
      * @return float 0-1
      */
-    public function getConfidence() {
+    public function getConfidence()
+    {
         return $this->confidence;
     }
 
-    public function __toString() {
-        $ret  = '';
-        if (count($this->givenNames) >0) {
+    public function __toString()
+    {
+        $ret = '';
+        if (count($this->givenNames) > 0) {
             if (!empty($ret)) $ret .= ', ';
-            $ret .= 'givenNames='. implode(", ",$this->givenNames);
+            $ret .= 'givenNames=' . implode(", ", $this->givenNames);
         }
-        if (count($this->surnames) >0) {
+        if (count($this->surnames) > 0) {
             if (!empty($ret)) $ret .= ', ';
-            $ret .= 'surnames='. implode(", ",$this->surnames);
+            $ret .= 'surnames=' . implode(", ", $this->surnames);
         }
         if (!empty($ret)) $ret .= ', ';
-        $ret .= 'confidence='.$this->confidence;
-        return '{'.$ret.'}';
+        $ret .= 'confidence=' . $this->confidence;
+        return '{' . $ret . '}';
     }
-} 
+}

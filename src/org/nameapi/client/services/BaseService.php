@@ -1,16 +1,14 @@
 <?php
 
-namespace org\nameapi\client\services;
+namespace Org\NameApi\Client\Services;
 
-require_once(__DIR__.'/../fault/FaultInfo.php');
-
-use org\nameapi\client\fault\Blame;
-use org\nameapi\client\fault\FaultInfo;
-use org\nameapi\client\fault\Retry;
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\http\RestHttpClient;
-use org\nameapi\client\http\RestHttpClientConfig;
-use org\nameapi\ontology\input\context\Context;
+use Org\NameApi\Client\Fault\Blame;
+use Org\NameApi\Client\Fault\FaultInfo;
+use Org\NameApi\Client\Fault\Retry;
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Http\RestHttpClient;
+use Org\NameApi\Client\Http\RestHttpClientConfig;
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * Base class for services.
@@ -32,14 +30,14 @@ abstract class BaseService
      * @param Context $context
      * @param $baseUrl
      */
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         $this->context = $context;
         $configuration = new RestHttpClientConfig();
         $configuration->setApiKey($apiKey);
         $configuration->setBaseUrl($baseUrl);
         $this->restHttpClient = new RestHttpClient($configuration);
     }
-
 
 
     /**

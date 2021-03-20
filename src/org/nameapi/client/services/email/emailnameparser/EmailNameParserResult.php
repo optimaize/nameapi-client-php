@@ -1,11 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\email\emailnameparser;
+namespace Org\NameApi\Client\Services\Email\EmailNameParser;
 
-require_once(__DIR__.'/EmailAddressParsingResultType.php');
-require_once(__DIR__.'/EmailNameParserMatch.php');
-
-class EmailNameParserResult {
+class EmailNameParserResult
+{
 
     /**
      * @var EmailAddressParsingResultType
@@ -22,7 +20,8 @@ class EmailNameParserResult {
      * @param EmailAddressParsingResultType $resultType
      * @param EmailNameParserMatch[] $matches
      */
-    public function __construct(EmailAddressParsingResultType $resultType, $matches) {
+    public function __construct(EmailAddressParsingResultType $resultType, $matches)
+    {
         $this->resultType = $resultType;
         $this->matches = $matches;
     }
@@ -30,25 +29,28 @@ class EmailNameParserResult {
     /**
      * @return EmailAddressParsingResultType
      */
-    public function getResultType() {
+    public function getResultType()
+    {
         return $this->resultType;
     }
 
     /**
      * @return EmailNameParserMatch[]
      */
-    public function getMatches() {
+    public function getMatches()
+    {
         return $this->matches;
     }
 
 
-    public function __toString() {
-        $ret  = 'Result{';
-        $ret .= 'type='.$this->resultType;
-        if (count($this->matches) >0) {
-            $ret .= ', matches='. implode(", ",$this->matches);
+    public function __toString()
+    {
+        $ret = 'Result{';
+        $ret .= 'type=' . $this->resultType;
+        if (count($this->matches) > 0) {
+            $ret .= ', matches=' . implode(", ", $this->matches);
         }
-        return $ret.'}';
+        return $ret . '}';
     }
 
-} 
+}

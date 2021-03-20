@@ -1,19 +1,13 @@
 <?php
 
-namespace org\nameapi\client\services\matcher\personmatcher;
+namespace Org\NameApi\Client\Services\Matcher\PersonMatcher;
 
-use org\nameapi\client\services\matcher\PersonNameMatcherResult;
-use org\nameapi\client\services\matcher\GenderMatcherResult;
-use org\nameapi\client\services\matcher\AgeMatcherResult;
+use Org\NameApi\Client\Services\Matcher\AgeMatcherResult;
+use Org\NameApi\Client\Services\Matcher\GenderMatcherResult;
+use Org\NameApi\Client\Services\Matcher\PersonNameMatcherResult;
 
-require_once(__DIR__.'/PersonMatchType.php');
-require_once(__DIR__.'/PersonMatchComposition.php');
-require_once(__DIR__.'/../PersonNameMatcherResult.php');
-require_once(__DIR__.'/../GenderMatcherResult.php');
-require_once(__DIR__.'/../AgeMatcherResult.php');
-
-
-class PersonMatcherResult {
+class PersonMatcherResult
+{
 
     /**
      * @var PersonMatchType $personMatchType
@@ -60,7 +54,8 @@ class PersonMatcherResult {
      * @param GenderMatcherResult $genderMatch
      * @param AgeMatcherResult $ageMatch
      */
-    public function __construct($personMatchType, $personMatchComposition, $points, $confidence, $personNameMatch, $genderMatch, $ageMatch) {
+    public function __construct($personMatchType, $personMatchComposition, $points, $confidence, $personNameMatch, $genderMatch, $ageMatch)
+    {
         $this->matchType = $personMatchType;
         $this->matchComposition = $personMatchComposition;
         $this->points = $points;
@@ -74,14 +69,16 @@ class PersonMatcherResult {
     /**
      * @return PersonMatchType
      */
-    public function getMatchType() {
+    public function getMatchType()
+    {
         return $this->matchType;
     }
 
     /**
      * @return PersonMatchComposition
      */
-    public function getMatchComposition() {
+    public function getMatchComposition()
+    {
         return $this->matchComposition;
     }
 
@@ -89,7 +86,8 @@ class PersonMatcherResult {
      *
      * @return float
      */
-    public function getPoints() {
+    public function getPoints()
+    {
         return $this->points;
     }
 
@@ -97,7 +95,8 @@ class PersonMatcherResult {
      *
      * @return float
      */
-    public function getConfidence() {
+    public function getConfidence()
+    {
         return $this->confidence;
     }
 
@@ -105,7 +104,8 @@ class PersonMatcherResult {
      *
      * @return PersonNameMatcherResult
      */
-    public function getPersonNameMatcherResult() {
+    public function getPersonNameMatcherResult()
+    {
         return $this->personNameMatcherResult;
     }
 
@@ -113,14 +113,16 @@ class PersonMatcherResult {
      *
      * @return GenderMatcherResult
      */
-    public function getGenderMatcherResult() {
+    public function getGenderMatcherResult()
+    {
         return $this->genderMatcherResult;
     }
 
     /**
      * @return AgeMatcherResult
      */
-    public function getAgeMatcherResult() {
+    public function getAgeMatcherResult()
+    {
         return $this->ageMatcherResult;
     }
 

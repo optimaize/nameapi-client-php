@@ -1,18 +1,13 @@
 <?php
 
-namespace org\nameapi\client\services\formatter\personnameformatter;
+namespace Org\NameApi\Client\Services\Formatter\PersonNameFormatter;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\client\services\formatter\FormatterProperties;
-use org\nameapi\client\services\formatter\FormatterResult;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-
-require_once(__DIR__.'/../FormatterResult.php');
-require_once(__DIR__.'/../FormatterProperties.php');
-
-
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\Client\Services\Formatter\FormatterProperties;
+use Org\NameApi\Client\Services\Formatter\FormatterResult;
+use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
 
 /**
  * This is the service class for the web service offered at
@@ -24,11 +19,13 @@ require_once(__DIR__.'/../FormatterProperties.php');
  *
  * @since v4.0
  */
-class PersonNameFormatterService extends BaseService {
+class PersonNameFormatterService extends BaseService
+{
 
     private static $RESOURCE_PATH = "formatter/personnameformatter";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -39,14 +36,15 @@ class PersonNameFormatterService extends BaseService {
      * @return FormatterResult
      * @throws ServiceException
      */
-    public function format(NaturalInputPerson $person, FormatterProperties $properties) {
+    public function format(NaturalInputPerson $person, FormatterProperties $properties)
+    {
         $queryParams = array();
         $headerParams = array();
 
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonNameFormatterService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            array('inputPerson'=>$person, 'properties'=>$properties, 'context'=>$this->context)
+            array('inputPerson' => $person, 'properties' => $properties, 'context' => $this->context)
         );
         try {
             return new FormatterResult($response->formatted, $response->unknown);
@@ -55,4 +53,4 @@ class PersonNameFormatterService extends BaseService {
         }
     }
 
-} 
+}

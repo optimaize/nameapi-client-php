@@ -1,9 +1,10 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\age;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Age;
 
 /**
  */
-abstract class AgeInfo {
+abstract class AgeInfo
+{
 
 }

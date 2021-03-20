@@ -1,15 +1,12 @@
 <?php
 
-namespace org\nameapi\client\services\genderizer\persongenderizer;
+namespace Org\NameApi\Client\Services\Genderizer\PersonGenderizer;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\entities\person\gender\ComputedPersonGender;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-
-require_once(__DIR__.'/PersonGenderResult.php');
-
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\ontology\input\entities\person\gender\ComputedPersonGender;
+use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
 
 /**
  * This is the service class for the web service offered at
@@ -22,11 +19,13 @@ require_once(__DIR__.'/PersonGenderResult.php');
  *
  * @since v4.0
  */
-class PersonGenderizerService extends BaseService {
+class PersonGenderizerService extends BaseService
+{
 
     private static $RESOURCE_PATH = "genderizer/persongenderizer";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -36,14 +35,15 @@ class PersonGenderizerService extends BaseService {
      * @return PersonGenderResult
      * @throws ServiceException
      */
-    public function assess(NaturalInputPerson $person) {
+    public function assess(NaturalInputPerson $person)
+    {
         $queryParams = array();
         $headerParams = array();
 
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonGenderizerService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            array('inputPerson'=>$person, 'context'=>$this->context)
+            array('inputPerson' => $person, 'context' => $this->context)
         );
         try {
             return new PersonGenderResult(new ComputedPersonGender(

@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 
 /**
@@ -8,25 +8,27 @@ namespace org\nameapi\ontology\input\entities\address;
  *
  * Possible values are: DOMICILE, CORRESPONDENCE, INVOICE, DELIVERY, OTHER
  *
- * @package org\nameapi\ontology\input\entities\address
+ * @package Org\NameApi\Ontology\Input\Entities\Address
  */
-final class AddressUsage {
+final class AddressUsage
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!='DOMICILE' && $value!='CORRESPONDENCE' && $value!='INVOICE' && $value!='DELIVERY' && $value!='OTHER') {
-            throw new \Exception('Invalid value for AddressUsage: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value != 'DOMICILE' && $value != 'CORRESPONDENCE' && $value != 'INVOICE' && $value != 'DELIVERY' && $value != 'OTHER') {
+            throw new \Exception('Invalid value for AddressUsage: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

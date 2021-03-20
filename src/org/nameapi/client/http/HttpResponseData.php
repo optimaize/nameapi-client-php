@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\fault;
+namespace Org\NameApi\Client\Http;
 
 /**
  * An object containing HTTP data from the response.

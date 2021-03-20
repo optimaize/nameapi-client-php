@@ -1,8 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
-
-require_once(__DIR__.'/StructuredStreetInfo.php');
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 /**
  * Builder for a StructuredStreetInfo.
@@ -10,7 +8,8 @@ require_once(__DIR__.'/StructuredStreetInfo.php');
  * <p>The setters don't do anything other than setting the value. They don't check if the value was
  * set already, they don't trim the values.</p>
  */
-class StructuredStreetInfoBuilder {
+class StructuredStreetInfoBuilder
+{
 
     /**
      * @var string|null $streetName
@@ -38,7 +37,8 @@ class StructuredStreetInfoBuilder {
     private $apartment;
 
 
-    function __construct() {
+    function __construct()
+    {
     }
 
 
@@ -46,7 +46,8 @@ class StructuredStreetInfoBuilder {
      * @param string|null $streetName
      * @return StructuredStreetInfoBuilder
      */
-    public function streetName($streetName) {
+    public function streetName($streetName)
+    {
         $this->streetName = $streetName;
         return $this;
     }
@@ -55,7 +56,8 @@ class StructuredStreetInfoBuilder {
      * @param string|null $houseNumber
      * @return StructuredStreetInfoBuilder
      */
-    public function houseNumber($houseNumber) {
+    public function houseNumber($houseNumber)
+    {
         $this->houseNumber = $houseNumber;
         return $this;
     }
@@ -64,7 +66,8 @@ class StructuredStreetInfoBuilder {
      * @param string|null $building
      * @return StructuredStreetInfoBuilder
      */
-    public function building($building) {
+    public function building($building)
+    {
         $this->building = $building;
         return $this;
     }
@@ -73,7 +76,8 @@ class StructuredStreetInfoBuilder {
      * @param string|null $staircase
      * @return StructuredStreetInfoBuilder
      */
-    public function staircase($staircase) {
+    public function staircase($staircase)
+    {
         $this->staircase = $staircase;
         return $this;
     }
@@ -82,7 +86,8 @@ class StructuredStreetInfoBuilder {
      * @param string|null $floor
      * @return StructuredStreetInfoBuilder
      */
-    public function floor($floor) {
+    public function floor($floor)
+    {
         $this->floor = $floor;
         return $this;
     }
@@ -91,7 +96,8 @@ class StructuredStreetInfoBuilder {
      * @param string|null $apartment
      * @return StructuredStreetInfoBuilder
      */
-    public function apartment($apartment) {
+    public function apartment($apartment)
+    {
         $this->apartment = $apartment;
         return $this;
     }
@@ -100,7 +106,8 @@ class StructuredStreetInfoBuilder {
     /**
      * @return StructuredStreetInfo
      */
-    public function build() {
+    public function build()
+    {
         return new StructuredStreetInfo(
             $this->streetName,
             $this->houseNumber,

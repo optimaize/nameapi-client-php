@@ -1,10 +1,10 @@
 <?php
 
-namespace org\nameapi\client\services\development\exceptionthrower;
+namespace Org\NameApi\Client\Services\Development\ExceptionThrower;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\ontology\input\context\Context;
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\ontology\input\Context\Context;
 
 
 /**
@@ -18,24 +18,27 @@ use org\nameapi\ontology\input\context\Context;
  * $exceptionThrower = $myServiceFactory->developmentServices()->exceptionThrowerService();
  * $exceptionThrower = $ping->throwException();
  */
-class ExceptionThrowerService extends BaseService {
+class ExceptionThrowerService extends BaseService
+{
 
 
     private static $RESOURCE_PATH = "development/exceptionthrower";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
     /**
-     * @param string $exceptionType   One of 'AccessDeniedNoSuchAccount', 'InvalidInput', 'InternalServerError'
-     * @param int $exceptionChance    0-100 where 100 means always
+     * @param string $exceptionType One of 'AccessDeniedNoSuchAccount', 'InvalidInput', 'InternalServerError'
+     * @param int $exceptionChance 0-100 where 100 means always
      * @return string                 'OK' in case the remote service does not throw.
      * @throws ServiceException
      */
-    public function throwException($exceptionType, $exceptionChance) {
+    public function throwException($exceptionType, $exceptionChance)
+    {
         $queryParams = array(
-            'exceptionType'   => $exceptionType,
+            'exceptionType' => $exceptionType,
             'exceptionChance' => $exceptionChance,
         );
         $headerParams = array();

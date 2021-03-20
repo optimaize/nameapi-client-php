@@ -1,10 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\matcher;
+namespace Org\NameApi\Client\Services\Matcher;
 
-require_once(__DIR__.'/PersonNameMatchType.php');
-
-class PersonNameMatcherResult {
+class PersonNameMatcherResult
+{
 
     /**
      * @var PersonNameMatchType $type
@@ -14,7 +13,8 @@ class PersonNameMatcherResult {
     /**
      * @param PersonNameMatchType $type
      */
-    public function __construct(PersonNameMatchType $type) {
+    public function __construct(PersonNameMatchType $type)
+    {
         $this->matchType = $type;
     }
 
@@ -22,7 +22,8 @@ class PersonNameMatcherResult {
      *
      * @return PersonNameMatchType
      */
-    public function getMatchType() {
+    public function getMatchType()
+    {
         return $this->matchType;
     }
 

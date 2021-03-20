@@ -1,10 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
-
-require_once(__DIR__ . '/DataItem.php');
-require_once(__DIR__ . '/DisguiseRiskType.php');
-require_once(__DIR__ . '/FakeRiskType.php');
+namespace Org\NameApi\Client\Services\RiskDetector;
 
 /**
  * One detected risk within a RiskDetectorResult.
@@ -12,7 +8,8 @@ require_once(__DIR__ . '/FakeRiskType.php');
  *
  * @since v5.3
  */
-class DetectedRisk {
+class DetectedRisk
+{
 
     /**
      * @var DataItem $dataItem
@@ -37,8 +34,9 @@ class DetectedRisk {
 
     /**
      */
-    public function __construct($dataItem, $riskType, $riskScore, $reason) {
-        if ($riskScore <= 0 || $riskScore > 1) throw new \Exception("Risk score is out of range (0,1]: ".$riskScore."!");
+    public function __construct($dataItem, $riskType, $riskScore, $reason)
+    {
+        if ($riskScore <= 0 || $riskScore > 1) throw new \Exception("Risk score is out of range (0,1]: " . $riskScore . "!");
         $this->dataItem = $dataItem;
         $this->riskType = $riskType;
         $this->riskScore = $riskScore;
@@ -49,28 +47,32 @@ class DetectedRisk {
     /**
      * @return DataItem
      */
-    public function getDataItem() {
+    public function getDataItem()
+    {
         return $this->dataItem;
     }
 
     /**
      * @return RiskType
      */
-    public function getRiskType() {
+    public function getRiskType()
+    {
         return $this->riskType;
     }
 
     /**
      * @return float range (0,1] the higher the worse.
      */
-    public function getRiskScore() {
+    public function getRiskScore()
+    {
         return $this->riskScore;
     }
 
     /**
      * A one sentence text reason intended for the human that explains the risk.
      */
-    public function getReason() {
+    public function getReason()
+    {
         return $this->reason;
     }
 

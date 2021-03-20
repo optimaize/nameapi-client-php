@@ -1,18 +1,14 @@
 <?php
 
-namespace org\nameapi\client\fault;
+namespace Org\NameApi\Client\Fault;
 
-require_once(__DIR__.'/Blame.php');
-require_once(__DIR__.'/Retry.php');
-require_once(__DIR__.'/RetryType.php');
-require_once(__DIR__.'/../http/HttpResponseData.php');
-
-use \Exception;
+use Exception;
 
 /**
  * This Exception, or a subtype of it, is thrown in case something did not go as planned.
  */
-class ServiceException extends Exception {
+class ServiceException extends Exception
+{
 
     /**
      * @var FaultInfo
@@ -32,12 +28,12 @@ class ServiceException extends Exception {
      * @param HttpResponseData $httpData
      * @param Exception $cause
      */
-    public function __construct($message, FaultInfo $faultInfo=null, HttpResponseData $httpData=null, $cause=null) {
+    public function __construct($message, FaultInfo $faultInfo = null, HttpResponseData $httpData = null, $cause = null)
+    {
         parent::__construct($message, 0, $cause);
         $this->faultInfo = $faultInfo;
         $this->httpData = $httpData;
     }
-
 
 
     /**

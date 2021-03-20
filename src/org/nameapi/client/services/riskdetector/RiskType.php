@@ -1,12 +1,13 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
+namespace Org\NameApi\Client\Services\RiskDetector;
 
 
 /**
  * Class RiskType, see subtypes FakeRiskType and DisguiseRiskType.
  */
-abstract class RiskType {
+abstract class RiskType
+{
 
 }
 

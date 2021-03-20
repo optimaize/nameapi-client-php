@@ -1,20 +1,17 @@
 <?php
 
-namespace org\nameapi\client\services\matcher\personmatcher;
+namespace Org\NameApi\Client\Services\Matcher\PersonMatcher;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\client\services\matcher\AgeMatcherResult;
-use org\nameapi\client\services\matcher\AgeMatchType;
-use org\nameapi\client\services\matcher\GenderMatcherResult;
-use org\nameapi\client\services\matcher\GenderMatchType;
-use org\nameapi\client\services\matcher\PersonNameMatcherResult;
-use org\nameapi\client\services\matcher\PersonNameMatchType;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-
-require_once(__DIR__.'/PersonMatcherResult.php');
-
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\Client\Services\Matcher\AgeMatcherResult;
+use Org\NameApi\Client\Services\Matcher\AgeMatchType;
+use Org\NameApi\Client\Services\Matcher\GenderMatcherResult;
+use Org\NameApi\Client\Services\Matcher\GenderMatchType;
+use Org\NameApi\Client\Services\Matcher\PersonNameMatcherResult;
+use Org\NameApi\Client\Services\Matcher\PersonNameMatchType;
+use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
 
 /**
  * This is the service class for the web service offered at
@@ -26,11 +23,13 @@ require_once(__DIR__.'/PersonMatcherResult.php');
  *
  * @since v4.0
  */
-class PersonMatcherService extends BaseService {
+class PersonMatcherService extends BaseService
+{
 
     private static $RESOURCE_PATH = "matcher/personmatcher";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -41,14 +40,15 @@ class PersonMatcherService extends BaseService {
      * @return PersonMatcherResult
      * @throws ServiceException
      */
-    public function match(NaturalInputPerson $person1, NaturalInputPerson $person2) {
+    public function match(NaturalInputPerson $person1, NaturalInputPerson $person2)
+    {
         $queryParams = array();
         $headerParams = array();
 
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonMatcherService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            array('inputPerson1'=>$person1, 'inputPerson2'=>$person2, 'context'=>$this->context)
+            array('inputPerson1' => $person1, 'inputPerson2' => $person2, 'context' => $this->context)
         );
 
         try {
@@ -59,8 +59,8 @@ class PersonMatcherService extends BaseService {
                 new PersonNameMatcherResult(new PersonNameMatchType($response->personNameMatcherResult->matchType)),
                 new GenderMatcherResult(
                     new GenderMatchType($response->genderMatcherResult->matchType),
-                    isSet($response->genderMatcherResult->confidence) ? $response->genderMatcherResult->confidence : null,
-                    isSet($response->genderMatcherResult->warnings) ? $response->genderMatcherResult->warnings : null
+                    isset($response->genderMatcherResult->confidence) ? $response->genderMatcherResult->confidence : null,
+                    isset($response->genderMatcherResult->warnings) ? $response->genderMatcherResult->warnings : null
                 ),
                 new AgeMatcherResult(new AgeMatchType($response->ageMatcherResult->matchType))
             );

@@ -1,19 +1,16 @@
 <?php
 
-namespace org\nameapi\client\services\email;
+namespace Org\NameApi\Client\Services\Email;
 
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\client\services\email\disposableemailaddressdetector\DisposableEmailAddressDetectorService;
-use org\nameapi\client\services\email\emailnameparser\EmailNameParserService;
-
-require_once(__DIR__.'/disposableemailaddressdetector/DisposableEmailAddressDetectorService.php');
-require_once(__DIR__.'/emailnameparser/EmailNameParserService.php');
-
+use Org\NameApi\Client\Services\Email\DisposableEmailAddressDetector\DisposableEmailAddressDetectorService;
+use Org\NameApi\Client\Services\Email\EmailNameParser\EmailNameParserService;
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * Provides access to the email-related services.
  */
-class EmailServiceFactory {
+class EmailServiceFactory
+{
 
     private $apiKey;
     private $context;
@@ -24,7 +21,8 @@ class EmailServiceFactory {
 
     /**
      */
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
@@ -34,8 +32,9 @@ class EmailServiceFactory {
      * @return DisposableEmailAddressDetectorService
      * @since v4.0
      */
-    public function disposableEmailAddressDetector() {
-        if ($this->disposableEmailAddressDetector==null) {
+    public function disposableEmailAddressDetector()
+    {
+        if ($this->disposableEmailAddressDetector == null) {
             $this->disposableEmailAddressDetector = new DisposableEmailAddressDetectorService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->disposableEmailAddressDetector;
@@ -45,8 +44,9 @@ class EmailServiceFactory {
      * @return EmailNameParserService
      * @since v4.0
      */
-    public function emailNameParser() {
-        if ($this->emailNameParser==null) {
+    public function emailNameParser()
+    {
+        if ($this->emailNameParser == null) {
             $this->emailNameParser = new EmailNameParserService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->emailNameParser;

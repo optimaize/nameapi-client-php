@@ -1,27 +1,17 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
-
-require_once(__DIR__.'/StreetInfo.php');
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 /**
  * @see StructuredStreetInfoBuilder
  */
-class StructuredStreetInfo extends StreetInfo {
-
-    /**
-     * @return StructuredStreetInfoBuilder
-     */
-    static function builder() {
-        return new StructuredStreetInfoBuilder();
-    }
+class StructuredStreetInfo extends StreetInfo
+{
 
     /**
      * Used for JSON marshalling only.
      */
     public $type = 'StructuredStreetInfo';
-
-
     /**
      * @var string|null $streetName
      */
@@ -47,7 +37,6 @@ class StructuredStreetInfo extends StreetInfo {
      */
     public $apartment;
 
-
     /**
      * StructuredStreetInfo constructor.
      * @param string $streetName
@@ -57,13 +46,22 @@ class StructuredStreetInfo extends StreetInfo {
      * @param string $floor
      * @param string $apartment
      */
-    public function __construct($streetName, $houseNumber, $building, $staircase, $floor, $apartment) {
+    public function __construct($streetName, $houseNumber, $building, $staircase, $floor, $apartment)
+    {
         $this->streetName = $streetName;
         $this->houseNumber = $houseNumber;
         $this->building = $building;
         $this->staircase = $staircase;
         $this->floor = $floor;
         $this->apartment = $apartment;
+    }
+
+    /**
+     * @return StructuredStreetInfoBuilder
+     */
+    static function builder()
+    {
+        return new StructuredStreetInfoBuilder();
     }
 
 }

@@ -1,18 +1,20 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\name\builder;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Name\Builder;
 
-use org\nameapi\ontology\input\entities\person\name\NameField;
-use org\nameapi\ontology\input\entities\person\name\types\CommonNameFieldType;
-use org\nameapi\ontology\input\entities\person\name\types\AmericanNameFieldType;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\NameField;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\Types\AmericanNameFieldType;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\Types\CommonNameFieldType;
 
-class AmericanInputPersonNameBuilder extends InputPersonNameBuilder {
+class AmericanInputPersonNameBuilder extends InputPersonNameBuilder
+{
 
     /**
      * @param $string
      * @return $this
      */
-    public function givenName($string) {
+    public function givenName($string)
+    {
         $this->nameField(new NameField($string, CommonNameFieldType::GIVENNAME));
         return $this;
     }
@@ -21,7 +23,8 @@ class AmericanInputPersonNameBuilder extends InputPersonNameBuilder {
      * @param $string
      * @return $this
      */
-    public function middleName($string) {
+    public function middleName($string)
+    {
         $this->nameField(new NameField($string, AmericanNameFieldType::MIDDLENAME));
         return $this;
     }
@@ -30,7 +33,8 @@ class AmericanInputPersonNameBuilder extends InputPersonNameBuilder {
      * @param $string
      * @return $this
      */
-    public function surname($string) {
+    public function surname($string)
+    {
         $this->nameField(new NameField($string, CommonNameFieldType::SURNAME));
         return $this;
     }
@@ -40,7 +44,8 @@ class AmericanInputPersonNameBuilder extends InputPersonNameBuilder {
      * @param $string
      * @return $this
      */
-    public function prefix($string) {
+    public function prefix($string)
+    {
         $this->nameField(new NameField($string, AmericanNameFieldType::NAMEPREFIX));
         return $this;
     }
@@ -49,7 +54,8 @@ class AmericanInputPersonNameBuilder extends InputPersonNameBuilder {
      * @param $string
      * @return $this
      */
-    public function suffix($string) {
+    public function suffix($string)
+    {
         $this->nameField(new NameField($string, AmericanNameFieldType::NAMESUFFIX));
         return $this;
     }

@@ -1,8 +1,9 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\contact;
+namespace Org\NameApi\Ontology\Input\Entities\Contact;
 
-class TelNumber {
+class TelNumber
+{
 
     /**
      * Used for JSON marshalling only.
@@ -17,7 +18,8 @@ class TelNumber {
     /**
      * @param string $fullNumber
      */
-    public function __construct($fullNumber) {
+    public function __construct($fullNumber)
+    {
         $this->fullNumber = $fullNumber;
     }
 

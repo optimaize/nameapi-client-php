@@ -1,19 +1,20 @@
 <?php
 
-namespace org\nameapi\client\http;
+namespace Org\NameApi\Client\Http;
 
 /**
  * Configuration for the RestHttpClient.
  *
  * Based on auto-generated code from https://github.com/swagger-api/swagger-codegen
  */
-class RestHttpClientConfig {
+class RestHttpClientConfig
+{
 
     private static $_defaultConfiguration = null;
 
     protected $apiKey;
     protected $baseUrl;
-    protected $userAgent =  "NameAPI PHP Client 5.3";
+    protected $userAgent = "NameAPI PHP Client 5.3";
 
 
     /**
@@ -59,6 +60,72 @@ class RestHttpClientConfig {
     public function __construct()
     {
         $this->tempFolderPath = sys_get_temp_dir();
+    }
+
+    /**
+     * Gets the essential information for debugging
+     *
+     * @return string The report for debugging
+     */
+    public static function toDebugReport()
+    {
+        $report = "RestHttpClientConfig Debug Report:\n";
+        $report .= "    OS: " . php_uname() . "\n";
+        $report .= "    PHP Version: " . phpversion() . "\n";
+        $report .= "    Swagger Spec Version: v5.3\n";
+        $report .= "    SDK Package Version: 1.0.0\n";
+        $report .= "    Temp Folder Path: " . self::getDefaultConfiguration()->getTempFolderPath() . "\n";
+
+        return $report;
+    }
+
+    /**
+     * Gets the temp folder path
+     *
+     * @return string Temp folder path
+     */
+    public function getTempFolderPath()
+    {
+        return $this->tempFolderPath;
+    }
+
+    /**
+     * Sets the temp folder path
+     *
+     * @param string $tempFolderPath Temp folder path
+     *
+     * @return RestHttpClientConfig
+     */
+    public function setTempFolderPath($tempFolderPath)
+    {
+        $this->tempFolderPath = $tempFolderPath;
+        return $this;
+    }
+
+    /**
+     * Gets the default configuration instance
+     *
+     * @return RestHttpClientConfig
+     */
+    public static function getDefaultConfiguration()
+    {
+        if (self::$_defaultConfiguration == null) {
+            self::$_defaultConfiguration = new RestHttpClientConfig();
+        }
+
+        return self::$_defaultConfiguration;
+    }
+
+    /**
+     * Sets the detault configuration instance
+     *
+     * @param RestHttpClientConfig $config An instance of the Configuration Object
+     *
+     * @return void
+     */
+    public static function setDefaultConfiguration(RestHttpClientConfig $config)
+    {
+        self::$_defaultConfiguration = $config;
     }
 
     /**
@@ -110,11 +177,21 @@ class RestHttpClientConfig {
     }
 
     /**
+     * Gets the HTTP timeout value
+     *
+     * @return string HTTP timeout value
+     */
+    public function getCurlTimeout()
+    {
+        return $this->curlTimeout;
+    }
+
+    /**
      * Sets the HTTP timeout value
      *
      * @param integer $seconds Number of seconds before timing out [set to 0 for no timeout]
      *
-     * @return RestHttpClient
+     * @return RestHttpClientConfig
      */
     public function setCurlTimeout($seconds)
     {
@@ -127,13 +204,13 @@ class RestHttpClientConfig {
     }
 
     /**
-     * Gets the HTTP timeout value
+     * Gets the debug flag
      *
-     * @return string HTTP timeout value
+     * @return bool
      */
-    public function getCurlTimeout()
+    public function getDebug()
     {
-        return $this->curlTimeout;
+        return $this->debug;
     }
 
     /**
@@ -150,13 +227,13 @@ class RestHttpClientConfig {
     }
 
     /**
-     * Gets the debug flag
+     * Gets the debug file
      *
-     * @return bool
+     * @return string
      */
-    public function getDebug()
+    public function getDebugFile()
     {
-        return $this->debug;
+        return $this->debugFile;
     }
 
     /**
@@ -173,36 +250,13 @@ class RestHttpClientConfig {
     }
 
     /**
-     * Gets the debug file
+     * Gets if SSL verification should be enabled or disabled
      *
-     * @return string
+     * @return boolean True if the certificate should be validated, false otherwise
      */
-    public function getDebugFile()
+    public function getSSLVerification()
     {
-        return $this->debugFile;
-    }
-
-    /**
-     * Sets the temp folder path
-     *
-     * @param string $tempFolderPath Temp folder path
-     *
-     * @return RestHttpClientConfig
-     */
-    public function setTempFolderPath($tempFolderPath)
-    {
-        $this->tempFolderPath = $tempFolderPath;
-        return $this;
-    }
-
-    /**
-     * Gets the temp folder path
-     *
-     * @return string Temp folder path
-     */
-    public function getTempFolderPath()
-    {
-        return $this->tempFolderPath;
+        return $this->sslVerification;
     }
 
     /**
@@ -216,59 +270,6 @@ class RestHttpClientConfig {
     {
         $this->sslVerification = $sslVerification;
         return $this;
-    }
-
-    /**
-     * Gets if SSL verification should be enabled or disabled
-     *
-     * @return boolean True if the certificate should be validated, false otherwise
-     */
-    public function getSSLVerification()
-    {
-        return $this->sslVerification;
-    }
-
-    /**
-     * Gets the default configuration instance
-     *
-     * @return RestHttpClientConfig
-     */
-    public static function getDefaultConfiguration()
-    {
-        if (self::$_defaultConfiguration == null) {
-            self::$_defaultConfiguration = new RestHttpClientConfig();
-        }
-
-        return self::$_defaultConfiguration;
-    }
-
-    /**
-     * Sets the detault configuration instance
-     *
-     * @param RestHttpClientConfig $config An instance of the Configuration Object
-     *
-     * @return void
-     */
-    public static function setDefaultConfiguration(RestHttpClientConfig $config)
-    {
-        self::$_defaultConfiguration = $config;
-    }
-
-    /**
-     * Gets the essential information for debugging
-     *
-     * @return string The report for debugging
-     */
-    public static function toDebugReport()
-    {
-        $report  = "RestHttpClientConfig Debug Report:\n";
-        $report .= "    OS: ".php_uname()."\n";
-        $report .= "    PHP Version: ".phpversion()."\n";
-        $report .= "    Swagger Spec Version: v5.3\n";
-        $report .= "    SDK Package Version: 1.0.0\n";
-        $report .= "    Temp Folder Path: ".self::getDefaultConfiguration()->getTempFolderPath()."\n";
-
-        return $report;
     }
 
 }

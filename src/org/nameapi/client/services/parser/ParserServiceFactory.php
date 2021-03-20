@@ -1,15 +1,14 @@
 <?php
 
-namespace org\nameapi\client\services\parser;
+namespace Org\NameApi\Client\Services\Parser;
 
-use org\nameapi\ontology\input\context\Context;
-
-require_once(__DIR__.'/personnameparser/PersonNameParserService.php');
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * Provides access to the parser-related services.
  */
-class ParserServiceFactory {
+class ParserServiceFactory
+{
 
     private $apiKey;
     private $context;
@@ -18,19 +17,21 @@ class ParserServiceFactory {
 
     /**
      */
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
     }
 
     /**
-     * @return personnameparser\PersonNameParserService
+     * @return PersonNameParser\PersonNameParserService
      * @since v4.0
      */
-    public function personNameParser() {
-        if ($this->personNameParser==null) {
-            $this->personNameParser = new personnameparser\PersonNameParserService($this->apiKey, $this->context, $this->baseUrl);
+    public function personNameParser()
+    {
+        if ($this->personNameParser == null) {
+            $this->personNameParser = new PersonNameParser\PersonNameParserService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->personNameParser;
     }

@@ -1,10 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\parser;
+namespace Org\NameApi\Client\Services\Parser;
 
-require_once(__DIR__.'/Term.php');
-
-class OutputPersonName {
+class OutputPersonName
+{
 
     /**
      *
@@ -16,14 +15,16 @@ class OutputPersonName {
     /**
      * @param Term[] $terms
      */
-    public function __construct(array $terms) {
+    public function __construct(array $terms)
+    {
         $this->terms = $terms;
     }
 
     /**
      * @return Term[]
      */
-    public function getTerms() {
+    public function getTerms()
+    {
         return $this->terms;
     }
 
@@ -32,7 +33,8 @@ class OutputPersonName {
      * @param string $termType
      * @return Term[]
      */
-    public function getAll($termType) {
+    public function getAll($termType)
+    {
         $arr = array();
         foreach ($this->terms as $term) {
             if ((string)$term->getTermType() === $termType) {
@@ -47,7 +49,8 @@ class OutputPersonName {
      * @param string $termType
      * @return Term
      */
-    public function getFirst($termType) {
+    public function getFirst($termType)
+    {
         foreach ($this->terms as $term) {
             if ((string)$term->getTermType() === $termType) {
                 return $term;
@@ -57,17 +60,19 @@ class OutputPersonName {
     }
 
 
-    public function __toString() {
+    public function __toString()
+    {
         $nameStr = '';
         foreach ($this->terms as $term) {
             if ($nameStr != '') $nameStr .= ',';
             $nameStr .= $term;
         }
-        $str = 'OutputPersonName{terms='.$nameStr.'}';
+        $str = 'OutputPersonName{terms=' . $nameStr . '}';
         return $str;
     }
 
-    public function toShortString() {
+    public function toShortString()
+    {
         $nameStr = '';
         foreach ($this->terms as $term) {
             if ($nameStr != '') $nameStr .= ', ';

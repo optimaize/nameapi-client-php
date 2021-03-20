@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 
 /**
@@ -8,7 +8,8 @@ namespace org\nameapi\ontology\input\entities\address;
  *
  * @see StructuredAddressBuilder
  */
-abstract class InputAddress {
+abstract class InputAddress
+{
 
 }
 

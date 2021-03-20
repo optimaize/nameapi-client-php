@@ -1,27 +1,17 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
-
-require_once(__DIR__.'/PlaceInfo.php');
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 /**
  * @see StructuredPlaceInfoBuilder
  */
-class StructuredPlaceInfo extends PlaceInfo {
-
-    /**
-     * @return StructuredPlaceInfoBuilder
-     */
-    static function builder() {
-        return new StructuredPlaceInfoBuilder();
-    }
+class StructuredPlaceInfo extends PlaceInfo
+{
 
     /**
      * Used for JSON marshalling only.
      */
     public $type = 'StructuredPlaceInfo';
-
-
     /**
      * @var string|null $locality
      */
@@ -50,12 +40,21 @@ class StructuredPlaceInfo extends PlaceInfo {
      * @param string $region
      * @param string $country
      */
-    public function __construct($locality, $postalCode, $neighborhood, $region, $country) {
-        $this->locality     = $locality;
-        $this->postalCode   = $postalCode;
+    public function __construct($locality, $postalCode, $neighborhood, $region, $country)
+    {
+        $this->locality = $locality;
+        $this->postalCode = $postalCode;
         $this->neighborhood = $neighborhood;
-        $this->region       = $region;
-        $this->country      = $country;
+        $this->region = $region;
+        $this->country = $country;
+    }
+
+    /**
+     * @return StructuredPlaceInfoBuilder
+     */
+    static function builder()
+    {
+        return new StructuredPlaceInfoBuilder();
     }
 
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\age;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Age;
 
 /**
  * Use the AgeInfoFactory to create one.
  */
-class BirthDate extends AgeInfo {
+class BirthDate extends AgeInfo
+{
 
     public $type = 'BirthDate';
 
@@ -32,13 +33,45 @@ class BirthDate extends AgeInfo {
      * @throws \Exception on invalid input data
      * @access public
      */
-    public function __construct($year, $month, $day) {
-        if ($year<0 || $year>2100) throw new \Exception("Year is out of legal range: ".$year."!");
-        if ($month<1 || $month>12)  throw new \Exception("Month must be 1-12 but was: ".$month."!");
-        if ($day<1 || $day>31) throw new \Exception("Day must be 1-31 but was: ".$day."!");
+    public function __construct($year, $month, $day)
+    {
+        if ($year < 0 || $year > 2100) throw new \Exception("Year is out of legal range: " . $year . "!");
+        if ($month < 1 || $month > 12) throw new \Exception("Month must be 1-12 but was: " . $month . "!");
+        if ($day < 1 || $day > 31) throw new \Exception("Day must be 1-31 but was: " . $day . "!");
         $this->year = $year;
         $this->month = $month;
         $this->day = $day;
     }
 
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMonth()
+    {
+        return $this->month;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDay()
+    {
+        return $this->day;
+    }
 }

@@ -1,13 +1,10 @@
 <?php
 
-namespace org\nameapi\client\services\email\disposableemailaddressdetector;
+namespace Org\NameApi\Client\Services\Email\DisposableEmailAddressDetector;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\ontology\input\context\Context;
-
-require_once(__DIR__.'/DisposableEmailAddressDetectorResult.php');
-require_once(__DIR__.'/Maybe.php');
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * This is the service class for the web service offered at
@@ -20,11 +17,13 @@ require_once(__DIR__.'/Maybe.php');
  *
  * @since v4.0
  */
-class DisposableEmailAddressDetectorService extends BaseService {
+class DisposableEmailAddressDetectorService extends BaseService
+{
 
     private static $RESOURCE_PATH = "email/disposableemailaddressdetector";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -34,9 +33,10 @@ class DisposableEmailAddressDetectorService extends BaseService {
      * @return DisposableEmailAddressDetectorResult
      * @throws ServiceException
      */
-    public function isDisposable($emailAddress) {
+    public function isDisposable($emailAddress)
+    {
         $queryParams = array(
-            'emailAddress'=>$emailAddress
+            'emailAddress' => $emailAddress
         );
         $headerParams = array();
 
@@ -51,4 +51,4 @@ class DisposableEmailAddressDetectorService extends BaseService {
         }
     }
 
-} 
+}

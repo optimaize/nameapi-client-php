@@ -1,15 +1,17 @@
 <?php
 
-require '../../src/org/nameapi/client/services/ServiceFactory.php';
-use org\nameapi\client\services\Host;
-use org\nameapi\client\services\ServiceFactory;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\context\Priority;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-use org\nameapi\ontology\input\entities\person\name\InputPersonName;
-use org\nameapi\ontology\input\entities\address\StructuredAddress;
-use org\nameapi\ontology\input\entities\address\StructuredStreetInfo;
-use org\nameapi\ontology\input\entities\address\StructuredPlaceInfo;
+namespace Tests\Functional;
+
+use Org\NameApi\Client\Services\Host;
+use Org\NameApi\Client\Services\ServiceFactory;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Priority;
+use Org\NameApi\Ontology\Input\Entities\Address\StructuredAddress;
+use Org\NameApi\Ontology\Input\Entities\Address\StructuredPlaceInfo;
+use Org\NameApi\Ontology\Input\Entities\Address\StructuredStreetInfo;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\InputPersonName;
+use Org\NameApi\Ontology\Input\Entities\Person\NaturalInputPerson;
+use PHPUnit\Framework\TestCase;
 
 
 /**
@@ -17,12 +19,14 @@ use org\nameapi\ontology\input\entities\address\StructuredPlaceInfo;
  * This is just one simple call. For all functional tests see the separate project at
  * https://github.com/optimaize/nameapi-client-php-functionaltests
  */
-class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
+class PersonRiskDetectorServiceTest extends TestCase
+{
 
     /**
      * In this test only the person's name is sent to the server.
      */
-    public function testDetect() {
+    public function testDetect()
+    {
         //setup code:
         $context = Context::builder()
             ->priority(Priority::REALTIME())
@@ -34,7 +38,7 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         //the call:
         $inputPerson = NaturalInputPerson::builder()
             ->name(InputPersonName::westernBuilder()
-                ->fullname( "John Doe" )
+                ->fullname("John Doe")
                 ->build())
             ->gender("FEMALE")
             ->build();
@@ -62,7 +66,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
      *  - a telephone number
      *  - a physical address
      */
-    public function testDetect_allValues() {
+    public function testDetect_allValues()
+    {
         $context = Context::builder()
             ->priority(Priority::REALTIME())
             ->build();
@@ -72,8 +77,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
 
         $inputPerson = NaturalInputPerson::builder()
             ->name(InputPersonName::westernBuilder()
-                ->givenName( "Donald" )
-                ->surname( "Duck" )
+                ->givenName("Donald")
+                ->surname("Duck")
                 ->build())
             ->addEmailAddress("info@example.com")
             ->addTelNumber("999 999 999")
@@ -107,7 +112,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    private function _expectRiskOnName($risks) {
+    private function _expectRiskOnName($risks)
+    {
         foreach ($risks as $risk) {
             if ((string)$risk->getDataItem() === 'NAME') {
                 return;
@@ -116,7 +122,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(false); //fail
     }
 
-    private function _expectRiskOnAddress($risks) {
+    private function _expectRiskOnAddress($risks)
+    {
         foreach ($risks as $risk) {
             if ((string)$risk->getDataItem() === 'ADDRESS') {
 
@@ -126,7 +133,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(false); //fail
     }
 
-    private function _expectRiskOnEmail($risks) {
+    private function _expectRiskOnEmail($risks)
+    {
         foreach ($risks as $risk) {
             if ((string)$risk->getDataItem() === 'EMAIL') {
 
@@ -136,7 +144,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(false); //fail
     }
 
-    private function _expectRiskOnTel($risks) {
+    private function _expectRiskOnTel($risks)
+    {
         foreach ($risks as $risk) {
             if ((string)$risk->getDataItem() === 'TEL') {
 
@@ -145,7 +154,6 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         }
         $this->assertTrue(false); //fail
     }
-
 
 
 }

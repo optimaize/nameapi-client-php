@@ -1,86 +1,62 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person;
+namespace Org\NameApi\Ontology\Input\Entities\Person;
 
-require_once(__DIR__.'/MaritalStatus.php');
-require_once(__DIR__.'/age/AgeInfoFactory.php');
-require_once(__DIR__.'/gender/ComputedPersonGender.php');
-require_once(__DIR__.'/gender/StoragePersonGender.php');
-require_once(__DIR__.'/name/InputPersonName.php');
+use Org\NameApi\Ontology\Input\Entities\Address\AddressRelation;
+use Org\NameApi\Ontology\Input\Entities\Contact\EmailAddress;
+use Org\NameApi\Ontology\Input\Entities\Contact\TelNumber;
+use Org\NameApi\Ontology\Input\Entities\Person\Age\AgeInfo;
+use Org\NameApi\Ontology\Input\Entities\Person\Gender\StoragePersonGender;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\InputPersonName;
 
-use org\nameapi\ontology\input\entities\contact\EmailAddress;
-use org\nameapi\ontology\input\entities\contact\TelNumber;
-use org\nameapi\ontology\input\entities\person\age\AgeInfo;
-use org\nameapi\ontology\input\entities\person\name\InputPersonName;
-use org\nameapi\ontology\input\entities\person\gender\StoragePersonGender;
-use org\nameapi\ontology\input\entities\address\AddressRelation;
-
-class NaturalInputPerson {
-
-    /**
-     * @return NaturalInputPersonBuilder
-     */
-    static function builder() {
-        return new NaturalInputPersonBuilder();
-    }
+class NaturalInputPerson
+{
 
     public $type = 'NaturalInputPerson';
-
     /**
      * @var InputPersonName|null $personName
      */
     public $personName = null;
-
     /**
      * @var StoragePersonGender $gender
      */
     public $gender = null;
-
     /**
      * @var AgeInfo|null $ageInfo
      */
     public $ageInfo = null;
-
     /**
      * @var string $maritalStatus
      */
     public $maritalStatus = null;
-
     /**
      * @var string[]|null $nationalities
      */
     public $nationalities = null;
-
     /**
      * @var string[]|null $nativeLanguages
      */
     public $nativeLanguages = null;
-
     /**
      * @var string|null $correspondenceLanguage
      */
     public $correspondenceLanguage = null;
-
     /**
      * @var string|null $religion
      */
     public $religion = null;
-
     /**
      * @var AddressRelation[]|null $addresses
      */
     public $addresses = null;
-
     /**
      * @var TelNumber[]|null $telNumbers
      */
     public $telNumbers = null;
-
     /**
      * @var EmailAddress[]|null $emailAddresses
      */
     public $emailAddresses = null;
-
 
     /**
      * Use the {@link NaturalInputPersonBuilder} to create this.
@@ -103,11 +79,12 @@ class NaturalInputPerson {
                                 $correspondenceLanguage,
                                 $religion,
                                 $addresses,
-                                $telNumbers, $emailAddresses) {
+                                $telNumbers, $emailAddresses)
+    {
         $this->personName = $personName;
-        $this->gender = ($gender!=null) ? (String)$gender : null;
+        $this->gender = ($gender != null) ? (string)$gender : null;
         $this->ageInfo = $ageInfo;
-        $this->maritalStatus = ($maritalStatus!=null) ? (String)$maritalStatus : null;
+        $this->maritalStatus = ($maritalStatus != null) ? (string)$maritalStatus : null;
         $this->nationalities = $nationalities;
         $this->nativeLanguages = $nativeLanguages;
         $this->correspondenceLanguage = $correspondenceLanguage;
@@ -115,6 +92,14 @@ class NaturalInputPerson {
         $this->addresses = $addresses;
         $this->telNumbers = $telNumbers;
         $this->emailAddresses = $emailAddresses;
+    }
+
+    /**
+     * @return NaturalInputPersonBuilder
+     */
+    static function builder()
+    {
+        return new NaturalInputPersonBuilder();
     }
 
 }

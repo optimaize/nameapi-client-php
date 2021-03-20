@@ -1,13 +1,6 @@
 <?php
 
-namespace org\nameapi\client\fault;
-
-require_once(__DIR__.'/Blame.php');
-require_once(__DIR__.'/FaultInfo.php');
-require_once(__DIR__.'/FaultInfoUnmarshaller.php');
-require_once(__DIR__.'/Retry.php');
-require_once(__DIR__.'/RetryType.php');
-require_once(__DIR__.'/ServiceException.php');
+namespace Org\NameApi\Client\Fault;
 
 /**
  * An object containing fault information that is used within a {@link ServiceException}.
@@ -72,7 +65,7 @@ class FaultInfo
      * @param Retry $retrySameLocation
      * @param Retry $retryOtherLocations
      */
-    public function __construct($faultCause, $blame, $message, $applicationErrorCode=null, $incidentId=null, Retry $retrySameLocation=null, Retry $retryOtherLocations=null)
+    public function __construct($faultCause, $blame, $message, $applicationErrorCode = null, $incidentId = null, Retry $retrySameLocation = null, Retry $retryOtherLocations = null)
     {
         $this->faultCause = $faultCause;
         $this->blame = $blame;

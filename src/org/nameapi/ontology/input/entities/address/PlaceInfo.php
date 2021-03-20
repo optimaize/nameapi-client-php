@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 
 /**
@@ -12,7 +12,8 @@ namespace org\nameapi\ontology\input\entities\address;
  *  - country
  *
  */
-abstract class PlaceInfo {
+abstract class PlaceInfo
+{
 
 }
 

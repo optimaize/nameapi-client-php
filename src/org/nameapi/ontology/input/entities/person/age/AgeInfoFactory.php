@@ -1,16 +1,12 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\age;
-
-include_once('AgeInfo.php');
-include_once('BirthDate.php');
-include_once('BirthYear.php');
-include_once('BirthYearRange.php');
+namespace Org\NameApi\Ontology\Input\Entities\Person\Age;
 
 /**
  * Creates instances of {@link AgeInfo}.
  */
-class AgeInfoFactory {
+class AgeInfoFactory
+{
 
     /**
      * Example: forDate(1986, 12, 31);
@@ -19,7 +15,8 @@ class AgeInfoFactory {
      * @param int $day 1-2-digit day from 1-31
      * @return BirthDate
      */
-    static function forDate($year, $month, $day) {
+    static function forDate($year, $month, $day)
+    {
         return new BirthDate($year, $month, $day);
     }
 
@@ -28,7 +25,8 @@ class AgeInfoFactory {
      * @param int $year 4-digit year
      * @return BirthYear
      */
-    static function forYear($year) {
+    static function forYear($year)
+    {
         return new BirthYear($year);
     }
 
@@ -38,8 +36,9 @@ class AgeInfoFactory {
      * @param int $yearEndIncl 4-digit year, or null
      * @return AgeInfo
      */
-    static function forYearRange($yearStartIncl, $yearEndIncl) {
-        return new BirthYearRange(new YearRange($yearStartIncl,$yearEndIncl));
+    static function forYearRange($yearStartIncl, $yearEndIncl)
+    {
+        return new BirthYearRange(new YearRange($yearStartIncl, $yearEndIncl));
     }
 
 }

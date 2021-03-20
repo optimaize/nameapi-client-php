@@ -1,8 +1,9 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\contact;
+namespace Org\NameApi\Ontology\Input\Entities\Contact;
 
-class EmailAddress {
+class EmailAddress
+{
 
     /**
      * Used for JSON marshalling only.
@@ -17,7 +18,8 @@ class EmailAddress {
     /**
      * @param string $emailAddress
      */
-    public function __construct($emailAddress) {
+    public function __construct($emailAddress)
+    {
         $this->emailAddress = $emailAddress;
     }
 

@@ -1,8 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
-
-require_once(__DIR__.'/StructuredPlaceInfo.php');
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 /**
  * Builder for a StructuredPlaceInfo.
@@ -10,7 +8,8 @@ require_once(__DIR__.'/StructuredPlaceInfo.php');
  * <p>The setters don't do anything other than setting the value. They don't check if the value was
  * set already, they don't trim the values.</p>
  */
-class StructuredPlaceInfoBuilder {
+class StructuredPlaceInfoBuilder
+{
 
     /**
      * @var string|null $locality
@@ -34,7 +33,8 @@ class StructuredPlaceInfoBuilder {
     private $country;
 
 
-    function __construct() {
+    function __construct()
+    {
     }
 
 
@@ -44,7 +44,8 @@ class StructuredPlaceInfoBuilder {
      * @param string|null $locality
      * @return StructuredPlaceInfoBuilder
      */
-    public function locality($locality) {
+    public function locality($locality)
+    {
         $this->locality = $locality;
         return $this;
     }
@@ -55,7 +56,8 @@ class StructuredPlaceInfoBuilder {
      * @param string|null $postalCode
      * @return StructuredPlaceInfoBuilder
      */
-    public function postalCode($postalCode) {
+    public function postalCode($postalCode)
+    {
         $this->postalCode = $postalCode;
         return $this;
     }
@@ -64,7 +66,8 @@ class StructuredPlaceInfoBuilder {
      * @param string|null $neighborhood
      * @return StructuredPlaceInfoBuilder
      */
-    public function neighborhood($neighborhood) {
+    public function neighborhood($neighborhood)
+    {
         $this->neighborhood = $neighborhood;
         return $this;
     }
@@ -73,7 +76,8 @@ class StructuredPlaceInfoBuilder {
      * @param string|null $region
      * @return StructuredPlaceInfoBuilder
      */
-    public function region($region) {
+    public function region($region)
+    {
         $this->region = $region;
         return $this;
     }
@@ -84,7 +88,8 @@ class StructuredPlaceInfoBuilder {
      * @param string|null $country
      * @return StructuredPlaceInfoBuilder
      */
-    public function country($country) {
+    public function country($country)
+    {
         $this->country = $country;
         return $this;
     }
@@ -93,7 +98,8 @@ class StructuredPlaceInfoBuilder {
     /**
      * @return StructuredPlaceInfo
      */
-    public function build() {
+    public function build()
+    {
         return new StructuredPlaceInfo(
             $this->locality,
             $this->postalCode,

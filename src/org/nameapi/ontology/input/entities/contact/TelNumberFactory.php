@@ -1,16 +1,16 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\contact;
+namespace Org\NameApi\Ontology\Input\Entities\Contact;
 
-require_once(__DIR__.'/TelNumber.php');
-
-class TelNumberFactory {
+class TelNumberFactory
+{
 
     /**
      * @param $string
      * @return TelNumber
      */
-    static function forNumber($string) {
+    static function forNumber($string)
+    {
         return new TelNumber($string);
     }
 

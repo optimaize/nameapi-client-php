@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person;
+namespace Org\NameApi\Ontology\Input\Entities\Person;
 
 
 /**
@@ -8,25 +8,27 @@ namespace org\nameapi\ontology\input\entities\person;
  *
  * Possible values are: UNKNOWN, SINGLE, ENGAGED, MARRIED, SEPARATED, DIVORCED, WIDOWED
  *
- * @package org\nameapi\ontology\input\entities\person
+ * @package Org\NameApi\Ontology\Input\Entities\Person
  */
-final class MaritalStatus {
+final class MaritalStatus
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!='UNKNOWN' && $value!='SINGLE' && $value!='ENGAGED' && $value!='MARRIED' && $value!='SEPARATED' && $value!='DIVORCED' && $value!='WIDOWED') {
-            throw new \Exception('Invalid value for MaritalStatus: '.$value.'!');
+    public function __construct($value)
+    {
+        if ($value != 'UNKNOWN' && $value != 'SINGLE' && $value != 'ENGAGED' && $value != 'MARRIED' && $value != 'SEPARATED' && $value != 'DIVORCED' && $value != 'WIDOWED') {
+            throw new \Exception('Invalid value for MaritalStatus: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 

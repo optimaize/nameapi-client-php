@@ -1,10 +1,11 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\age;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Age;
 
 /**
  */
-class YearRange {
+class YearRange
+{
 
     /**
      * @var int $startIncluding
@@ -16,16 +17,15 @@ class YearRange {
     public $endIncluding;
 
 
-
-
     /**
      * @param int $startIncluding
      * @param int $endIncluding
      * @access public
      */
-    public function __construct($startIncluding, $endIncluding) {
+    public function __construct($startIncluding, $endIncluding)
+    {
         $this->startIncluding = $startIncluding;
         $this->endIncluding = $endIncluding;
     }
-    
+
 }

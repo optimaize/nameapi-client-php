@@ -1,10 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\parser;
+namespace Org\NameApi\Client\Services\Parser;
 
-require_once(__DIR__.'/OutputTermType.php');
-
-class Term {
+class Term
+{
 
     /**
      * @var string $string
@@ -16,7 +15,8 @@ class Term {
      */
     private $termType = null;
 
-    public function __construct($string, OutputTermType $termType) {
+    public function __construct($string, OutputTermType $termType)
+    {
         $this->string = $string;
         $this->termType = $termType;
     }
@@ -24,23 +24,27 @@ class Term {
     /**
      * @return string
      */
-    public function getString() {
+    public function getString()
+    {
         return $this->string;
     }
 
     /**
      * @return OutputTermType
      */
-    public function getTermType() {
+    public function getTermType()
+    {
         return $this->termType;
     }
 
-    public function __toString() {
-        return 'Term{string='.$this->string.', termType='.$this->termType.'}';
+    public function __toString()
+    {
+        return 'Term{string=' . $this->string . ', termType=' . $this->termType . '}';
     }
 
-    public function toShortString() {
-        return $this->termType . ':'.$this->string;
+    public function toShortString()
+    {
+        return $this->termType . ':' . $this->string;
     }
 
 }

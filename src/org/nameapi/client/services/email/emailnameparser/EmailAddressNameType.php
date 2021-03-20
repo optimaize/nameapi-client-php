@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\client\services\email\emailnameparser;
+namespace Org\NameApi\Client\Services\Email\EmailNameParser;
 
 /**
  * Class EmailAddressParsingResultType
@@ -13,25 +13,28 @@ namespace org\nameapi\client\services\email\emailnameparser;
  *     The string does not end with a dot.
  * </pre>
  */
-class EmailAddressNameType {
+class EmailAddressNameType
+{
 
     /**
      * @var string $value
      */
     private $value = null;
 
-    public function __construct($value) {
-        if ($value!=='NAME'
-            && $value!=='INITIAL'
+    public function __construct($value)
+    {
+        if ($value !== 'NAME'
+            && $value !== 'INITIAL'
         ) {
-            throw new \Exception('Invalid value for EmailAddressNameType: '.$value.'!');
+            throw new \Exception('Invalid value for EmailAddressNameType: ' . $value . '!');
         }
         $this->value = $value;
     }
 
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->value;
     }
 
-} 
+}

@@ -1,12 +1,6 @@
 <?php
 
-namespace org\nameapi\client\fault;
-
-require_once(__DIR__.'/FaultInfo.php');
-require_once(__DIR__.'/Blame.php');
-require_once(__DIR__.'/Retry.php');
-require_once(__DIR__.'/RetryType.php');
-
+namespace Org\NameApi\Client\Fault;
 
 /**
  * Converts json to a FaultInfo.
@@ -15,13 +9,13 @@ class FaultInfoUnmarshaller
 {
 
 
-
     /**
      * @param $data The json string
      * @return FaultInfo
      * @throws \Exception
      */
-    public static function unmarshallJsonString($data) {
+    public static function unmarshallJsonString($data)
+    {
         try {
             return FaultInfoUnmarshaller::unmarshallJsonObject(json_decode($data));
         } catch (\Exception $e) {
@@ -35,15 +29,16 @@ class FaultInfoUnmarshaller
      * @return FaultInfo
      * @throws \Exception
      */
-    public static function unmarshallJsonObject($data) {
+    public static function unmarshallJsonObject($data)
+    {
         try {
             $retrySame = null;
-            if (isSet($data->retrySameLocation)) {
+            if (isset($data->retrySameLocation)) {
                 $retrySame = FaultInfoUnmarshaller::unmarshallRetry($data->retrySameLocation);
             }
 
             $retryOther = null;
-            if (isSet($data->retryOtherLocations)) {
+            if (isset($data->retryOtherLocations)) {
                 $retryOther = FaultInfoUnmarshaller::unmarshallRetry($data->retryOtherLocations);
             }
 
@@ -51,8 +46,8 @@ class FaultInfoUnmarshaller
                 $data->faultCause,
                 new Blame($data->blame),
                 $data->message,
-                (isSet($data->applicationErrorCode)) ? $data->applicationErrorCode : null, //this is optional
-                (isSet($data->incidentId)) ? $data->incidentId : null, //this is optional
+                (isset($data->applicationErrorCode)) ? $data->applicationErrorCode : null, //this is optional
+                (isset($data->incidentId)) ? $data->incidentId : null, //this is optional
                 $retrySame, $retryOther
             );
 
@@ -72,7 +67,7 @@ class FaultInfoUnmarshaller
     {
         return new Retry(
             new RetryType($data->retryType),
-            (isSet($data->retryInSeconds)) ? $data->retryInSeconds : null // this is optional
+            (isset($data->retryInSeconds)) ? $data->retryInSeconds : null // this is optional
         );
     }
 

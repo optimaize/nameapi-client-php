@@ -1,10 +1,10 @@
 <?php
 
-namespace org\nameapi\client\services\system\ping;
+namespace Org\NameApi\Client\Services\System\Ping;
 
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\ontology\input\context\Context;
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\ontology\input\Context\Context;
 
 
 /**
@@ -15,11 +15,13 @@ use org\nameapi\ontology\input\context\Context;
  * $ping = $myServiceFactory->systemServices()->pingService();
  * $pong = $ping->ping();
  */
-class PingService extends BaseService {
+class PingService extends BaseService
+{
 
     private static $RESOURCE_PATH = "system/ping";
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -27,7 +29,8 @@ class PingService extends BaseService {
      * @return string 'pong'
      * @throws ServiceException
      */
-    public function ping() {
+    public function ping()
+    {
         $queryParams = array();
         $headerParams = array();
 

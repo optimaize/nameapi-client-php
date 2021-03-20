@@ -1,8 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\email\disposableemailaddressdetector;
+namespace Org\NameApi\Client\Services\Email\DisposableEmailAddressDetector;
 
-class DisposableEmailAddressDetectorResult {
+class DisposableEmailAddressDetectorResult
+{
 
     /**
      * @var Maybe $disposable
@@ -13,14 +14,16 @@ class DisposableEmailAddressDetectorResult {
      * @param Maybe $disposable
      * @access public
      */
-    public function __construct($disposable) {
+    public function __construct($disposable)
+    {
         $this->disposable = $disposable;
     }
 
     /**
      * @return Maybe
      */
-    public function getDisposable() {
+    public function getDisposable()
+    {
         return $this->disposable;
     }
 

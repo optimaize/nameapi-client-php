@@ -1,18 +1,16 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector\riskdetector;
+namespace Org\NameApi\Client\Services\RiskDetector\Person;
 
-require_once(__DIR__ . '/../RiskDetectorResult.php');
-
-use org\nameapi\client\fault\ServiceException;
-use org\nameapi\client\services\BaseService;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
-use org\nameapi\client\services\riskdetector\RiskDetectorResult;
-use org\nameapi\client\services\riskdetector\DetectedRisk;
-use org\nameapi\client\services\riskdetector\DisguiseRiskType;
-use org\nameapi\client\services\riskdetector\FakeRiskType;
-use org\nameapi\client\services\riskdetector\DataItem;
+use Org\NameApi\Client\Fault\ServiceException;
+use Org\NameApi\Client\Services\BaseService;
+use Org\NameApi\Client\Services\RiskDetector\DataItem;
+use Org\NameApi\Client\Services\RiskDetector\DetectedRisk;
+use Org\NameApi\Client\Services\RiskDetector\DisguiseRiskType;
+use Org\NameApi\Client\Services\RiskDetector\FakeRiskType;
+use Org\NameApi\Client\Services\RiskDetector\RiskDetectorResult;
+use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
 
 
 /**
@@ -25,12 +23,14 @@ use org\nameapi\client\services\riskdetector\DataItem;
  *
  * @since v5.3
  */
-class PersonRiskDetectorService extends BaseService {
+class PersonRiskDetectorService extends BaseService
+{
 
     private static $RESOURCE_PATH = "riskdetector/person";
 
 
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         parent::__construct($apiKey, $context, $baseUrl);
     }
 
@@ -40,14 +40,15 @@ class PersonRiskDetectorService extends BaseService {
      * @return RiskDetectorResult
      * @throws ServiceException
      */
-    public function detect(NaturalInputPerson $person) {
+    public function detect(NaturalInputPerson $person)
+    {
         $queryParams = array();
         $headerParams = array();
 
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonRiskDetectorService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            array('inputPerson'=>$person, 'context'=>$this->context)
+            array('inputPerson' => $person, 'context' => $this->context)
         );
 
         try {
@@ -68,17 +69,19 @@ class PersonRiskDetectorService extends BaseService {
         }
     }
 
-    private function _riskTypeToEnum($val) {
+    private function _riskTypeToEnum($val)
+    {
         if ($val[0] === 'FakeRiskType') {
             return new FakeRiskType($val[1]);
         } else if ($val[0] === 'DisguiseRiskType') {
             return new DisguiseRiskType($val[1]);
         } else {
-            throw new \Exception("Unsupported risk class: ".$val[0]);
+            throw new \Exception("Unsupported risk class: " . $val[0]);
         }
     }
 
-    private function _riskReason($val) {
+    private function _riskReason($val)
+    {
         if (isset($val->reason)) {
             return $val->reason;
         } else {

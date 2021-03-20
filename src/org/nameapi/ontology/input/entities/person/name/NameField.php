@@ -1,6 +1,6 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\name;
+namespace Org\NameApi\Ontology\Input\Entities\Person\Name;
 
 /**
  * Class NameField
@@ -8,9 +8,10 @@ namespace org\nameapi\ontology\input\entities\person\name;
  * The content of a form field or database field, as input sent to the web service.
  * It contains the string value, and the field type.
  *
- * @package org\nameapi\ontology\input\entities\person\name
+ * @package Org\NameApi\Ontology\Input\Entities\Person\name
  */
-class NameField {
+class NameField
+{
 
     /**
      * @var string $string
@@ -27,7 +28,8 @@ class NameField {
      * @param string $fieldType for example "GIVENNAME".
      * @access public
      */
-    public function __construct($string, $fieldType) {
+    public function __construct($string, $fieldType)
+    {
         $this->string = $string;
         $this->fieldType = $fieldType;
     }

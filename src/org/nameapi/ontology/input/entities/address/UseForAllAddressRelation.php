@@ -1,15 +1,14 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\address;
-
-require_once(__DIR__.'/AddressRelation.php');
+namespace Org\NameApi\Ontology\Input\Entities\Address;
 
 /**
  * An address relation that specifies that the address is used for all purposes.
  *
  * <p>This is the case when only one address is known from the InputPerson.</p>
  */
-class UseForAllAddressRelation extends AddressRelation {
+class UseForAllAddressRelation extends AddressRelation
+{
 
     /**
      * Used for JSON marshalling only.
@@ -26,7 +25,8 @@ class UseForAllAddressRelation extends AddressRelation {
      * UseForAllAddressRelation constructor.
      * @param InputAddress $address
      */
-    public function __construct(InputAddress $address) {
+    public function __construct(InputAddress $address)
+    {
         $this->address = $address;
     }
 

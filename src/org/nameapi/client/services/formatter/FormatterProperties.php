@@ -1,8 +1,9 @@
 <?php
 
-namespace org\nameapi\client\services\formatter;
+namespace Org\NameApi\Client\Services\Formatter;
 
-class FormatterProperties {
+class FormatterProperties
+{
 
     /**
      * @var string $caseChoice
@@ -19,7 +20,8 @@ class FormatterProperties {
      */
     private $formatUnknownInput = null;
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 
 
@@ -27,7 +29,8 @@ class FormatterProperties {
      * @param $bool
      * @return FormatterProperties
      */
-    public function formatUnknownInput($bool) {
+    public function formatUnknownInput($bool)
+    {
         $this->formatUnknownInput = $bool;
         return $this;
     }

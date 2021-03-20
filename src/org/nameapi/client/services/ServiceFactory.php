@@ -1,35 +1,14 @@
 <?php
 
-namespace org\nameapi\client\services;
+namespace Org\NameApi\Client\Services;
 
-use org\nameapi\ontology\input\context\Context;
-
-require_once(__DIR__.'/BaseService.php');
-require_once(__DIR__.'/Host.php');
-require_once(__DIR__.'/development/DevelopmentServiceFactory.php');
-require_once(__DIR__.'/system/SystemServiceFactory.php');
-require_once(__DIR__.'/parser/ParserServiceFactory.php');
-require_once(__DIR__.'/genderizer/GenderizerServiceFactory.php');
-require_once(__DIR__.'/matcher/MatcherServiceFactory.php');
-require_once(__DIR__.'/formatter/FormatterServiceFactory.php');
-require_once(__DIR__.'/email/EmailServiceFactory.php');
-require_once(__DIR__.'/riskdetector/RiskDetectorServiceFactory.php');
-
-require_once(__DIR__.'/../http/RestHttpClient.php');
-
-require_once(__DIR__.'/../../ontology/input/context/Context.php');
-require_once(__DIR__.'/../../ontology/input/entities/contact/EmailAddressFactory.php');
-require_once(__DIR__.'/../../ontology/input/entities/contact/TelNumberFactory.php');
-require_once(__DIR__.'/../../ontology/input/entities/person/NaturalInputPersonBuilder.php');
-require_once(__DIR__.'/../../ontology/input/entities/address/StructuredAddressBuilder.php');
-require_once(__DIR__.'/../../ontology/input/entities/address/UseForAllAddressRelation.php');
-
-
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  *
  */
-class ServiceFactory {
+class ServiceFactory
+{
 
     private $apiKey;
 
@@ -72,100 +51,109 @@ class ServiceFactory {
      * @var $apiVersion default is the "latest stable", currently that is 5.3.
      *      You want to change this to target another version, for example a release candidate or a development version.
      */
-    public function __construct($apiKey, Context $context, Host $host=null, $apiVersion=null) {
+    public function __construct($apiKey, Context $context, Host $host = null, $apiVersion = null)
+    {
         $this->apiKey = $apiKey;
         $this->context = $context;
-        if ($host==null) {
+        if ($host == null) {
             $this->host = Host::standard();
         } else {
             $this->host = $host;
         }
-        if ($apiVersion==null) {
+        if ($apiVersion == null) {
             $this->apiVersion = '5.0';
         } else {
             $this->apiVersion = $apiVersion;
         }
-        $this->baseUrl = $this->host->toString() . '/'.$this->technology.'/v'.$this->apiVersion.'/';
+        $this->baseUrl = $this->host->toString() . '/' . $this->technology . '/v' . $this->apiVersion . '/';
     }
 
 
     /**
-     * @return development\DevelopmentServiceFactory
+     * @return Development\DevelopmentServiceFactory
      */
-    public function developmentServices() {
-        if ($this->developmentServiceFactory==null) {
-            $this->developmentServiceFactory = new development\DevelopmentServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function developmentServices()
+    {
+        if ($this->developmentServiceFactory == null) {
+            $this->developmentServiceFactory = new Development\DevelopmentServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->developmentServiceFactory;
     }
 
     /**
-     * @return system\SystemServiceFactory
+     * @return System\SystemServiceFactory
      */
-    public function systemServices() {
-        if ($this->systemServiceFactory==null) {
-            $this->systemServiceFactory = new system\SystemServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function systemServices()
+    {
+        if ($this->systemServiceFactory == null) {
+            $this->systemServiceFactory = new System\SystemServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->systemServiceFactory;
     }
 
     /**
-     * @return parser\ParserServiceFactory
+     * @return Parser\ParserServiceFactory
      */
-    public function parserServices() {
-        if ($this->parserServiceFactory==null) {
-            $this->parserServiceFactory = new parser\ParserServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function parserServices()
+    {
+        if ($this->parserServiceFactory == null) {
+            $this->parserServiceFactory = new Parser\ParserServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->parserServiceFactory;
     }
 
     /**
-     * @return genderizer\GenderizerServiceFactory
+     * @return Genderizer\GenderizerServiceFactory
      */
-    public function genderizerServices() {
-        if ($this->genderizerServiceFactory==null) {
-            $this->genderizerServiceFactory = new genderizer\GenderizerServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function genderizerServices()
+    {
+        if ($this->genderizerServiceFactory == null) {
+            $this->genderizerServiceFactory = new Genderizer\GenderizerServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->genderizerServiceFactory;
     }
 
     /**
-     * @return matcher\MatcherServiceFactory
+     * @return Matcher\MatcherServiceFactory
      */
-    public function matcherServices() {
-        if ($this->matcherServiceFactory==null) {
-            $this->matcherServiceFactory = new matcher\MatcherServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function matcherServices()
+    {
+        if ($this->matcherServiceFactory == null) {
+            $this->matcherServiceFactory = new Matcher\MatcherServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->matcherServiceFactory;
     }
 
     /**
-     * @return formatter\FormatterServiceFactory
+     * @return Formatter\FormatterServiceFactory
      */
-    public function formatterServices() {
-        if ($this->formatterServiceFactory==null) {
-            $this->formatterServiceFactory = new formatter\FormatterServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function formatterServices()
+    {
+        if ($this->formatterServiceFactory == null) {
+            $this->formatterServiceFactory = new Formatter\FormatterServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->formatterServiceFactory;
     }
 
     /**
-     * @return email\EmailServiceFactory
+     * @return Email\EmailServiceFactory
      */
-    public function emailServices() {
-        if ($this->emailServiceFactory==null) {
-            $this->emailServiceFactory = new email\EmailServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function emailServices()
+    {
+        if ($this->emailServiceFactory == null) {
+            $this->emailServiceFactory = new Email\EmailServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->emailServiceFactory;
     }
 
     /**
-     * @return riskdetector\RiskDetectorServiceFactory
+     * @return RiskDetector\RiskDetectorServiceFactory
      * @since v5.3
      */
-    public function riskServices() {
-        if ($this->riskServiceFactory==null) {
-            $this->riskServiceFactory = new riskdetector\RiskDetectorServiceFactory($this->apiKey, $this->context, $this->baseUrl);
+    public function riskServices()
+    {
+        if ($this->riskServiceFactory == null) {
+            $this->riskServiceFactory = new RiskDetector\RiskDetectorServiceFactory($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->riskServiceFactory;
     }

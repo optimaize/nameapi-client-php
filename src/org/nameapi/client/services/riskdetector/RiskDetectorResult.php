@@ -1,15 +1,14 @@
 <?php
 
-namespace org\nameapi\client\services\riskdetector;
-
-require_once(__DIR__ . '/DetectedRisk.php');
+namespace Org\NameApi\Client\Services\RiskDetector;
 
 /**
  * The result of a risk detector execution.
  *
  * @since v5.3
  */
-class RiskDetectorResult {
+class RiskDetectorResult
+{
 
     /**
      * @var double $score
@@ -23,10 +22,11 @@ class RiskDetectorResult {
 
     /**
      */
-    public function __construct($score, $risks) {
-        if ($score < -1 || $score > 1) throw new \Exception("Score is out of range [-1,1]: ".$score);
+    public function __construct($score, $risks)
+    {
+        if ($score < -1 || $score > 1) throw new \Exception("Score is out of range [-1,1]: " . $score);
         if ($score > 0) {
-            if (sizeof($risks)==0) throw new \Exception("At least one risk is required when there is a positive score!");
+            if (sizeof($risks) == 0) throw new \Exception("At least one risk is required when there is a positive score!");
         }
         $this->score = $score;
         $this->risks = $risks;
@@ -42,11 +42,13 @@ class RiskDetectorResult {
      *
      * @return double in range [-1,1]
      */
-    public function getScore() {
+    public function getScore()
+    {
         return $this->score;
     }
 
-    public function hasRisk() {
+    public function hasRisk()
+    {
         return !empty($this->risks);
     }
 
@@ -54,7 +56,8 @@ class RiskDetectorResult {
      * Returns all the detected risks.
      * @return DetectedRisk[] Sorted by severity having the worst come first. Possibly empty, guaranteed to be non-empty if the getScore() is > 0.
      */
-    public function getRisks() {
+    public function getRisks()
+    {
         return $this->risks;
     }
 

@@ -1,24 +1,25 @@
 <?php
 
-namespace org\nameapi\client\services\matcher;
+namespace Org\NameApi\Client\Services\Matcher;
 
-require_once(__DIR__.'/AgeMatchType.php');
-
-class AgeMatcherResult {
+class AgeMatcherResult
+{
 
     /**
      * @var AgeMatchType
      */
     private $matchType;
 
-    function __construct($matchType) {
+    function __construct($matchType)
+    {
         $this->matchType = $matchType;
     }
 
     /**
      * @return AgeMatchType
      */
-    public function getMatchType() {
+    public function getMatchType()
+    {
         return $this->matchType;
     }
 

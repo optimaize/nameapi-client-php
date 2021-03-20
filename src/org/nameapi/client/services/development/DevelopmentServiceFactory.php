@@ -1,17 +1,15 @@
 <?php
 
-namespace org\nameapi\client\services\development;
+namespace Org\NameApi\Client\Services\Development;
 
-use org\nameapi\client\services\development\exceptionthrower\ExceptionThrowerService;
-use org\nameapi\ontology\input\context\Context;
-
-require_once(__DIR__.'/exceptionthrower/ExceptionThrowerService.php');
-
+use Org\NameApi\Client\Services\Development\ExceptionThrower\ExceptionThrowerService;
+use Org\NameApi\ontology\input\Context\Context;
 
 /**
  * Provides access to the system-related services.
  */
-class DevelopmentServiceFactory {
+class DevelopmentServiceFactory
+{
 
     private $apiKey;
     private $context;
@@ -20,7 +18,8 @@ class DevelopmentServiceFactory {
 
     /**
      */
-    public function __construct($apiKey, Context $context, $baseUrl) {
+    public function __construct($apiKey, Context $context, $baseUrl)
+    {
         $this->apiKey = $apiKey;
         $this->context = $context;
         $this->baseUrl = $baseUrl;
@@ -30,8 +29,9 @@ class DevelopmentServiceFactory {
      * @return ExceptionThrowerService
      * @since v5.0
      */
-    public function exceptionThrower() {
-        if ($this->exceptionThrowerService==null) {
+    public function exceptionThrower()
+    {
+        if ($this->exceptionThrowerService == null) {
             $this->exceptionThrowerService = new ExceptionThrowerService($this->apiKey, $this->context, $this->baseUrl);
         }
         return $this->exceptionThrowerService;

@@ -1,11 +1,12 @@
 <?php
 
-namespace org\nameapi\client\services\formatter;
+namespace Org\NameApi\Client\Services\Formatter;
 
 /**
  * The result from a formatter service method.
  */
-class FormatterResult {
+class FormatterResult
+{
 
     /**
      * @var string $formatted
@@ -17,7 +18,8 @@ class FormatterResult {
      */
     private $unknown = null;
 
-    public function __construct($formatted, $unknown) {
+    public function __construct($formatted, $unknown)
+    {
         $this->formatted = $formatted;
         $this->unknown = $unknown;
     }
@@ -25,7 +27,8 @@ class FormatterResult {
     /**
      * @return string The formatted string, which may be the same as the input name/string if that was in the desired form already.
      */
-    public function getFormatted() {
+    public function getFormatted()
+    {
         return $this->formatted;
     }
 
@@ -34,7 +37,8 @@ class FormatterResult {
      * @return boolean true if the server was unable to understand the input, and thus the formatted output is a guess.
      * The default behavior (see input settings) is for the server to throw on unknown input.
      */
-    public function getUnknown() {
+    public function getUnknown()
+    {
         return $this->unknown;
     }
 

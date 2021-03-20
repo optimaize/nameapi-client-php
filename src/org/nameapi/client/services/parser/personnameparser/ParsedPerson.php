@@ -1,19 +1,15 @@
 <?php
 
-namespace org\nameapi\client\services\parser\personnameparser;
+namespace Org\NameApi\Client\Services\Parser\PersonNameParser;
 
-require_once(__DIR__.'/../../../../ontology/input/entities/person/PersonType.php');
-require_once(__DIR__.'/../../../../ontology/input/entities/person/PersonRole.php');
-require_once(__DIR__.'/../../genderizer/persongenderizer/PersonGenderResult.php');
-require_once(__DIR__.'/../OutputPersonName.php');
-
-use org\nameapi\ontology\input\entities\person\PersonType;
-use org\nameapi\ontology\input\entities\person\PersonRole;
-use org\nameapi\client\services\parser\OutputPersonName;
-use org\nameapi\client\services\genderizer\persongenderizer\PersonGenderResult;
+use Org\NameApi\Client\Services\Genderizer\PersonGenderizer\PersonGenderResult;
+use Org\NameApi\Client\Services\Parser\OutputPersonName;
+use Org\NameApi\ontology\input\entities\person\PersonRole;
+use Org\NameApi\ontology\input\entities\person\PersonType;
 
 
-class ParsedPerson {
+class ParsedPerson
+{
 
     /**
      * @var PersonType $personType
@@ -47,56 +43,63 @@ class ParsedPerson {
                                 $addressingGivenName,
                                 $addressingSurname,
                                 OutputPersonName $outputPersonName,
-                                array $people) {
+                                array $people)
+    {
         //if (!$names) throw new \Exception("Names may not be empty!");
-        $this->personType           = $personType;
-        $this->personRole           = $personRole;
-        $this->gender               = $gender;
-        $this->addressingGivenName  = $addressingGivenName;
-        $this->addressingSurname    = $addressingSurname;
-        $this->outputPersonName     = $outputPersonName;
-        $this->people               = $people;
+        $this->personType = $personType;
+        $this->personRole = $personRole;
+        $this->gender = $gender;
+        $this->addressingGivenName = $addressingGivenName;
+        $this->addressingSurname = $addressingSurname;
+        $this->outputPersonName = $outputPersonName;
+        $this->people = $people;
     }
 
     /**
      * @return PersonType
      */
-    public function getPersonType() {
+    public function getPersonType()
+    {
         return $this->personType;
     }
 
     /**
      * @return PersonRole
      */
-    public function getPersonRole() {
+    public function getPersonRole()
+    {
         return $this->personRole;
     }
 
     /**
      * @return PersonGenderResult or null
      */
-    public function getGender() {
+    public function getGender()
+    {
         return $this->gender;
     }
 
     /**
      * @return null
      */
-    public function getAddressingGivenName() {
+    public function getAddressingGivenName()
+    {
         return $this->addressingGivenName;
     }
 
     /**
      * @return null
      */
-    public function getAddressingSurname() {
+    public function getAddressingSurname()
+    {
         return $this->addressingSurname;
     }
 
     /**
      * @return OutputPersonName
      */
-    public function getOutputPersonName() {
+    public function getOutputPersonName()
+    {
         return $this->outputPersonName;
     }
 
@@ -108,13 +111,15 @@ class ParsedPerson {
      *
      * @return ParsedPerson[] the array may be empty
      */
-    public function getPeople() {
+    public function getPeople()
+    {
         return $this->people;
     }
 
 
-    public function __toString() {
-        $str = 'ParsedPerson{personType='.$this->personType.'}';
+    public function __toString()
+    {
+        $str = 'ParsedPerson{personType=' . $this->personType . '}';
         return $str;
     }
 }
