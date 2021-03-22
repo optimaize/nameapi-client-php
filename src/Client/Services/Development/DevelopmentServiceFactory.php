@@ -3,7 +3,7 @@
 namespace Org\NameApi\Client\Services\Development;
 
 use Org\NameApi\Client\Services\Development\ExceptionThrower\ExceptionThrowerService;
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the system-related services.

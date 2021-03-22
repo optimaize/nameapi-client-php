@@ -2,7 +2,7 @@
 
 namespace Org\NameApi\Client\Services\Matcher;
 
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the matcher-related services.

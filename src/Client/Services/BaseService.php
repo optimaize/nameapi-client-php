@@ -8,7 +8,7 @@ use Org\NameApi\Client\Fault\Retry;
 use Org\NameApi\Client\Fault\ServiceException;
 use Org\NameApi\Client\Http\RestHttpClient;
 use Org\NameApi\Client\Http\RestHttpClientConfig;
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Base class for services.

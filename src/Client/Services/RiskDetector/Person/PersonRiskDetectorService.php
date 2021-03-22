@@ -9,8 +9,8 @@ use Org\NameApi\Client\Services\RiskDetector\DetectedRisk;
 use Org\NameApi\Client\Services\RiskDetector\DisguiseRiskType;
 use Org\NameApi\Client\Services\RiskDetector\FakeRiskType;
 use Org\NameApi\Client\Services\RiskDetector\RiskDetectorResult;
-use Org\NameApi\ontology\input\Context\Context;
-use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Entities\Person\NaturalInputPerson;
 
 
 /**

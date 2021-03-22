@@ -8,11 +8,11 @@ use Org\NameApi\Client\Services\Genderizer\PersonGenderizer\PersonGenderResult;
 use Org\NameApi\Client\Services\Parser\OutputPersonName;
 use Org\NameApi\Client\Services\Parser\OutputTermType;
 use Org\NameApi\Client\Services\Parser\Term;
-use Org\NameApi\ontology\input\Context\Context;
-use Org\NameApi\ontology\input\entities\person\gender\ComputedPersonGender;
-use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
-use Org\NameApi\ontology\input\entities\person\PersonRole;
-use Org\NameApi\ontology\input\entities\person\PersonType;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Entities\Person\Gender\ComputedPersonGender;
+use Org\NameApi\Ontology\Input\Entities\Person\NaturalInputPerson;
+use Org\NameApi\Ontology\Input\Entities\Person\PersonRole;
+use Org\NameApi\Ontology\Input\Entities\Person\PersonType;
 
 
 /**

@@ -4,7 +4,7 @@ namespace Org\NameApi\Client\Services\Formatter;
 
 use Org\NameApi\Client\Services\Formatter\NameFieldFormatter\NameFieldFormatterService;
 use Org\NameApi\Client\Services\Formatter\PersonNameFormatter\PersonNameFormatterService;
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the formatter-related services.

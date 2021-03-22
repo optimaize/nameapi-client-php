@@ -5,8 +5,8 @@ namespace Org\NameApi\Client\Services\Formatter\NameFieldFormatter;
 use Org\NameApi\Client\Services\BaseService;
 use Org\NameApi\Client\Services\Formatter\FormatterProperties;
 use Org\NameApi\Client\Services\Formatter\FormatterResult;
-use Org\NameApi\ontology\input\Context\Context;
-use Org\NameApi\ontology\input\entities\person\Name\NameField;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Entities\Person\Name\NameField;
 
 
 /**

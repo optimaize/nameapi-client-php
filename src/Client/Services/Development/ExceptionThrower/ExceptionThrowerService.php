@@ -4,7 +4,7 @@ namespace Org\NameApi\Client\Services\Development\ExceptionThrower;
 
 use Org\NameApi\Client\Fault\ServiceException;
 use Org\NameApi\Client\Services\BaseService;
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 
 /**

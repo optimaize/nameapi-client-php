@@ -3,7 +3,7 @@
 namespace Org\NameApi\Client\Services\System;
 
 use Org\NameApi\Client\Services\System\Ping\PingService;
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the system-related services.

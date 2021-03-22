@@ -10,8 +10,8 @@ use Org\NameApi\Client\Services\Matcher\GenderMatcherResult;
 use Org\NameApi\Client\Services\Matcher\GenderMatchType;
 use Org\NameApi\Client\Services\Matcher\PersonNameMatcherResult;
 use Org\NameApi\Client\Services\Matcher\PersonNameMatchType;
-use Org\NameApi\ontology\input\Context\Context;
-use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Entities\Person\NaturalInputPerson;
 
 /**
  * This is the service class for the web service offered at

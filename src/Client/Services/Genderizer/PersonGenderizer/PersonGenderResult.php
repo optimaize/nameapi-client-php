@@ -2,7 +2,7 @@
 
 namespace Org\NameApi\Client\Services\Genderizer\PersonGenderizer;
 
-use Org\NameApi\ontology\input\entities\person\gender\ComputedPersonGender;
+use Org\NameApi\Ontology\Input\Entities\Person\Gender\ComputedPersonGender;
 
 class PersonGenderResult
 {

@@ -2,7 +2,7 @@
 
 namespace Org\NameApi\Client\Services\Genderizer;
 
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the genderizer-related services.

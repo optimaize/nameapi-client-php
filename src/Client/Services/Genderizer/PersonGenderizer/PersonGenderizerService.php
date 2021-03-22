@@ -4,9 +4,9 @@ namespace Org\NameApi\Client\Services\Genderizer\PersonGenderizer;
 
 use Org\NameApi\Client\Fault\ServiceException;
 use Org\NameApi\Client\Services\BaseService;
-use Org\NameApi\ontology\input\Context\Context;
-use Org\NameApi\ontology\input\entities\person\gender\ComputedPersonGender;
-use Org\NameApi\ontology\input\entities\person\NaturalInputPerson;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Entities\Person\Gender\ComputedPersonGender;
+use Org\NameApi\Ontology\Input\Entities\Person\NaturalInputPerson;
 
 /**
  * This is the service class for the web service offered at

@@ -4,8 +4,8 @@ namespace Org\NameApi\Client\Services\Parser\PersonNameParser;
 
 use Org\NameApi\Client\Services\Genderizer\PersonGenderizer\PersonGenderResult;
 use Org\NameApi\Client\Services\Parser\OutputPersonName;
-use Org\NameApi\ontology\input\entities\person\PersonRole;
-use Org\NameApi\ontology\input\entities\person\PersonType;
+use Org\NameApi\Ontology\Input\Entities\Person\PersonRole;
+use Org\NameApi\Ontology\Input\Entities\Person\PersonType;
 
 
 class ParsedPerson

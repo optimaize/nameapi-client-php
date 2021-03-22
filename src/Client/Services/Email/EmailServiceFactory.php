@@ -4,7 +4,7 @@ namespace Org\NameApi\Client\Services\Email;
 
 use Org\NameApi\Client\Services\Email\DisposableEmailAddressDetector\DisposableEmailAddressDetectorService;
 use Org\NameApi\Client\Services\Email\EmailNameParser\EmailNameParserService;
-use Org\NameApi\ontology\input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Context;
 
 /**
  * Provides access to the email-related services.

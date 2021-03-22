@@ -8,7 +8,7 @@ namespace Org\NameApi\Ontology\Input\Entities\Person\Name;
  * The content of a form field or database field, as input sent to the web service.
  * It contains the string value, and the field type.
  *
- * @package Org\NameApi\Ontology\Input\Entities\Person\name
+ * @package Org\NameApi\Ontology\Input\Entities\Person\Name
  */
 class NameField
 {
