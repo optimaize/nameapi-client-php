@@ -39,7 +39,7 @@ class Host
 
     public static function standard()
     {
-        return new Host('https', 'api.nameapi.org', 80);
+        return new Host('https', 'api.nameapi.org', 443);
     }
 
     public static function http($hostName)
