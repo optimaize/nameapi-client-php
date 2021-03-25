@@ -1,12 +1,15 @@
 <?php
 
-namespace org\nameapi\ontology\input\context;
+namespace Tests\Unit\Org\NameApi\Ontology\Input\Context;
 
-require_once(__DIR__.'/../../../../../../../src/org/nameapi/ontology/input/context/Priority.php');
+use Org\NameApi\Ontology\Input\Context\Priority;
+use PHPUnit\Framework\TestCase;
 
-class PriorityTest extends \PHPUnit_Framework_TestCase {
+class PriorityTest extends TestCase
+{
 
-    public function testEquality() {
+    public function testEquality()
+    {
         $this->assertEquals(Priority::REALTIME(), Priority::REALTIME());
         $this->assertTrue(Priority::REALTIME() === Priority::REALTIME());
         $this->assertEquals('REALTIME', (string)Priority::REALTIME());

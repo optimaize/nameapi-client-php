@@ -1,12 +1,16 @@
 <?php
 
-namespace org\nameapi\ontology\input\context;
+namespace Tests\Unit\Org\NameApi\Ontology\Input\Context;
 
-require_once(__DIR__.'/../../../../../../../src/org/nameapi/ontology/input/context/Context.php');
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Priority;
+use PHPUnit\Framework\TestCase;
 
-class ContextBuilderTest extends \PHPUnit_Framework_TestCase {
+class ContextBuilderTest extends TestCase
+{
 
-    public function testOne() {
+    public function testOne()
+    {
         $context = Context::builder()->place('DE')->priority(Priority::REALTIME())->build();
         $this->assertEquals('DE', $context->getPlace());
         $this->assertEquals(Priority::REALTIME(), $context->getPriority());

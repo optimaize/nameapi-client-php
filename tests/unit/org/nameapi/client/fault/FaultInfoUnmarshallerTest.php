@@ -1,19 +1,22 @@
 <?php
 
-namespace org\nameapi\client\fault;
+namespace Tests\Unit\Org\NameApi\Client\Fault;
 
-require_once(__DIR__.'/../../../../../../src/org/nameapi/client/fault/FaultInfoUnmarshaller.php');
+use Org\NameApi\Client\Fault\FaultInfoUnmarshaller;
+use PHPUnit\Framework\TestCase;
 
-class FaultInfoUnmarshallerTest extends \PHPUnit_Framework_TestCase {
+class FaultInfoUnmarshallerTest extends TestCase
+{
 
-    public function testDate() {
+    public function testDate()
+    {
         $data = "{\"faultCause\":\"AccessDenied\",\"blame\":\"CLIENT\",\"message\":\"No such account: >>>foo<<<!\",\"applicationErrorCode\":\"1201\",\"retrySameLocation\":{\"retryType\":\"NO\"},\"retryOtherLocations\":{\"retryType\":\"NO\"},\"httpStatusCode\":401,\"httpStatusMeaning\":\"Unauthorized\"}";
         $faultInfo = FaultInfoUnmarshaller::unmarshallJsonString($data);
-        $this->assertEquals("AccessDenied",   $faultInfo->getFaultCause());
+        $this->assertEquals("AccessDenied", $faultInfo->getFaultCause());
         $this->assertTrue($faultInfo->getBlame()->isClient());
-        $this->assertEquals("No such account: >>>foo<<<!",   $faultInfo->getMessage());
-        $this->assertEquals("1201",   $faultInfo->getApplicationErrorCode());
-        $this->assertEquals(null,   $faultInfo->getIncidentId());
+        $this->assertEquals("No such account: >>>foo<<<!", $faultInfo->getMessage());
+        $this->assertEquals("1201", $faultInfo->getApplicationErrorCode());
+        $this->assertEquals(null, $faultInfo->getIncidentId());
     }
 
 }
