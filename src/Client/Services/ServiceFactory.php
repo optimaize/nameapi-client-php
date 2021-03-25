@@ -61,7 +61,7 @@ class ServiceFactory
             $this->host = $host;
         }
         if ($apiVersion == null) {
-            $this->apiVersion = '5.0';
+            $this->apiVersion = '5.3';
         } else {
             $this->apiVersion = $apiVersion;
         }
