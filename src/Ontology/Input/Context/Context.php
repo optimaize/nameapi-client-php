@@ -11,17 +11,17 @@ class Context
     public $properties = null;
 
     /**
-     * @param priority $priority
-     * @param string $place
-     * @param TextCase $textCase
-     * @param array $properties
+     * @param  priority  $priority
+     * @param  string  $place
+     * @param  TextCase  $textCase
+     * @param  array  $properties
      * @access public
      */
     public function __construct($priority, $place, $textCase, $properties)
     {
-        $this->priority = ($priority == null) ? null : (string)$priority;
+        $this->priority = ($priority == null) ? null : (string) $priority;
         $this->place = $place;
-        $this->textCase = ($textCase == null) ? null : (string)$textCase;
+        $this->textCase = ($textCase == null) ? null : (string) $textCase;
         $this->properties = isset($properties) ? $properties : array();
     }
 
@@ -60,5 +60,23 @@ class Context
     public function getProperties()
     {
         return $this->properties;
+    }
+
+    public function toArray()
+    {
+        $ret = array();
+        if ($this->priority) {
+            $ret['priority'] = $this->priority;
+        }
+        if ($this->place) {
+            $ret['place'] = $this->place;
+        }
+        if ($this->textCase) {
+            $ret['textCase'] = $this->textCase;
+        }
+        if ($this->properties) {
+            $ret['properties'] = $this->properties;
+        }
+        return $ret;
     }
 }

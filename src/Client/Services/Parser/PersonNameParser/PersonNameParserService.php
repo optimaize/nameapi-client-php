@@ -38,7 +38,7 @@ class PersonNameParserService extends BaseService
 
 
     /**
-     * @param NaturalInputPerson $person
+     * @param  NaturalInputPerson  $person
      * @return PersonNameParserResult
      * @throws ServiceException
      */
@@ -50,7 +50,7 @@ class PersonNameParserService extends BaseService
         list($response, $httpResponseData) = $this->restHttpClient->callApiPost(
             PersonNameParserService::$RESOURCE_PATH,
             $queryParams, $headerParams,
-            array('inputPerson' => $person, 'context' => $this->context)
+            array('inputPerson' => $person->toArray(), 'context' => $this->context->toArray())
         );
 
         try {

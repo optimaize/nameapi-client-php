@@ -61,30 +61,35 @@ class NaturalInputPerson
     /**
      * Use the {@link NaturalInputPersonBuilder} to create this.
      *
-     * @param InputPersonName|null $personName
-     * @param storagePersonGender $gender
-     * @param AgeInfo|null $ageInfo
-     * @param MaritalStatus $maritalStatus
-     * @param string[]|null $nationalities
-     * @param string[]|null $nativeLanguages
-     * @param string|null $correspondenceLanguage
-     * @param string|null $religion
-     * @param AddressRelation[]|null $addresses
-     * @param TelNumber[]|null $telNumbers
-     * @param EmailAddress[]|null $emailAddresses
+     * @param  InputPersonName|null  $personName
+     * @param  storagePersonGender  $gender
+     * @param  AgeInfo|null  $ageInfo
+     * @param  MaritalStatus  $maritalStatus
+     * @param  string[]|null  $nationalities
+     * @param  string[]|null  $nativeLanguages
+     * @param  string|null  $correspondenceLanguage
+     * @param  string|null  $religion
+     * @param  AddressRelation[]|null  $addresses
+     * @param  TelNumber[]|null  $telNumbers
+     * @param  EmailAddress[]|null  $emailAddresses
      */
-    public function __construct(InputPersonName $personName, $gender,
-                                $ageInfo, $maritalStatus,
-                                $nationalities, $nativeLanguages,
-                                $correspondenceLanguage,
-                                $religion,
-                                $addresses,
-                                $telNumbers, $emailAddresses)
-    {
+    public function __construct(
+        InputPersonName $personName,
+        $gender,
+        $ageInfo,
+        $maritalStatus,
+        $nationalities,
+        $nativeLanguages,
+        $correspondenceLanguage,
+        $religion,
+        $addresses,
+        $telNumbers,
+        $emailAddresses
+    ) {
         $this->personName = $personName;
-        $this->gender = ($gender != null) ? (string)$gender : null;
+        $this->gender = ($gender != null) ? (string) $gender : null;
         $this->ageInfo = $ageInfo;
-        $this->maritalStatus = ($maritalStatus != null) ? (string)$maritalStatus : null;
+        $this->maritalStatus = ($maritalStatus != null) ? (string) $maritalStatus : null;
         $this->nationalities = $nationalities;
         $this->nativeLanguages = $nativeLanguages;
         $this->correspondenceLanguage = $correspondenceLanguage;
@@ -102,4 +107,43 @@ class NaturalInputPerson
         return new NaturalInputPersonBuilder();
     }
 
+    public function toArray()
+    {
+        $ret = array();
+        $ret['type'] = $this->type;
+        if ($this->personName) {
+            $ret['personName'] = $this->personName;
+        }
+        if ($this->gender) {
+            $ret['gender'] = $this->gender;
+        }
+        if ($this->ageInfo) {
+            $ret['ageInfo'] = $this->ageInfo;
+        }
+        if ($this->maritalStatus) {
+            $ret['maritalStatus'] = $this->maritalStatus;
+        }
+        if ($this->nationalities) {
+            $ret['nationalities'] = $this->nationalities;
+        }
+        if ($this->nativeLanguages) {
+            $ret['nativeLanguages'] = $this->nativeLanguages;
+        }
+        if ($this->correspondenceLanguage) {
+            $ret['correspondenceLanguage'] = $this->correspondenceLanguage;
+        }
+        if ($this->religion) {
+            $ret['religion'] = $this->religion;
+        }
+        if ($this->addresses) {
+            $ret['addresses'] = $this->addresses;
+        }
+        if ($this->telNumbers) {
+            $ret['telNumbers'] = $this->telNumbers;
+        }
+        if ($this->emailAddresses) {
+            $ret['emailAddresses'] = $this->emailAddresses;
+        }
+        return $ret;
+    }
 }
