@@ -36,6 +36,7 @@ abstract class BaseService
         $configuration = new RestHttpClientConfig();
         $configuration->setApiKey($apiKey);
         $configuration->setBaseUrl($baseUrl);
+        $configuration->setCurlTimeout(10);
         $this->restHttpClient = new RestHttpClient($configuration);
     }
 
