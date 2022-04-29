@@ -1,10 +1,12 @@
 <?php
 
-require '../../src/org/nameapi/client/services/ServiceFactory.php';
-use org\nameapi\client\services\Host;
-use org\nameapi\client\services\ServiceFactory;
-use org\nameapi\ontology\input\context\Context;
-use org\nameapi\ontology\input\context\Priority;
+namespace Tests\Functional;
+
+use Org\NameApi\Client\Services\Host;
+use Org\NameApi\Client\Services\ServiceFactory;
+use Org\NameApi\Ontology\Input\Context\Context;
+use Org\NameApi\Ontology\Input\Context\Priority;
+use PHPUnit\Framework\TestCase;
 
 
 /**
@@ -14,9 +16,11 @@ use org\nameapi\ontology\input\context\Priority;
  *
  *
  */
-class DisposableEmailAddressDetectorServiceTest extends \PHPUnit_Framework_TestCase {
+class DisposableEmailAddressDetectorServiceTest extends TestCase
+{
 
-    public function testDea() {
+    public function testDea()
+    {
         //setup code:
         $context = Context::builder()
             ->priority(Priority::REALTIME())

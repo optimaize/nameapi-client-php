@@ -1,15 +1,18 @@
 <?php
 
-namespace org\nameapi\ontology\input\entities\person\age;
+namespace Tests\Unit\Org\NameApi\Ontology\Input\Entities\Person\Age;
 
-require_once(__DIR__.'/../../../../../../../../../src/org/nameapi/ontology/input/entities/person/age/AgeInfoFactory.php');
+use Org\NameApi\Ontology\Input\Entities\Person\Age\AgeInfoFactory;
+use PHPUnit\Framework\TestCase;
 
-class AgeInfoFactoryTest extends \PHPUnit_Framework_TestCase {
+class AgeInfoFactoryTest extends TestCase
+{
 
-    public function testDate() {
+    public function testDate()
+    {
         $ageInfo = AgeInfoFactory::forDate(1917, 5, 29);
-        $this->assertEquals(29,   $ageInfo->getDay());
-        $this->assertEquals(5,    $ageInfo->getMonth());
+        $this->assertEquals(29, $ageInfo->getDay());
+        $this->assertEquals(5, $ageInfo->getMonth());
         $this->assertEquals(1917, $ageInfo->getYear());
     }
 
