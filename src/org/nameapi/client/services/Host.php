@@ -27,7 +27,7 @@ class Host {
     private $portNumber;
 
     public static function standard() {
-        return new Host('http', 'api.nameapi.org', 80);
+        return new Host('https', 'api.nameapi.org', 443);
     }
     public static function http($hostName) {
         return new Host('http', $hostName, 80);
@@ -35,7 +35,9 @@ class Host {
     public static function https($hostName) {
         return new Host('https', $hostName, 443);
     }
-
+    public static function custom($protocol, $hostName, $portNumber) {
+        return new Host($protocol, $hostName, $portNumber);
+    }
 
     /**
      * Constructor
