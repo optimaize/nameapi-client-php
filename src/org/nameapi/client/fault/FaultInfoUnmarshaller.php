@@ -25,7 +25,7 @@ class FaultInfoUnmarshaller
         try {
             return FaultInfoUnmarshaller::unmarshallJsonObject(json_decode($data));
         } catch (\Exception $e) {
-            throw new \Exception("Failed unmarshalling json object into FaultInfo!", 0, $e);
+            throw new \Exception("Failed unmarshalling json string into FaultInfo!", 0, $e);
         }
     }
 
