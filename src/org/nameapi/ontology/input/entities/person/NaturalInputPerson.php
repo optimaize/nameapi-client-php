@@ -37,9 +37,9 @@ class NaturalInputPerson {
     public $gender = null;
 
     /**
-     * @var AgeInfo|null $ageInfo
+     * @var AgeInfo|null $age
      */
-    public $ageInfo = null;
+    public $age = null;
 
     /**
      * @var string $maritalStatus
@@ -106,7 +106,7 @@ class NaturalInputPerson {
                                 $telNumbers, $emailAddresses) {
         $this->personName = $personName;
         $this->gender = ($gender!=null) ? (String)$gender : null;
-        $this->ageInfo = $ageInfo;
+        $this->age = $ageInfo;
         $this->maritalStatus = ($maritalStatus!=null) ? (String)$maritalStatus : null;
         $this->nationalities = $nationalities;
         $this->nativeLanguages = $nativeLanguages;
