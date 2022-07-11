@@ -10,6 +10,7 @@ namespace org\nameapi\client\services\matcher;
  * EQUAL
  * MATCHING
  * SIMILAR
+ * PARTIAL
  * NO_SIMILARITY_FOUND
  *   since v4.1
  * DIFFERENT
