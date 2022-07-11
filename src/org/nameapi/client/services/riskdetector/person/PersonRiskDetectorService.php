@@ -56,7 +56,7 @@ class PersonRiskDetectorService extends BaseService {
             foreach ($response->risks as $risk) {
                 $risk = new DetectedRisk(
                     new DataItem($risk->dataItem),
-                    $this->_riskTypeToEnum($risk->riskType),
+                    $this->_riskTypeToEnum2($risk->riskType),
                     $risk->riskScore,
                     $this->_riskReason($risk)
                 );
@@ -68,6 +68,10 @@ class PersonRiskDetectorService extends BaseService {
         }
     }
 
+    /**
+     * The object structure changed in version 5.3. This doesn't work anymore.
+     * @throws \Exception
+     */
     private function _riskTypeToEnum($val) {
         if ($val[0] === 'FakeRiskType') {
             return new FakeRiskType($val[1]);
@@ -75,6 +79,17 @@ class PersonRiskDetectorService extends BaseService {
             return new DisguiseRiskType($val[1]);
         } else {
             throw new \Exception("Unsupported risk class: ".$val[0]);
+        }
+    }
+
+    private function _riskTypeToEnum2($val) {
+        if ($val === 'RANDOM_TYPING' || $val === 'PLACEHOLDER' || $val === 'FICTIONAL' || $val === 'FAMOUS' ||
+            $val === 'HUMOROUS' || $val === 'INVALID' || $val === 'STRING_SIMILARITY' || $val === 'OTHER') {
+            return new FakeRiskType($val);
+        } else if ($val === 'PADDING' || $val === 'STUTTER_TYPING' || $val === 'SPACED_TYPING') {
+            return new DisguiseRiskType($val);
+        } else {
+            throw new \Exception("Unsupported risk type: ".$val);
         }
     }
 

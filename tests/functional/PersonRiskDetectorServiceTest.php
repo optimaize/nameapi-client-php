@@ -94,7 +94,7 @@ class PersonRiskDetectorServiceTest extends TestCase {
         //var_dump($result);
 
         $this->assertEquals(true, $result->hasRisk());
-        $this->assertEquals(8, sizeof($result->getRisks()));
+        $this->assertEquals(7, sizeof($result->getRisks()));
         $this->assertTrue($result->getScore() >= 0.95 && $result->getScore() <= 1.0);
 
         $this->_expectRiskOnName($result->getRisks());
