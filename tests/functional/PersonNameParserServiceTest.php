@@ -7,6 +7,7 @@ use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\context\Priority;
 use org\nameapi\ontology\input\entities\person\NaturalInputPerson;
 use org\nameapi\ontology\input\entities\person\name\InputPersonName;
+use PHPUnit\Framework\TestCase;
 
 
 /**
@@ -16,15 +17,15 @@ use org\nameapi\ontology\input\entities\person\name\InputPersonName;
  *
  *
  */
-class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
+class PersonNameParserServiceTest extends TestCase {
 
     public function testParse() {
         //setup code:
         $context = Context::builder()
             ->priority(Priority::REALTIME())
             ->build();
-        $myApiKey = 'test'; //grab one from nameapi.org
-        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc53-api.nameapi.org'), '5.3');
+        $myApiKey = 'your-api-key'; //grab one from nameapi.org
+        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('api.nameapi.org'), '5.3');
         $personNameParser = $serviceFactory->parserServices()->personNameParser();
 
         //the call:
@@ -54,8 +55,8 @@ class PersonNameParserServiceTest extends \PHPUnit_Framework_TestCase {
         $context = Context::builder()
             ->priority(Priority::REALTIME())
             ->build();
-        $myApiKey = 'test'; //grab one from nameapi.org
-        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc53-api.nameapi.org'), '5.3');
+        $myApiKey = 'your-api-key'; //grab one from nameapi.org
+        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('api.nameapi.org'), '5.3');
         $personNameParser = $serviceFactory->parserServices()->personNameParser();
 
         //the call:

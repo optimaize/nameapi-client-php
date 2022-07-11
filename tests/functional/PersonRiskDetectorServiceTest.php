@@ -10,6 +10,7 @@ use org\nameapi\ontology\input\entities\person\name\InputPersonName;
 use org\nameapi\ontology\input\entities\address\StructuredAddress;
 use org\nameapi\ontology\input\entities\address\StructuredStreetInfo;
 use org\nameapi\ontology\input\entities\address\StructuredPlaceInfo;
+use PHPUnit\Framework\TestCase;
 
 
 /**
@@ -17,7 +18,7 @@ use org\nameapi\ontology\input\entities\address\StructuredPlaceInfo;
  * This is just one simple call. For all functional tests see the separate project at
  * https://github.com/optimaize/nameapi-client-php-functionaltests
  */
-class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
+class PersonRiskDetectorServiceTest extends TestCase {
 
     /**
      * In this test only the person's name is sent to the server.
@@ -27,8 +28,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         $context = Context::builder()
             ->priority(Priority::REALTIME())
             ->build();
-        $myApiKey = 'test'; //grab one from nameapi.org
-        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc53-api.nameapi.org'), '5.3');
+        $myApiKey = 'your-api-key'; //grab one from nameapi.org
+        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('api.nameapi.org'), '5.3');
         $riskDetector = $serviceFactory->riskServices()->personRiskDetector();
 
         //the call:
@@ -66,8 +67,8 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         $context = Context::builder()
             ->priority(Priority::REALTIME())
             ->build();
-        $myApiKey = 'test'; //grab one from nameapi.org
-        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('rc53-api.nameapi.org'), '5.3');
+        $myApiKey = 'your-api-key'; //grab one from nameapi.org
+        $serviceFactory = new ServiceFactory($myApiKey, $context, Host::http('api.nameapi.org'), '5.3');
         $riskDetector = $serviceFactory->riskServices()->personRiskDetector();
 
         $inputPerson = NaturalInputPerson::builder()
@@ -93,7 +94,7 @@ class PersonRiskDetectorServiceTest extends \PHPUnit_Framework_TestCase {
         //var_dump($result);
 
         $this->assertEquals(true, $result->hasRisk());
-        $this->assertEquals(4, sizeof($result->getRisks()));
+        $this->assertEquals(8, sizeof($result->getRisks()));
         $this->assertTrue($result->getScore() >= 0.95 && $result->getScore() <= 1.0);
 
         $this->_expectRiskOnName($result->getRisks());
