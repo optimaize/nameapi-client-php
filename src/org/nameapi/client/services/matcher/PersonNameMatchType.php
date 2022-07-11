@@ -23,7 +23,7 @@ final class PersonNameMatchType {
     private $value = null;
 
     public function __construct($value) {
-        if ($value!=='EQUAL' && $value!=='MATCHING' && $value!=='SIMILAR' && $value!=='NO_SIMILARITY_FOUND' && $value!=='DIFFERENT') {
+        if ($value!=='EQUAL' && $value!=='MATCHING' && $value!=='SIMILAR' && $value!=='PARTIAL' && $value!=='NO_SIMILARITY_FOUND' && $value!=='DIFFERENT') {
             throw new \Exception('Invalid value for PersonNameMatchType: '.$value.'!');
         }
         $this->value = $value;
