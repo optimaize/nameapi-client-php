@@ -39,7 +39,7 @@ use org\nameapi\ontology\input\context\Context;
 use org\nameapi\ontology\input\context\Priority;
 $context = Context::builder()
     ->place('US')
-    ->priority(Priority::REALTIME)
+    ->priority(Priority::REALTIME())
     ->build();
 ```
 
