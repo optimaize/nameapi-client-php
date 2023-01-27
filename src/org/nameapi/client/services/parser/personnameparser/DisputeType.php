@@ -32,6 +32,11 @@ namespace org\nameapi\client\services\parser\personnameparser;
  * Aka swapped names, eg gn in sn field and vice versa.
  * @since 5.3
  *
+ * TERM_INTERPRETATION
+ * When a term is interpreted as something, but it would be much more likely to have another meaning.
+ * Example: "Theodor" interpreted as surname.
+ * @since 5.6
+ *
  * DUPLICATE_CONTENT
  * EG the surname appears [Peter Smith, Smith] or the title [Dr, Dr John, Smith]
  * @since 5.3
@@ -49,7 +54,8 @@ final class DisputeType {
     private $value = null;
 
     public function __construct($value) {
-        if ($value!=='GENDER' && $value!=='SPELLING' && $value!=='TRANSPOSITION' && $value!=='DUPLICATE_CONTENT' && $value!=='SYNTAX') {
+        if ($value!=='GENDER' && $value!=='SPELLING' && $value!=='TRANSPOSITION' && $value!=='TERM_INTERPRETATION'
+            && $value!=='DUPLICATE_CONTENT' && $value!=='SYNTAX') {
             throw new \Exception('Invalid value for DisputeType: '.$value.'!');
         }
         $this->value = $value;
