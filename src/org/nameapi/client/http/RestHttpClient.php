@@ -46,7 +46,7 @@ class RestHttpClient {
      * Constructor of the class
      * @param RestHttpClientConfig $config config for this ApiClient
      */
-    public function __construct(RestHttpClientConfig $config = null) {
+    public function __construct(?RestHttpClientConfig $config = null) {
         if ($config == null) {
             $config = RestHttpClientConfig::getDefaultConfiguration();
         }

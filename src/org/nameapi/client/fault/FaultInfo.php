@@ -72,7 +72,7 @@ class FaultInfo
      * @param Retry $retrySameLocation
      * @param Retry $retryOtherLocations
      */
-    public function __construct($faultCause, $blame, $message, $applicationErrorCode=null, $incidentId=null, Retry $retrySameLocation=null, Retry $retryOtherLocations=null)
+    public function __construct($faultCause, $blame, $message, $applicationErrorCode=null, $incidentId=null, ?Retry $retrySameLocation=null, ?Retry $retryOtherLocations=null)
     {
         $this->faultCause = $faultCause;
         $this->blame = $blame;

@@ -72,7 +72,7 @@ class ServiceFactory {
      * @var $apiVersion default is the "latest stable", currently that is 5.3.
      *      You want to change this to target another version, for example a release candidate or a development version.
      */
-    public function __construct($apiKey, Context $context, Host $host=null, $apiVersion=null) {
+    public function __construct($apiKey, Context $context, ?Host $host=null, $apiVersion=null) {
         $this->apiKey = $apiKey;
         $this->context = $context;
         if ($host==null) {
